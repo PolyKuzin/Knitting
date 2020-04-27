@@ -14,6 +14,8 @@
 		999EACE22455C17500321D3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 999EACE12455C17500321D3E /* Assets.xcassets */; };
 		999EACE52455C17600321D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999EACE32455C17500321D3E /* LaunchScreen.storyboard */; };
 		999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACEE2456B50400321D3E /* CustomTableViewCell.swift */; };
+		999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF02456FD5B00321D3E /* ProjectModel.swift */; };
+		999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF42457175200321D3E /* NewProjectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		999EACE42455C17600321D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		999EACE62455C17600321D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		999EACEE2456B50400321D3E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		999EACF02456FD5B00321D3E /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		999EACF42457175200321D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				999EACD82455C17300321D3E /* AppDelegate.swift */,
 				999EACDA2455C17300321D3E /* SceneDelegate.swift */,
 				999EACDC2455C17300321D3E /* ProjectsController.swift */,
+				999EACF02456FD5B00321D3E /* ProjectModel.swift */,
+				999EACF42457175200321D3E /* NewProjectViewController.swift */,
 				999EACEE2456B50400321D3E /* CustomTableViewCell.swift */,
 				999EACDE2455C17300321D3E /* Main.storyboard */,
 				999EACE12455C17500321D3E /* Assets.xcassets */,
@@ -141,6 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */,
+				999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */,
 				999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,

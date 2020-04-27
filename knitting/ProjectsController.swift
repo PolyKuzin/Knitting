@@ -11,9 +11,9 @@ import UIKit
 class ProjectsController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     let cellIdentifire: String = "cell"
-    let projectsNames = [
-        "Варежки", "Слоник", "Медведь", "Овоська", "Цыплёнок", "Шарф"
-    ]
+    
+    let projects = Project.getProjects()
+    let projectsMirr = ProjectMirr.getProjectsMirr()
     
     @IBOutlet weak var table1: UITableView!
     @IBOutlet weak var table2: UITableView!
@@ -38,10 +38,10 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         
         if tableView.tag == 1 {
             
-            return projectsNames.count
+            return projects.count
         } else if tableView.tag == 2 {
             
-            return projectsNames.count
+            return projects.count
         }
         else { return 0 }
     }
@@ -52,18 +52,20 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         
         if (tableView.tag == 1) {
             
-            cell.nameLabel?.text = projectsNames[indexPath.row]
-            cell.imageOfProject.image = UIImage(named: projectsNames[indexPath.row])
+            cell.nameLabel.text = projects[indexPath.row].name
+            cell.tagLabel.text = projects[indexPath.row].tag
+            cell.imageOfProject.image = UIImage(named: projects[indexPath.row].name)
             cell.imageOfProject.layer.cornerRadius = cell.imageOfProject.frame.size.height / 2
             cell.imageOfProject.clipsToBounds = true
             
             return cell
         } else if (tableView.tag == 2) {
             
-            cell.nameLabel?.text = projectsNames[indexPath.row]
-            cell.imageOfProject?.image = UIImage(named: projectsNames[indexPath.row])
-            cell.imageOfProject?.layer.cornerRadius = cell.imageOfProject.frame.size.height / 2
-            cell.imageOfProject?.clipsToBounds = true
+            cell.nameMirrLabel.text = projectsMirr[indexPath.row].nameMirr
+            cell.tagMirrLabel.text = projectsMirr[indexPath.row].tagMirr
+            cell.imageMirrOfProject.image = UIImage(named: projectsMirr[indexPath.row].nameMirr)
+            cell.imageMirrOfProject.layer.cornerRadius = cell.imageMirrOfProject.frame.size.height / 2
+            cell.imageMirrOfProject.clipsToBounds = true
             
             return cell
         }
@@ -71,10 +73,6 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    //MARK: Table View Delegate
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
+    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {}
 }
 
