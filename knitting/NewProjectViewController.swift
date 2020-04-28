@@ -10,7 +10,6 @@ import UIKit
 
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
-    var newProject: Project?
     var imageIsChanged = false
     
     @IBOutlet weak var projectImage: UIImageView!
@@ -24,11 +23,8 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.tableFooterView = UIView()
-        
         saveButton.isEnabled = false
-        
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
@@ -133,7 +129,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     */
 
     //MARK: Saving new project
-    func saveNewProject () {
+    func saveNewProject() {
         
         var image: UIImage?
         
@@ -144,12 +140,13 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             image = #imageLiteral(resourceName: "ball")
         }
         
-        newProject = Project(name: projectName.text!,
-                             tag: projectTag.text,
-                             image: image,
-                             projectImage: nil)
+        let imageData = image?.pngData()
+        
+        let newProject = Project(name: projectName.text!,
+                                 tag: projectTag.text,
+                                 imageData: imageData)
+        StorageManager.saveObject(newProject)
     }
-    
 }
 
 //MARK: TextField Delegate

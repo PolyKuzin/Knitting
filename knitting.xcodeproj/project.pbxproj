@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A5C195DC45C29766AFFDAA9 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B945E6E86143D03C904CBC4F /* Pods_knitting.framework */; };
+		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		999EACD92455C17300321D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACD82455C17300321D3E /* AppDelegate.swift */; };
 		999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDA2455C17300321D3E /* SceneDelegate.swift */; };
 		999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDC2455C17300321D3E /* ProjectsController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A7A46B5C75C09FD2363FF8D /* Pods-knitting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.debug.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.debug.xcconfig"; sourceTree = "<group>"; };
+		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		999EACD52455C17300321D3E /* knitting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knitting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999EACD82455C17300321D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		999EACDA2455C17300321D3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +34,8 @@
 		999EACEE2456B50400321D3E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		999EACF02456FD5B00321D3E /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		999EACF42457175200321D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		B945E6E86143D03C904CBC4F /* Pods_knitting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_knitting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC6050A4DFA4DC687E0C5130 /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A5C195DC45C29766AFFDAA9 /* Pods_knitting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		998975E91A9FC51C9D785D8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A7A46B5C75C09FD2363FF8D /* Pods-knitting.debug.xcconfig */,
+				CC6050A4DFA4DC687E0C5130 /* Pods-knitting.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		999EACCC2455C17300321D3E = {
 			isa = PBXGroup;
 			children = (
 				999EACD72455C17300321D3E /* knitting */,
 				999EACD62455C17300321D3E /* Products */,
+				998975E91A9FC51C9D785D8A /* Pods */,
+				9EB10738CC12A41F27444262 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,12 +86,21 @@
 				999EACF02456FD5B00321D3E /* ProjectModel.swift */,
 				999EACF42457175200321D3E /* NewProjectViewController.swift */,
 				999EACEE2456B50400321D3E /* CustomTableViewCell.swift */,
+				997E85102458992A0074BE4B /* StorageManager.swift */,
 				999EACDE2455C17300321D3E /* Main.storyboard */,
 				999EACE12455C17500321D3E /* Assets.xcassets */,
 				999EACE32455C17500321D3E /* LaunchScreen.storyboard */,
 				999EACE62455C17600321D3E /* Info.plist */,
 			);
 			path = knitting;
+			sourceTree = "<group>";
+		};
+		9EB10738CC12A41F27444262 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B945E6E86143D03C904CBC4F /* Pods_knitting.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 999EACE92455C17600321D3E /* Build configuration list for PBXNativeTarget "knitting" */;
 			buildPhases = (
+				041B794DBC7FF11D244E2D38 /* [CP] Check Pods Manifest.lock */,
 				999EACD12455C17300321D3E /* Sources */,
 				999EACD22455C17300321D3E /* Frameworks */,
 				999EACD32455C17300321D3E /* Resources */,
+				66BD1BD429CDDFB07C81D219 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -142,6 +171,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		041B794DBC7FF11D244E2D38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-knitting-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66BD1BD429CDDFB07C81D219 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-knitting/Pods-knitting-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-knitting/Pods-knitting-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-knitting/Pods-knitting-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		999EACD12455C17300321D3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -150,6 +221,7 @@
 				999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */,
 				999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */,
+				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
 				999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
@@ -294,6 +366,7 @@
 		};
 		999EACEA2455C17600321D3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A7A46B5C75C09FD2363FF8D /* Pods-knitting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,6 +385,7 @@
 		};
 		999EACEB2455C17600321D3E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC6050A4DFA4DC687E0C5130 /* Pods-knitting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

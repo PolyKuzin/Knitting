@@ -6,29 +6,19 @@
 //  Copyright © 2020 Павел Кузин. All rights reserved.
 //
 
-import UIKit
+import RealmSwift
 
-struct Project {
+class Project: Object {
     
-    var name: String
-    var tag: String?
-    var image: UIImage?
-    var projectImage: String?
+    @objc dynamic var name = ""
+    @objc dynamic var tag: String?
+    @objc dynamic var imageData: Data?
 
-    static let projectsNames = [
-            "Варежки", "Слоник", "Медведь", "Овоська", "Цыплёнок", "Шарф"
-        ]
-    
-   static func getProjects() -> [Project] {
-        
-        var projects = [Project]()
-        
-        for project in projectsNames {
-            
-            projects.append(Project(name: project, tag: "Для себя", image: nil, projectImage: project))
-        }
-        
-        return  projects
+    convenience init(name: String, tag: String?, imageData: Data?) {
+        self.init()
+        self.name = name
+        self.tag = tag
+        self.imageData = imageData
     }
 }
 
