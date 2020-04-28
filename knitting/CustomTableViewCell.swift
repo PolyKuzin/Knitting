@@ -20,6 +20,4 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var tagMirrLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    
-    
 }

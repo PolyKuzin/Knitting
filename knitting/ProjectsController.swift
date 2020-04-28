@@ -14,7 +14,6 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     let cellIdentifire: String = "cell"
     
     var projects: Results<Project>!
-    let projectsMirr = ProjectMirr.getProjectsMirr()
     
     @IBOutlet weak var table1: UITableView!
     @IBOutlet weak var table2: UITableView!
@@ -40,11 +39,11 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
 
         if tableView.tag == 1 {
 
-            return projects.isEmpty ? 0 : projects.count
+            return projects.isEmpty ? 0 : 3
         } else
     if tableView.tag == 2 {
 
-            return projectsMirr.count
+            return projects.isEmpty ? 0 : projects.count
         }
         else { return 0 }
     }
@@ -68,12 +67,14 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         } else
             if (tableView.tag == 2) {
 
-            cell.nameMirrLabel.text = projectsMirr[indexPath.row].nameMirr
-            cell.tagMirrLabel.text = projectsMirr[indexPath.row].tagMirr
-            cell.imageMirrOfProject.image = UIImage(named: projectsMirr[indexPath.row].nameMirr)
+            let project = projects[indexPath.row]
+
+            cell.nameMirrLabel.text = project.name
+            cell.tagMirrLabel.text = project.tag
 
             cell.imageMirrOfProject.layer.cornerRadius = cell.imageMirrOfProject.frame.size.height / 2
             cell.imageMirrOfProject.clipsToBounds = true
+            cell.imageMirrOfProject.image = UIImage(data: project.imageData!)
 
             return cell
         }
