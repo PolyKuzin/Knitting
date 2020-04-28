@@ -6,13 +6,14 @@
 //  Copyright © 2020 Павел Кузин. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Project {
     
     var name: String
-    var tag: String
-    var image: String
+    var tag: String?
+    var image: UIImage?
+    var projectImage: String?
 
     static let projectsNames = [
             "Варежки", "Слоник", "Медведь", "Овоська", "Цыплёнок", "Шарф"
@@ -24,7 +25,7 @@ struct Project {
         
         for project in projectsNames {
             
-            projects.append(Project(name: project, tag: "Для себя", image: project))
+            projects.append(Project(name: project, tag: "Для себя", image: nil, projectImage: project))
         }
         
         return  projects
@@ -32,24 +33,24 @@ struct Project {
 }
 
 struct ProjectMirr {
-    
+
     var nameMirr: String
     var tagMirr: String
     var imageMirr: String
-    
+
     static let projectsNamesMirr = [
              "Варежки", "Слоник", "Медведь", "Овоська", "Цыплёнок", "Шарф"
          ]
-     
+
     static func getProjectsMirr() -> [ProjectMirr] {
-         
+
          var projectsMirr = [ProjectMirr]()
-         
+
          for projectMirr in projectsNamesMirr {
-             
+
              projectsMirr.append(ProjectMirr(nameMirr: projectMirr, tagMirr: "Для себя", imageMirr: projectMirr))
          }
-         
+
          return projectsMirr
      }
 }

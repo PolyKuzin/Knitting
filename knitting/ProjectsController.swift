@@ -12,7 +12,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cellIdentifire: String = "cell"
     
-    let projects = Project.getProjects()
+    var projects = Project.getProjects()
     let projectsMirr = ProjectMirr.getProjectsMirr()
     
     @IBOutlet weak var table1: UITableView!
@@ -52,11 +52,20 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         
         if (tableView.tag == 1) {
             
-            cell.nameLabel.text = projects[indexPath.row].name
-            cell.tagLabel.text = projects[indexPath.row].tag
-            cell.imageOfProject.image = UIImage(named: projects[indexPath.row].name)
+            let project = projects[indexPath.row]
+            
+            cell.nameLabel.text = project.name
+            cell.tagLabel.text = project.tag
+            
             cell.imageOfProject.layer.cornerRadius = cell.imageOfProject.frame.size.height / 2
             cell.imageOfProject.clipsToBounds = true
+            
+            //Defaults images
+            if project.image == nil {
+                cell.imageOfProject.image = UIImage(named: project.projectImage!)
+            } else {
+                cell.imageOfProject.image = project.image
+            }
             
             return cell
         } else if (tableView.tag == 2) {
@@ -64,6 +73,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             cell.nameMirrLabel.text = projectsMirr[indexPath.row].nameMirr
             cell.tagMirrLabel.text = projectsMirr[indexPath.row].tagMirr
             cell.imageMirrOfProject.image = UIImage(named: projectsMirr[indexPath.row].nameMirr)
+            
             cell.imageMirrOfProject.layer.cornerRadius = cell.imageMirrOfProject.frame.size.height / 2
             cell.imageMirrOfProject.clipsToBounds = true
             
@@ -73,6 +83,14 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {}
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        
+        guard let newProjectVC = segue.source as? NewProjectViewController else { return }
+        
+        newProjectVC.saveNewProject()
+        projects.append(newProjectVC.newProject!)
+        table1.reloadData()
+        //table2.reloadData()
+    }
 }
 

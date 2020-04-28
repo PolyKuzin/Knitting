@@ -10,12 +10,26 @@ import UIKit
 
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
-    @IBOutlet weak var imageOfProject: UIImageView!
+    var newProject: Project?
+    var imageIsChanged = false
+    
+    @IBOutlet weak var projectImage: UIImageView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var projectName: UITextField!
+    @IBOutlet weak var projectTag: UITextField!
+    @IBAction func cancelAction(_ sender: Any) {
+        
+        dismiss(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
+        
+        saveButton.isEnabled = false
+        
+        projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
     //MARK: TableView Delegate
@@ -118,6 +132,24 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     }
     */
 
+    //MARK: Saving new project
+    func saveNewProject () {
+        
+        var image: UIImage?
+        
+        //default images
+        if imageIsChanged {
+            image = projectImage.image
+        } else {
+            image = #imageLiteral(resourceName: "ball")
+        }
+        
+        newProject = Project(name: projectName.text!,
+                             tag: projectTag.text,
+                             image: image,
+                             projectImage: nil)
+    }
+    
 }
 
 //MARK: TextField Delegate
@@ -129,6 +161,15 @@ extension NewProjectViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @objc private func textFieldChanged() {
+        
+        if projectName.text?.isEmpty == false {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
 }
 
@@ -149,9 +190,12 @@ extension NewProjectViewController: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        imageOfProject.image = info[.editedImage] as? UIImage
-        imageOfProject.contentMode = .scaleAspectFill
-        imageOfProject.clipsToBounds = true
+        projectImage.image = info[.editedImage] as? UIImage
+        projectImage.contentMode = .scaleAspectFill
+        projectImage.clipsToBounds = true
+        
+        imageIsChanged = true
+        
         dismiss(animated: true)
     }
 }
