@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ProjectLifeController: UITableViewController {
+class ProjectLifeController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
     var currentProject: Project?
     
+    @IBOutlet weak var tagTable: UITableView!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var projectName: UILabel!
     @IBOutlet weak var projectTag: UILabel!
@@ -23,15 +24,23 @@ class ProjectLifeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLifeScreen()
+        
+        projectImage.layer.cornerRadius = projectImage.frame.size.height / 2
     }
-
-    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tagTable.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath) as! TagTableViewCell
+        cell.projectTag.layer.cornerRadius = 10
+        cell.projectTag.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1)
+        
+        return cell
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 1
     }
-
     
     private func setupLifeScreen() {
         
@@ -44,7 +53,7 @@ class ProjectLifeController: UITableViewController {
             projectImage.image = image
             nameLabel = String(currentProject!.name)
             projectName.text = nameLabel
-            tagLabel = String(currentProject!.tag!)
+            tagLabel = String(currentProject?.tag ?? "Для себя")
             projectTag.text = tagLabel
         }
     }
@@ -65,3 +74,4 @@ class ProjectLifeController: UITableViewController {
     }
 
 }
+

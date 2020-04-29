@@ -96,12 +96,13 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                 editingProject?.name = newProject.name
                 editingProject?.tag = newProject.tag
                 editingProject?.imageData = newProject.imageData
+                editingProject?.date = Date()
             }
         } else {
             StorageManager.saveObject(newProject)
         }
     }
-    
+    //MARK: Seting up...
     private func setUpEditScreen(){
         
         if editingProject != nil {
@@ -113,7 +114,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             
             projectImage.image = image
             projectName.text = editingProject?.name
-            projectTag.text = editingProject?.tag
+            //projectTag.text = editingProject?.tag
         }
     }
     

@@ -13,6 +13,7 @@ class Project: Object {
     @objc dynamic var name = ""
     @objc dynamic var tag: String?
     @objc dynamic var imageData: Data?
+    @objc dynamic var date = Date()
 
     convenience init(name: String, tag: String?, imageData: Data?) {
         self.init()

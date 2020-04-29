@@ -15,23 +15,17 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     
     var projects: Results<Project>!
     
+    
     @IBOutlet weak var table1: UITableView!
-    @IBOutlet weak var table2: UITableView!
     @IBOutlet weak var addButton: UIButton!
-    
-    @IBOutlet weak var darkBackGround: UIView!
-    
-    //@IBOutlet weak var addButton: UIButton!
-   // @IBOutlet weak var profileImage: UIImageView!
-        
+
     override func viewDidLoad() {
           super.viewDidLoad()
         projects = realm.objects(Project.self)
 
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
-      //  profileImage.layer.cornerRadius = profileImage.intrinsicContentSize.height / 2
-        darkBackGround.layer.cornerRadius = 30
         
+        sorting()
       }
     
     // MARK: Table Veiw DataSourse
@@ -39,22 +33,13 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     // Количество строк в таблице -> возвращаем количество элементов в массиве
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if tableView.tag == 1 {
-
             return projects.isEmpty ? 0 : projects.count
-        } else
-    if tableView.tag == 2 {
-
-            return projects.isEmpty ? 0 : projects.count
-        }
-        else { return 0 }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! CustomTableViewCell
-
-        if (tableView.tag == 1) {
 
             let project = projects[indexPath.row]
 
@@ -66,22 +51,6 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             cell.imageOfProject.image = UIImage(data: project.imageData!)
 
             return cell
-        } else
-            if (tableView.tag == 2) {
-
-            let project = projects[indexPath.row]
-
-            cell.nameMirrLabel.text = project.name
-            cell.tagMirrLabel.text = project.tag
-
-            cell.imageMirrOfProject.layer.cornerRadius = cell.imageMirrOfProject.frame.size.height / 2
-            cell.imageMirrOfProject.clipsToBounds = true
-            cell.imageMirrOfProject.image = UIImage(data: project.imageData!)
-
-            return cell
-        }
-
-        return cell
     }
     
     //MARK: Table View Delegate
@@ -98,6 +67,14 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         return swipeActions
     }
     
+    //MARK: Sorting
+    
+      func sorting() {
+          
+          projects = projects.sorted(byKeyPath: "date", ascending: false)
+          table1.reloadData()
+      }
+    
     //MARK: UnwindSegue
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
@@ -106,9 +83,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         newProjectVC.saveProject()
         
         table1.reloadData()
-        table2.reloadData()
     }
-    
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -124,5 +99,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
     }
+    
+    
 }
 
