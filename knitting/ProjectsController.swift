@@ -17,10 +17,11 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var table1: UITableView!
     @IBOutlet weak var table2: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
     @IBOutlet weak var darkBackGround: UIView!
     
-    @IBOutlet weak var addButton: UIButton!
+    //@IBOutlet weak var addButton: UIButton!
    // @IBOutlet weak var profileImage: UIImageView!
         
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
       //  profileImage.layer.cornerRadius = profileImage.intrinsicContentSize.height / 2
         darkBackGround.layer.cornerRadius = 30
+        
       }
     
     // MARK: Table Veiw DataSourse
@@ -39,7 +41,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
 
         if tableView.tag == 1 {
 
-            return projects.isEmpty ? 0 : 3
+            return projects.isEmpty ? 0 : projects.count
         } else
     if tableView.tag == 2 {
 
@@ -82,14 +84,45 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    //MARK: Table View Delegate
+    // deleteAction
+    
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let project = projects[indexPath.row]
+        let contextItem = UIContextualAction(style: .destructive, title: "delete") {  (contextualAction, view, boolValue) in
+            StorageManager.deleteObject(project)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+
+        return swipeActions
+    }
+    
+    //MARK: UnwindSegue
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
         guard let newProjectVC = segue.source as? NewProjectViewController else { return }
         
-        newProjectVC.saveNewProject()
+        newProjectVC.saveProject()
         
         table1.reloadData()
-        //table2.reloadData()
+        table2.reloadData()
+    }
+    
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showDetail" {
+            
+            guard let indexPath = table1.indexPathForSelectedRow else {return print("ERROR IN PASSING DATA")}
+            
+            let project = projects[indexPath.row]
+            
+            let lifeProjectVC = segue.destination as! ProjectLifeController
+            lifeProjectVC.currentProject = project
+            
+        }
     }
 }
 

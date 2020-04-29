@@ -11,7 +11,10 @@ import UIKit
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
     var imageIsChanged = false
+    var editingProject: Project?
     
+    
+    @IBOutlet weak var segmentedConrol: UISegmentedControl!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var projectName: UITextField!
@@ -26,6 +29,11 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        
+        segmentedConrol.setImage(#imageLiteral(resourceName: "crochet"), forSegmentAt: 0)
+        segmentedConrol.setImage(#imageLiteral(resourceName: "knitting-2"), forSegmentAt: 1)
+        
+        setUpEditScreen()
     }
     
     //MARK: TableView Delegate
@@ -59,77 +67,14 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     }
 
     // MARK: - Table view data source
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 4
     }
-
-   
-    
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     //MARK: Saving new project
-    func saveNewProject() {
+    func saveProject() {
         
         var image: UIImage?
         
@@ -145,7 +90,42 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         let newProject = Project(name: projectName.text!,
                                  tag: projectTag.text,
                                  imageData: imageData)
-        StorageManager.saveObject(newProject)
+        
+        if editingProject != nil {
+            try! realm.write {
+                editingProject?.name = newProject.name
+                editingProject?.tag = newProject.tag
+                editingProject?.imageData = newProject.imageData
+            }
+        } else {
+            StorageManager.saveObject(newProject)
+        }
+    }
+    
+    private func setUpEditScreen(){
+        
+        if editingProject != nil {
+            
+            setUpNavigationBar()
+            imageIsChanged = true
+            
+            guard let data = editingProject?.imageData, let image = UIImage(data: data) else {return}
+            
+            projectImage.image = image
+            projectName.text = editingProject?.name
+            projectTag.text = editingProject?.tag
+        }
+    }
+    
+    private func setUpNavigationBar() {
+        
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        
+        navigationItem.leftBarButtonItem = nil
+        title = editingProject?.name
+        saveButton.isEnabled = true
     }
 }
 

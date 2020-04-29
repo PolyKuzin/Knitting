@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A5C195DC45C29766AFFDAA9 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B945E6E86143D03C904CBC4F /* Pods_knitting.framework */; };
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
+		997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* ProjectLifeController.swift */; };
 		999EACD92455C17300321D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACD82455C17300321D3E /* AppDelegate.swift */; };
 		999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDA2455C17300321D3E /* SceneDelegate.swift */; };
 		999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDC2455C17300321D3E /* ProjectsController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		8A7A46B5C75C09FD2363FF8D /* Pods-knitting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.debug.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.debug.xcconfig"; sourceTree = "<group>"; };
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		997E85122458B6FF0074BE4B /* ProjectLifeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeController.swift; sourceTree = "<group>"; };
 		999EACD52455C17300321D3E /* knitting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knitting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999EACD82455C17300321D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		999EACDA2455C17300321D3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				999EACDC2455C17300321D3E /* ProjectsController.swift */,
 				999EACF02456FD5B00321D3E /* ProjectModel.swift */,
 				999EACF42457175200321D3E /* NewProjectViewController.swift */,
+				997E85122458B6FF0074BE4B /* ProjectLifeController.swift */,
 				999EACEE2456B50400321D3E /* CustomTableViewCell.swift */,
 				997E85102458992A0074BE4B /* StorageManager.swift */,
 				999EACDE2455C17300321D3E /* Main.storyboard */,
@@ -225,6 +228,7 @@
 				999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
+				997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
