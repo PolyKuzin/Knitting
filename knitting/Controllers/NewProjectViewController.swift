@@ -114,7 +114,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             
             projectImage.image = image
             projectName.text = editingProject?.name
-            //projectTag.text = editingProject?.tag
+            projectTag.text = editingProject?.tag
         }
     }
     

@@ -11,7 +11,6 @@
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* ProjectLifeController.swift */; };
 		997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E851D245A06720074BE4B /* TagTableViewCell.swift */; };
-		997E8520245A08C50074BE4B /* TagTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E851F245A08C40074BE4B /* TagTVC.swift */; };
 		999EACD92455C17300321D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACD82455C17300321D3E /* AppDelegate.swift */; };
 		999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDA2455C17300321D3E /* SceneDelegate.swift */; };
 		999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDC2455C17300321D3E /* ProjectsController.swift */; };
@@ -28,7 +27,6 @@
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* ProjectLifeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeController.swift; sourceTree = "<group>"; };
 		997E851D245A06720074BE4B /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
-		997E851F245A08C40074BE4B /* TagTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTVC.swift; sourceTree = "<group>"; };
 		999EACD52455C17300321D3E /* knitting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knitting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999EACD82455C17300321D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		999EACDA2455C17300321D3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 				997E85122458B6FF0074BE4B /* ProjectLifeController.swift */,
 				999EACF42457175200321D3E /* NewProjectViewController.swift */,
 				999EACDC2455C17300321D3E /* ProjectsController.swift */,
-				997E851F245A08C40074BE4B /* TagTVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -275,7 +272,6 @@
 				997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
-				997E8520245A08C50074BE4B /* TagTVC.swift in Sources */,
 				997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
