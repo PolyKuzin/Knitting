@@ -13,12 +13,10 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     let cellIdentifire: String = "tagCell"
     
     var currentProject: Project?
-    var nameLabel: String?
     var tagLabel: String?
     
     @IBOutlet weak var tagTable: UITableView!
     @IBOutlet weak var projectImage: UIImageView!
-    @IBOutlet weak var projectName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +34,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tagTable.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! TagTableViewCell
 
             cell.projectTag1Cell.text = currentProject?.tags[indexPath.row]
-            cell.projectTag1Cell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1)
+        cell.projectTag1Cell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1) //UIColor(CGColor: currentProject?.tagColor)
             cell.projectTag1Cell.layer.cornerRadius = cell.projectTag1Cell.frame.size.height / 2
             cell.projectTag1Cell.layer.masksToBounds = true
 
@@ -51,8 +49,6 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             guard let data = currentProject?.imageData, let image = UIImage(data: data) else {return}
 
             projectImage.image = image
-            nameLabel = String(currentProject!.name)
-            projectName.text = nameLabel
             tagLabel = String(currentProject?.tags[0] ?? "Для себя")
             tagTable.tableFooterView = UIView()
             
@@ -64,6 +60,8 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         if let topItem = navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
+        let title = UIBarButtonItem(title: currentProject?.name, style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItems?.append(title)
         navigationItem.leftBarButtonItem = nil
     }
     

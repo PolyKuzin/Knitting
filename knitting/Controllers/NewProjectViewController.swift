@@ -14,7 +14,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     var editingProject: Project?
     
     
-    @IBOutlet weak var segmentedConrol: UISegmentedControl!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var projectName: UITextField!
@@ -29,9 +28,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        
-        segmentedConrol.setImage(#imageLiteral(resourceName: "crochet"), forSegmentAt: 0)
-        segmentedConrol.setImage(#imageLiteral(resourceName: "knitting-2"), forSegmentAt: 1)
         
         setUpEditScreen()
     }
