@@ -13,17 +13,12 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     let cellIdentifire: String = "tagCell"
     
     var currentProject: Project?
-    var tags: [String?] = [""]
     var nameLabel: String?
     var tagLabel: String?
     
     @IBOutlet weak var tagTable: UITableView!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var projectName: UILabel!
-    @IBOutlet weak var projectTag: UILabel!
-
-    @IBOutlet weak var stepper: UIStepper!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +29,17 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: TableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return currentProject!.tags.isEmpty ? 0 : currentProject!.tags.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tagTable.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! TagTableViewCell
-        cell.projectTagCell.text = currentProject?.tag
-        cell.projectTagCell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1)
-        cell.projectTagCell.layer.cornerRadius = cell.projectTagCell.frame.size.height / 2
-        cell.projectTagCell.layer.masksToBounds = true
+
+            cell.projectTag1Cell.text = currentProject?.tags[indexPath.row]
+            cell.projectTag1Cell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1)
+            cell.projectTag1Cell.layer.cornerRadius = cell.projectTag1Cell.frame.size.height / 2
+            cell.projectTag1Cell.layer.masksToBounds = true
+
         return cell
     }
     
@@ -56,8 +53,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             projectImage.image = image
             nameLabel = String(currentProject!.name)
             projectName.text = nameLabel
-            tagLabel = String(currentProject?.tag ?? "Для себя")
-            //projectTag.text = tagLabel
+            tagLabel = String(currentProject?.tags[0] ?? "Для себя")
             tagTable.tableFooterView = UIView()
             
         }

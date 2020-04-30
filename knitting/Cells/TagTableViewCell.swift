@@ -10,6 +10,5 @@ import UIKit
 
 class TagTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var projectTagCell: UILabel!
-    
+    @IBOutlet weak var projectTag1Cell: UILabel!
 }

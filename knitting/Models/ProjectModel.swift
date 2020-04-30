@@ -11,14 +11,16 @@ import RealmSwift
 class Project: Object {
     
     @objc dynamic var name = ""
-    @objc dynamic var tag: String?
+    let tags = List<String?>()
     @objc dynamic var imageData: Data?
     @objc dynamic var date = Date()
 
-    convenience init(name: String, tag: String?, imageData: Data?) {
+    convenience init(name: String,
+                     tag: String?,
+                     imageData: Data?) {
         self.init()
         self.name = name
-        self.tag = tag
+        self.tags.append(tag)
         self.imageData = imageData
     }
 }

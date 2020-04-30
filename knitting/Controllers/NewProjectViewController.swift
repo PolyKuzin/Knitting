@@ -18,7 +18,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var projectName: UITextField!
-    @IBOutlet weak var projectTag: UITextField!
+    @IBOutlet weak var projectTag1: UITextField!
     @IBAction func cancelAction(_ sender: Any) {
         
         dismiss(animated: true)
@@ -88,13 +88,17 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         let imageData = image?.pngData()
         
         let newProject = Project(name: projectName.text!,
-                                 tag: projectTag.text,
+                                 tag: projectTag1.text,
                                  imageData: imageData)
         
         if editingProject != nil {
             try! realm.write {
                 editingProject?.name = newProject.name
-                editingProject?.tag = newProject.tag
+                //editingProject?.tags = newProject.tag
+                editingProject?.tags.removeAll()
+                for str in newProject.tags {
+                    editingProject?.tags.append(str)
+                }
                 editingProject?.imageData = newProject.imageData
                 editingProject?.date = Date()
             }
@@ -114,7 +118,11 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             
             projectImage.image = image
             projectName.text = editingProject?.name
-            projectTag.text = editingProject?.tag
+            if !(editingProject?.tags.isEmpty)! {
+                projectTag1.text = editingProject?.tags[0]
+            } else {
+                projectTag1.text = ""
+            }
         }
     }
     

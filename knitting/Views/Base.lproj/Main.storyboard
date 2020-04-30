@@ -113,16 +113,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2yg-Lh-XDH">
-                                <rect key="frame" x="257" y="486" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stepper>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="euE-fL-m29">
                                 <rect key="frame" x="16" y="149" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WX0-Su-OgR">
-                                <rect key="frame" x="224" y="149" width="174" height="200"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WX0-Su-OgR">
+                                <rect key="frame" x="224" y="149" width="174" height="138"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -134,7 +130,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xb0-Wh-F6l">
-                                                    <rect key="frame" x="16" y="5" width="117" height="33"/>
+                                                    <rect key="frame" x="29" y="6" width="117" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.97267001870000003" green="0.98031383750000001" blue="0.9843150973" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -143,7 +139,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="projectTagCell" destination="Xb0-Wh-F6l" id="1ig-Nx-JEM"/>
+                                            <outlet property="projectTag1Cell" destination="Xb0-Wh-F6l" id="1ig-Nx-JEM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -152,12 +148,16 @@
                                     <outlet property="delegate" destination="U4U-zD-IEJ" id="dT3-d3-ubT"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsH-KP-j4f">
-                                <rect key="frame" x="20" y="375" width="142" height="59"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QGL-5u-VSh">
+                                <rect key="frame" x="16" y="357" width="382" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92634099719999996" green="0.37922930719999998" blue="0.47450393439999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" red="0.97267001870000003" green="0.98031383750000001" blue="0.9843150973" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dedline 00.00.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqL-zJ-EYT">
+                                <rect key="frame" x="238" y="282" width="146" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -174,14 +174,12 @@
                     <connections>
                         <outlet property="projectImage" destination="euE-fL-m29" id="G2R-V1-zZf"/>
                         <outlet property="projectName" destination="iyx-3E-DmD" id="RXU-qb-rMc"/>
-                        <outlet property="projectTag" destination="TsH-KP-j4f" id="cic-fv-jvQ"/>
-                        <outlet property="stepper" destination="2yg-Lh-XDH" id="Ogl-1l-a8a"/>
                         <outlet property="tagTable" destination="WX0-Su-OgR" id="Xve-ez-HNP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-wa-uLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1827.5362318840582" y="857.8125"/>
+            <point key="canvasLocation" x="1827.5362318840582" y="129.91071428571428"/>
         </scene>
         <!--New Project View Controller-->
         <scene sceneID="cqB-m7-op3">
@@ -281,17 +279,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6dH-LR-gDc">
-                                                    <rect key="frame" x="16" y="8" width="382" height="59"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6dH-LR-gDc">
+                                                    <rect key="frame" x="16" y="8" width="177.5" height="43.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZC-Uq-czL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="27"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="177.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Who are you doing this for?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDD-ON-vh4">
-                                                            <rect key="frame" x="0.0" y="32" width="382" height="27"/>
+                                                            <rect key="frame" x="0.0" y="25" width="177.5" height="18.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                                                             <connections>
@@ -301,12 +299,6 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="6dH-LR-gDc" firstAttribute="top" secondItem="ql8-3o-XKz" secondAttribute="top" constant="8" id="Dpw-PF-vV3"/>
-                                                <constraint firstAttribute="bottom" secondItem="6dH-LR-gDc" secondAttribute="bottom" constant="8" id="J6j-he-06e"/>
-                                                <constraint firstItem="6dH-LR-gDc" firstAttribute="leading" secondItem="ql8-3o-XKz" secondAttribute="leading" constant="16" id="QmX-em-ycZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="6dH-LR-gDc" secondAttribute="trailing" constant="16" id="RbO-wl-jJJ"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -332,7 +324,7 @@
                     <connections>
                         <outlet property="projectImage" destination="2Z5-Ey-jKT" id="Jn3-gC-wkv"/>
                         <outlet property="projectName" destination="qce-VQ-lu1" id="EIk-nO-0e1"/>
-                        <outlet property="projectTag" destination="PDD-ON-vh4" id="fLE-pC-z0f"/>
+                        <outlet property="projectTag1" destination="PDD-ON-vh4" id="fLE-pC-z0f"/>
                         <outlet property="saveButton" destination="AGw-Sr-BUb" id="y8o-Rg-zX8"/>
                         <outlet property="segmentedConrol" destination="pRI-2S-1OA" id="WYk-98-pWk"/>
                     </connections>

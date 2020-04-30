@@ -34,12 +34,18 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! CustomTableViewCell
-            let project = projects[indexPath.row]
-            cell.nameLabel.text = project.name
-            cell.tagLabel.text = project.tag
-            cell.imageOfProject.layer.cornerRadius = cell.imageOfProject.frame.size.height / 2
-            cell.imageOfProject.clipsToBounds = true
-            cell.imageOfProject.image = UIImage(data: project.imageData!)
+        let project = projects[indexPath.row]
+        cell.nameLabel.text = project.name
+        
+        if !project.tags.isEmpty {
+            cell.tagLabel.text = project.tags[0]
+        } else {
+            cell.tagLabel.text = ""
+        }
+        
+        cell.imageOfProject.layer.cornerRadius = cell.imageOfProject.frame.size.height / 2
+        cell.imageOfProject.clipsToBounds = true
+        cell.imageOfProject.image = UIImage(data: project.imageData!)
             return cell
     }
     
