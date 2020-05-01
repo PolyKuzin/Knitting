@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A5C195DC45C29766AFFDAA9 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B945E6E86143D03C904CBC4F /* Pods_knitting.framework */; };
+		9939A01A245C4E3D00A4BEB2 /* ProjectLifeConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939A019245C4E3D00A4BEB2 /* ProjectLifeConteiner.swift */; };
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* ProjectLifeController.swift */; };
 		997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E851D245A06720074BE4B /* TagTableViewCell.swift */; };
@@ -20,10 +21,12 @@
 		999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACEE2456B50400321D3E /* CustomTableViewCell.swift */; };
 		999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF02456FD5B00321D3E /* ProjectModel.swift */; };
 		999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF42457175200321D3E /* NewProjectViewController.swift */; };
+		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8A7A46B5C75C09FD2363FF8D /* Pods-knitting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.debug.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.debug.xcconfig"; sourceTree = "<group>"; };
+		9939A019245C4E3D00A4BEB2 /* ProjectLifeConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeConteiner.swift; sourceTree = "<group>"; };
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* ProjectLifeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeController.swift; sourceTree = "<group>"; };
 		997E851D245A06720074BE4B /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		999EACEE2456B50400321D3E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		999EACF02456FD5B00321D3E /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		999EACF42457175200321D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
 		B945E6E86143D03C904CBC4F /* Pods_knitting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_knitting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6050A4DFA4DC687E0C5130 /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				997E85122458B6FF0074BE4B /* ProjectLifeController.swift */,
+				9939A019245C4E3D00A4BEB2 /* ProjectLifeConteiner.swift */,
 				999EACF42457175200321D3E /* NewProjectViewController.swift */,
 				999EACDC2455C17300321D3E /* ProjectsController.swift */,
 			);
@@ -77,6 +82,7 @@
 			children = (
 				999EACEE2456B50400321D3E /* CustomTableViewCell.swift */,
 				997E851D245A06720074BE4B /* TagTableViewCell.swift */,
+				99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -272,6 +278,8 @@
 				997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
+				9939A01A245C4E3D00A4BEB2 /* ProjectLifeConteiner.swift in Sources */,
+				99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */,
 				997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
