@@ -10,7 +10,7 @@
         <!--Projects Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProjectsController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="projectsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ProjectsController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,7 +101,7 @@
         <!--Project Life Controller-->
         <scene sceneID="gLl-86-Uhk">
             <objects>
-                <viewController id="U4U-zD-IEJ" customClass="ProjectLifeController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="projectLifeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U4U-zD-IEJ" customClass="ProjectLifeController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AF9-MK-6TO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,6 +204,7 @@
                     <connections>
                         <outlet property="addCounterView" destination="i6t-kX-1T6" id="4ga-xz-rdi"/>
                         <outlet property="countersNameField" destination="OYF-wR-M6e" id="IGR-Au-1zd"/>
+                        <outlet property="countersRowsField" destination="2yb-eD-E7V" id="c9b-qB-KBq"/>
                         <outlet property="projectImage" destination="euE-fL-m29" id="G2R-V1-zZf"/>
                         <outlet property="tagTable" destination="WX0-Su-OgR" id="Xve-ez-HNP"/>
                         <outlet property="visualEffectView" destination="AcK-UP-MZw" id="5gA-8q-pyh"/>
@@ -211,11 +212,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-wa-uLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="i6t-kX-1T6">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="137"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvn-Ai-41K">
-                            <rect key="frame" x="126" y="78" width="64" height="30"/>
+                            <rect key="frame" x="126" y="89" width="64" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Add">
                                 <color key="titleColor" red="0.97267001870000003" green="0.98031383750000001" blue="0.9843150973" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -225,7 +226,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-2r-l3c">
-                            <rect key="frame" x="54" y="78" width="64" height="30"/>
+                            <rect key="frame" x="54" y="89" width="64" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" red="0.97267001870000003" green="0.98031383750000001" blue="0.9843150973" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -236,7 +237,13 @@
                             </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add counter's name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYF-wR-M6e">
-                            <rect key="frame" x="47" y="36" width="147" height="34"/>
+                            <rect key="frame" x="47" y="17" width="147" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How many rows?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2yb-eD-E7V">
+                            <rect key="frame" x="47" y="55" width="147" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -331,6 +338,19 @@
                                                         <outlet property="delegate" destination="s5f-wv-KUo" id="Wrc-DH-YQr"/>
                                                     </connections>
                                                 </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qE0-wc-TRD">
+                                                    <rect key="frame" x="53" y="123" width="97" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How many rows in a project?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUB-KO-pR8">
+                                                    <rect key="frame" x="38" y="74" width="126" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -377,6 +397,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="countersRowsMax" destination="qE0-wc-TRD" id="mLr-ui-gfd"/>
                         <outlet property="projectImage" destination="2Z5-Ey-jKT" id="Jn3-gC-wkv"/>
                         <outlet property="projectName" destination="qce-VQ-lu1" id="EIk-nO-0e1"/>
                         <outlet property="projectTag1" destination="wGb-wB-Hsx" id="LaN-bd-oYX"/>
@@ -432,7 +453,7 @@
         <!--Project Life Conteiner-->
         <scene sceneID="o7B-mq-d9p">
             <objects>
-                <viewController id="bSf-Nb-NQI" customClass="ProjectLifeConteiner" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectLifeConteiner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bSf-Nb-NQI" customClass="ProjectLifeConteiner" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ffO-qS-YM5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="529"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -469,6 +490,9 @@
                                                                 </label>
                                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="ecv-7Y-yY6">
                                                                     <rect key="frame" x="280" y="17.5" width="94" height="32"/>
+                                                                    <connections>
+                                                                        <action selector="stepperAct:" destination="CTq-ns-DRC" eventType="valueChanged" id="tNP-60-Vvx"/>
+                                                                    </connections>
                                                                 </stepper>
                                                             </subviews>
                                                         </stackView>
@@ -492,7 +516,7 @@
                                         <connections>
                                             <outlet property="counterName" destination="xgs-8N-Leo" id="v5k-XS-Jhc"/>
                                             <outlet property="counterNumbers" destination="PEt-yV-eOb" id="0OS-n6-spU"/>
-                                            <outlet property="stepper" destination="ecv-7Y-yY6" id="bkl-tt-kRR"/>
+                                            <outlet property="stepper" destination="ecv-7Y-yY6" id="HH1-jA-hFw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -511,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bm-FF-VHW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="774"/>
+            <point key="canvasLocation" x="1829" y="718"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

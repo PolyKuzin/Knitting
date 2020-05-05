@@ -18,12 +18,15 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     var currentProject: Project?
     var counter: Counter?
     var tagLabel: String?
+    var countersRows: Int?
     
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet var addCounterView: UIView!
     @IBOutlet weak var tagTable: UITableView!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var countersNameField: UITextField!
+    @IBOutlet weak var countersRowsField: UITextField!
+    
     
     //MARK: PopUP
     @IBAction func addCounter (_ sender: Any){
@@ -34,9 +37,11 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             saveProject()
         }
         animatedOut()
+
     }
     @IBAction func cancelCounter(_ sender: Any) {
         animatedOut()
+        
     }
     
     override func viewDidLoad() {
@@ -126,6 +131,8 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
                                  tag2: currentProject?.tags[1],
                                  tag3: currentProject?.tags[2],
                                  counterName: currentProject?.name,
+                                 countersRowsMax: currentProject?.countersRowsMax[0],
+                                 counter: countersRows!,
                                  imageData: imageData)
         
         if currentProject != nil {

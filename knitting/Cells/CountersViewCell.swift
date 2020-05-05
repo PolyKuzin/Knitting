@@ -14,5 +14,8 @@ class CountersViewCell: UITableViewCell {
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var counterNumbers: UILabel!
     
+    @IBAction func stepperAct(_ sender: UIStepper) {
+        counterNumbers.text = String(sender.value)
+    }
 
 }

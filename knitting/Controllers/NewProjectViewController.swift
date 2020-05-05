@@ -19,6 +19,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     @IBOutlet weak var projectTag1: UITextField!
     @IBOutlet weak var projectTag2: UITextField!
     @IBOutlet weak var projectTag3: UITextField!
+    @IBOutlet weak var countersRowsMax: UITextField!
     @IBAction func cancelAction(_ sender: Any) {
         
         dismiss(animated: true)
@@ -81,6 +82,8 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                                  tag2: projectTag2.text,
                                  tag3: projectTag3.text,
                                  counterName: projectName.text!,
+                                 countersRowsMax: Int(countersRowsMax.text!),
+                                 counter: 0,
                                  imageData: imageData)
         
         if editingProject != nil {
