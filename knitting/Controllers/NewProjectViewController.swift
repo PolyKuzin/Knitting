@@ -12,6 +12,8 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
 
     var imageIsChanged = false
     var editingProject: Project?
+    var countersRows: [Int?] = [0]
+    var numRows: Int?
     
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -30,7 +32,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        
         setUpEditScreen()
     }
     
@@ -83,7 +84,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                                  tag3: projectTag3.text,
                                  counterName: projectName.text!,
                                  countersRowsMax: Int(countersRowsMax.text!),
-                                 counter: 0,
+                                 countersRows: countersRows,
                                  imageData: imageData)
         
         if editingProject != nil {
@@ -95,6 +96,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                     editingProject?.tags.append(str)
                     if str!.isEmpty {editingProject?.tags.removeLast()}
                 }
+                
                 editingProject?.imageData = newProject.imageData
                 editingProject?.date = Date()
             }

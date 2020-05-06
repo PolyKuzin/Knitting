@@ -72,7 +72,10 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         guard let newProjectVC = segue.source as? NewProjectViewController else { return }
         newProjectVC.saveProject()
         table1.reloadData()
+        print("NEW PROJECT!!!")
     }
+
+    
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,6 +85,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             let lifeProjectVC = segue.destination as! ProjectLifeController
             lifeProjectVC.currentProject = project
         }
+        print("OLD PROJECT!!!!")
     }
 }
 

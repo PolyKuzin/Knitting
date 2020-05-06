@@ -21,7 +21,7 @@ class Project: Object {
     @objc dynamic var imageData: Data?
     @objc dynamic var date = Date()
     let countersNames = List<String?>()
-    @objc dynamic var counter = 0
+    let countersRows = List<Int?>()
     let countersRowsMax = List<Int?>()
 
     convenience init(name: String,
@@ -30,7 +30,7 @@ class Project: Object {
                      tag3: String?,
                      counterName: String?,
                      countersRowsMax: Int?,
-                     counter: Int,
+                     countersRows: [Int?],
                      imageData: Data?) {
         self.init()
         self.name = name
@@ -40,7 +40,9 @@ class Project: Object {
         self.imageData = imageData
         self.countersNames.append(counterName)
         self.countersRowsMax.append(countersRowsMax)
-        self.counter = counter
+        for counter in countersRows {
+            self.countersRows.append(counter)
+        }
     }
 }
 
