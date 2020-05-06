@@ -29,7 +29,6 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var countersNameField: UITextField!
     @IBOutlet weak var countersRowsField: UITextField!
     
-    
     //MARK: PopUP
     @IBAction func addCounter (_ sender: Any){
          animateIn()
