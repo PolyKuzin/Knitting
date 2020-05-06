@@ -52,7 +52,10 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: DeleteAction
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let project = projects[indexPath.row]
-        let contextItem = UIContextualAction(style: .destructive, title: "delete") {  (contextualAction, view, boolValue) in
+        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            for counter in realm.objects(Counter.self).filter("id == %@", project.id as Any) {
+                StorageManager.deleteCounters(counter)
+            }
             StorageManager.deleteObject(project)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }

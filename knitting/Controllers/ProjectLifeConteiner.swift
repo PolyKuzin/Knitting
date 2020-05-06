@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProjectLifeConteiner: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -22,8 +23,7 @@ class ProjectLifeConteiner: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let currentID = counterProject?.id
-        let cellRows = realm.objects(Counter.self).filter("id == %@", currentID).count
+        let cellRows = realm.objects(Counter.self).filter("id == %@", counterProject?.id as Any).count
 
         return cellRows//counterProject!.countersNames.isEmpty ? 0 : counterProject!.countersNames.count
     }
@@ -35,5 +35,16 @@ class ProjectLifeConteiner: UIViewController, UITableViewDataSource, UITableView
         cell.viewWithTag(1)?.layer.cornerRadius = 10
         
     return cell
+    }
+    
+    //MARK: DeleteAction
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let currentCounter = realm.objects(Counter.self).filter("id == %@", counterProject?.id as Any)[indexPath.row]
+        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            StorageManager.deleteCounters(currentCounter)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        return swipeActions
     }
 }

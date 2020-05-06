@@ -10,6 +10,8 @@ import UIKit
 
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
+    let currentID = Int(Date().timeIntervalSince1970)
+
     var imageIsChanged = false
     var editingProject: Project?
     var counter: Counter?
@@ -27,6 +29,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
@@ -77,13 +80,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             image = #imageLiteral(resourceName: "ball")
         }
         
-        // using current date and time as an example
-        let someDate = Date()
-        // convert Date to TimeInterval (typealias for Double)
-        let timeInterval = someDate.timeIntervalSince1970
-        // convert to Integer
-        let currentID = Int(timeInterval)
-        
         let imageData = image?.pngData()
         let newProject = Project(name: projectName.text!,
                                  tag1: projectTag1.text,
@@ -111,11 +107,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     }
     //MARK: Save new Counter
     func saveCounter(){
-        let someDate = Date()
-        // convert Date to TimeInterval (typealias for Double)
-        let timeInterval = someDate.timeIntervalSince1970
-        // convert to Integer
-        let currentID = Int(timeInterval)
         
         let newCounter = Counter(name: projectName.text!,
                                  rows: 0,
