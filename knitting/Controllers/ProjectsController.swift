@@ -43,7 +43,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             cell.tagLabel.text = ""
         }
         
-        cell.imageOfProject.layer.cornerRadius = cell.imageOfProject.frame.size.height / 2
+        cell.imageOfProject.layer.cornerRadius = 15
         cell.imageOfProject.clipsToBounds = true
         cell.imageOfProject.image = UIImage(data: project.imageData!)
             return cell

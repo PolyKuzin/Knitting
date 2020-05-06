@@ -106,6 +106,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AcK-UP-MZw">
+                                <rect key="frame" x="-4" y="0.0" width="447" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ImW-n5-PMb">
+                                    <rect key="frame" x="0.0" y="0.0" width="447" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7l-O3-KBW">
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="768"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="u9d-8J-KdZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="768"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="euE-fL-m29">
                                 <rect key="frame" x="16" y="108" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -168,28 +190,6 @@
                                     <segue destination="bSf-Nb-NQI" kind="embed" identifier="counters" id="ImY-rd-0lj"/>
                                 </connections>
                             </containerView>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AcK-UP-MZw">
-                                <rect key="frame" x="-4" y="0.0" width="447" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ImW-n5-PMb">
-                                    <rect key="frame" x="0.0" y="0.0" width="447" height="896"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7l-O3-KBW">
-                                            <rect key="frame" x="0.0" y="0.0" width="207" height="768"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="u9d-8J-KdZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="regular"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
-                                    </subviews>
-                                </view>
-                                <blurEffect style="regular"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="vpc-jB-l9d"/>
@@ -202,9 +202,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addCounterBTN" destination="lvn-Ai-41K" id="XpZ-g9-9v2"/>
                         <outlet property="addCounterView" destination="i6t-kX-1T6" id="4ga-xz-rdi"/>
                         <outlet property="countersNameField" destination="OYF-wR-M6e" id="IGR-Au-1zd"/>
                         <outlet property="countersRowsField" destination="2yb-eD-E7V" id="c9b-qB-KBq"/>
+                        <outlet property="countersView" destination="4hf-5N-Z20" id="wZC-7c-3tt"/>
                         <outlet property="projectImage" destination="euE-fL-m29" id="G2R-V1-zZf"/>
                         <outlet property="tagTable" destination="WX0-Su-OgR" id="Xve-ez-HNP"/>
                         <outlet property="visualEffectView" destination="AcK-UP-MZw" id="5gA-8q-pyh"/>

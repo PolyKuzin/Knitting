@@ -21,7 +21,9 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     var countersRows: Int?
     
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet var addCounterView: UIView!
+    @IBOutlet weak var addCounterView: UIView!
+    @IBOutlet weak var countersView: UIView!
+    @IBOutlet weak var addCounterBTN: UIButton!
     @IBOutlet weak var tagTable: UITableView!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var countersNameField: UITextField!
@@ -37,17 +39,17 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             saveProject()
         }
         animatedOut()
-
+        countersNameField.text = ""
+        countersRowsField.text = ""
     }
     @IBAction func cancelCounter(_ sender: Any) {
         animatedOut()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLifeScreen()
-        projectImage.layer.cornerRadius = projectImage.frame.size.height / 2
+        projectImage.layer.cornerRadius = 15
     }
     
     //MARK: TagTableView
@@ -60,7 +62,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         
             let cell = tagTable.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! TagTableViewCell
             cell.projectTag1Cell.text = currentProject?.tags[indexPath.row]
-            cell.projectTag1Cell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1) //UIColor(CGColor: currentProject?.tagColors[indexPath.row])
+            cell.projectTag1Cell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1)
             cell.projectTag1Cell.layer.cornerRadius = cell.projectTag1Cell.frame.size.height / 2
             cell.projectTag1Cell.layer.masksToBounds = true
         return cell
@@ -79,7 +81,6 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             guard let data = currentProject?.imageData, let image = UIImage(data: data) else {return}
 
             projectImage.image = image
-           // tagLabel = String(currentProject?.tags[0] ?? "Для себя")
             tagTable.tableFooterView = UIView()
             
             if !currentProject!.tags.isEmpty {
@@ -125,28 +126,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: Saving New Counters
     func saveProject() {
-        let imageData = projectImage.image!.pngData()
-        let newProject = Project(name: currentProject!.name,
-                                 tag1: currentProject?.tags[0],
-                                 tag2: currentProject?.tags[1],
-                                 tag3: currentProject?.tags[2],
-                                 id: 0,
-                                 imageData: imageData)
+            
+       let newCounter = Counter(name: countersNameField.text!,
+                                rows: 0,
+                                rowsMax: Int(countersRowsField.text!)!,
+                                id: currentProject!.id)
+        StorageManager.saveCounter(newCounter)
         
-        if currentProject != nil {
-            try! realm.write {
-                currentProject?.name = newProject.name
-                currentProject?.tags.removeAll()
-                
-                for str in newProject.tags {
-                    currentProject?.tags.append(str)
-                    if str!.isEmpty {currentProject?.tags.removeLast()}
-                }
-               // currentProject?.countersNames.append(countersNameField.text)
-                currentProject?.imageData = newProject.imageData
-                currentProject?.date = Date()
-            }
-        }
     }
     
     // MARK: Navigation

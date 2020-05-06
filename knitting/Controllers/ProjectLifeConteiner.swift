@@ -14,12 +14,23 @@ class ProjectLifeConteiner: UIViewController, UITableViewDataSource, UITableView
     var counterProject: Project?
     var counters: Counter?
     
+    let myRefreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
     
     @IBOutlet weak var counterTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        counterTable.refreshControl = myRefreshControl
         counterTable.reloadData()
+    }
+    
+    @objc private func refresh(sender: UIRefreshControl){
+        counterTable.reloadData()
+        sender.endRefreshing()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

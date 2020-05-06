@@ -97,7 +97,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                     editingProject?.tags.append(str)
                     if str!.isEmpty {editingProject?.tags.removeLast()}
                 }
-                editingProject?.id = currentID
                 editingProject?.imageData = newProject.imageData
                 editingProject?.date = Date()
             }
@@ -107,12 +106,16 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     }
     //MARK: Save new Counter
     func saveCounter(){
+        if editingProject != nil {
+            // do nothing yet
+        } else {
         
         let newCounter = Counter(name: projectName.text!,
                                  rows: 0,
                                  rowsMax: Int(countersRowsMax.text!)!,
                                  id: currentID)
         StorageManager.saveCounter(newCounter)
+        }
     }
     //MARK: Seting up...
     private func setUpEditScreen(){
