@@ -18,7 +18,8 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     var currentProject: Project?
     var counter: Counter?
     var tagLabel: String?
-    var countersRows: Int?
+    var countersRows: [Int?] = [16]
+    var numRows: Int?
     
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet var addCounterView: UIView!
@@ -26,6 +27,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var countersNameField: UITextField!
     @IBOutlet weak var countersRowsField: UITextField!
+    @IBOutlet weak var conteinerView: UIView!
     
     
     //MARK: PopUP
@@ -34,7 +36,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     }
     @IBAction func dismissPopUp(_ sender: Any) {
         if !countersNameField.text!.isEmpty {
-            saveProject()
+            saveCountersAndRows()
         }
         animatedOut()
 
@@ -66,6 +68,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         return cell
 
     }
+    
 
     //MARK: Seting UP
     private func setupLifeScreen() {
@@ -124,28 +127,31 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     //MARK: Saving New Counters
-    func saveProject() {
+    func saveCountersAndRows() {
         let imageData = projectImage.image!.pngData()
-        let newProject = Project(name: currentProject!.name,
+        let editingProject = Project(name: currentProject!.name,
                                  tag1: currentProject?.tags[0],
                                  tag2: currentProject?.tags[1],
                                  tag3: currentProject?.tags[2],
                                  counterName: currentProject?.name,
                                  countersRowsMax: currentProject?.countersRowsMax[0],
-                                 counter: countersRows!,
+                                 countersRows: countersRows,
                                  imageData: imageData)
         
         if currentProject != nil {
             try! realm.write {
-                currentProject?.name = newProject.name
-                currentProject?.tags.removeAll()
+                currentProject?.name = editingProject.name
+                //currentProject?.tags.removeAll()
                 
-                for str in newProject.tags {
-                    currentProject?.tags.append(str)
+                for str in editingProject.tags {
+                    currentProject?.tags.append("SUKA")
                     if str!.isEmpty {currentProject?.tags.removeLast()}
                 }
+                for counter in editingProject.countersRows {
+                currentProject?.countersRows.append(counter)
+                }
                 currentProject?.countersNames.append(countersNameField.text)
-                currentProject?.imageData = newProject.imageData
+                currentProject?.imageData = editingProject.imageData
                 currentProject?.date = Date()
             }
         }
@@ -166,5 +172,11 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             counterVC.counterTable.reloadData()
         }
     }
+    //MARK: UnwindSegue
+       @IBAction func unwindSeg(_ segue: UIStoryboardSegue) {
+           guard let addRowsVC = segue.source as? ProjectLifeController else { return }
+           addRowsVC.saveCountersAndRows()
+        print("NEW ROWS!!!!")
+       }
 }
 
