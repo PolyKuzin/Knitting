@@ -25,4 +25,10 @@ class StorageManager {
             realm.delete(project)
         }
     }
+    static func saveCounter(_ counter: Counter){
+        
+        try! realm.write {
+            realm.add(counter)
+        }
+    }
 }

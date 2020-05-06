@@ -71,6 +71,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let newProjectVC = segue.source as? NewProjectViewController else { return }
         newProjectVC.saveProject()
+        newProjectVC.saveCounter()
         table1.reloadData()
     }
     

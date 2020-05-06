@@ -10,6 +10,23 @@ import RealmSwift
 
 class Counter: Object {
     @objc dynamic var name = ""
+//    let countersNames = List<String?>()
+    @objc dynamic var rows = 0
+//    let countersRowsMax = List<Int?>()
+    @objc dynamic var rowsMax = 0
+    @objc dynamic var id = 0
+    
+    convenience init (name: String,
+                      rows: Int,
+                      rowsMax: Int,
+                      id: Int) {
+        
+        self.init()
+        self.name = name
+        self.rows = rows
+        self.rowsMax = rowsMax
+        self.id = id
+    }
 }
 
 class Project: Object {
@@ -20,17 +37,13 @@ class Project: Object {
     let tags = List<String?>()
     @objc dynamic var imageData: Data?
     @objc dynamic var date = Date()
-    let countersNames = List<String?>()
-    @objc dynamic var counter = 0
-    let countersRowsMax = List<Int?>()
+    @objc dynamic var id = 0
 
     convenience init(name: String,
                      tag1: String?,
                      tag2: String?,
                      tag3: String?,
-                     counterName: String?,
-                     countersRowsMax: Int?,
-                     counter: Int,
+                     id: Int,
                      imageData: Data?) {
         self.init()
         self.name = name
@@ -38,9 +51,8 @@ class Project: Object {
         self.tags.append(tag2)
         self.tags.append(tag3)
         self.imageData = imageData
-        self.countersNames.append(counterName)
-        self.countersRowsMax.append(countersRowsMax)
-        self.counter = counter
+        self.id = id
+
     }
 }
 

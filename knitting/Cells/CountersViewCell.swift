@@ -17,5 +17,4 @@ class CountersViewCell: UITableViewCell {
     @IBAction func stepperAct(_ sender: UIStepper) {
         counterNumbers.text = String(sender.value)
     }
-
 }

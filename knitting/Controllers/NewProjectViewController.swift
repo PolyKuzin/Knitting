@@ -12,6 +12,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
 
     var imageIsChanged = false
     var editingProject: Project?
+    var counter: Counter?
     
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -64,7 +65,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         return 3
     }
 
-    //MARK: Saving new project
+    //MARK: Saving project (New and chanched)
     func saveProject() {
         
         var image: UIImage?
@@ -76,14 +77,19 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             image = #imageLiteral(resourceName: "ball")
         }
         
+        // using current date and time as an example
+        let someDate = Date()
+        // convert Date to TimeInterval (typealias for Double)
+        let timeInterval = someDate.timeIntervalSince1970
+        // convert to Integer
+        let currentID = Int(timeInterval)
+        
         let imageData = image?.pngData()
         let newProject = Project(name: projectName.text!,
                                  tag1: projectTag1.text,
                                  tag2: projectTag2.text,
                                  tag3: projectTag3.text,
-                                 counterName: projectName.text!,
-                                 countersRowsMax: Int(countersRowsMax.text!),
-                                 counter: 0,
+                                 id: currentID,
                                  imageData: imageData)
         
         if editingProject != nil {
@@ -95,12 +101,27 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                     editingProject?.tags.append(str)
                     if str!.isEmpty {editingProject?.tags.removeLast()}
                 }
+                editingProject?.id = currentID
                 editingProject?.imageData = newProject.imageData
                 editingProject?.date = Date()
             }
         } else {
             StorageManager.saveObject(newProject)
         }
+    }
+    //MARK: Save new Counter
+    func saveCounter(){
+        let someDate = Date()
+        // convert Date to TimeInterval (typealias for Double)
+        let timeInterval = someDate.timeIntervalSince1970
+        // convert to Integer
+        let currentID = Int(timeInterval)
+        
+        let newCounter = Counter(name: projectName.text!,
+                                 rows: 0,
+                                 rowsMax: Int(countersRowsMax.text!)!,
+                                 id: currentID)
+        StorageManager.saveCounter(newCounter)
     }
     //MARK: Seting up...
     private func setUpEditScreen(){

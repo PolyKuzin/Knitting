@@ -130,9 +130,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
                                  tag1: currentProject?.tags[0],
                                  tag2: currentProject?.tags[1],
                                  tag3: currentProject?.tags[2],
-                                 counterName: currentProject?.name,
-                                 countersRowsMax: currentProject?.countersRowsMax[0],
-                                 counter: countersRows!,
+                                 id: 0,
                                  imageData: imageData)
         
         if currentProject != nil {
@@ -144,7 +142,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
                     currentProject?.tags.append(str)
                     if str!.isEmpty {currentProject?.tags.removeLast()}
                 }
-                currentProject?.countersNames.append(countersNameField.text)
+               // currentProject?.countersNames.append(countersNameField.text)
                 currentProject?.imageData = newProject.imageData
                 currentProject?.date = Date()
             }
