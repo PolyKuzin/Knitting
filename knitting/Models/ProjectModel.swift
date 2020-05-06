@@ -14,18 +14,21 @@ class Counter: Object {
     @objc dynamic var rows = 0
 //    let countersRowsMax = List<Int?>()
     @objc dynamic var rowsMax = 0
-    @objc dynamic var id = 0
+    @objc dynamic var projectID = 0
+    @objc dynamic var counterID = 0
     
     convenience init (name: String,
                       rows: Int,
                       rowsMax: Int,
-                      id: Int) {
+                      projectID: Int,
+                      counterID: Int) {
         
         self.init()
         self.name = name
         self.rows = rows
         self.rowsMax = rowsMax
-        self.id = id
+        self.projectID = projectID
+        self.counterID = counterID
     }
 }
 
@@ -37,13 +40,13 @@ class Project: Object {
     let tags = List<String?>()
     @objc dynamic var imageData: Data?
     @objc dynamic var date = Date()
-    @objc dynamic var id = 0
+    @objc dynamic var projectID = 0
 
     convenience init(name: String,
                      tag1: String?,
                      tag2: String?,
                      tag3: String?,
-                     id: Int,
+                     projectID: Int,
                      imageData: Data?) {
         self.init()
         self.name = name
@@ -51,7 +54,7 @@ class Project: Object {
         self.tags.append(tag2)
         self.tags.append(tag3)
         self.imageData = imageData
-        self.id = id
+        self.projectID = projectID
 
     }
 }

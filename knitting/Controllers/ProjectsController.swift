@@ -36,13 +36,11 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! CustomTableViewCell
         let project = projects[indexPath.row]
         cell.nameLabel.text = project.name
-        
         if !project.tags.isEmpty {
             cell.tagLabel.text = project.tags[0]
         } else {
             cell.tagLabel.text = ""
         }
-        
         cell.imageOfProject.layer.cornerRadius = 15
         cell.imageOfProject.clipsToBounds = true
         cell.imageOfProject.image = UIImage(data: project.imageData!)
@@ -53,7 +51,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let project = projects[indexPath.row]
         let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            for counter in realm.objects(Counter.self).filter("id == %@", project.id as Any) {
+            for counter in realm.objects(Counter.self).filter("projectID == %@", project.projectID as Any) {
                 StorageManager.deleteCounters(counter)
             }
             StorageManager.deleteObject(project)

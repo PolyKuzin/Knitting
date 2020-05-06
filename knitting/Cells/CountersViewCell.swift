@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CountersViewCell: UITableViewCell {
 
+    var counterInCell: Results<Counter>!
+    
     @IBOutlet weak var counterName: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var counterNumbers: UILabel!

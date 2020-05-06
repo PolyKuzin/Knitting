@@ -85,7 +85,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                                  tag1: projectTag1.text,
                                  tag2: projectTag2.text,
                                  tag3: projectTag3.text,
-                                 id: currentID,
+                                 projectID: currentID,
                                  imageData: imageData)
         
         if editingProject != nil {
@@ -113,7 +113,8 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         let newCounter = Counter(name: projectName.text!,
                                  rows: 0,
                                  rowsMax: Int(countersRowsMax.text!)!,
-                                 id: currentID)
+                                 projectID: currentID,
+                                 counterID: currentID - 10)
         StorageManager.saveCounter(newCounter)
         }
     }

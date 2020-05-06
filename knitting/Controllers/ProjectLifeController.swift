@@ -6,8 +6,6 @@
 //  Copyright © 2020 Павел Кузин. All rights reserved.
 //
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 import UIKit
 import RealmSwift
 
@@ -15,6 +13,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
 
     let cellIdentifire: String = "tagCell"
     let counterCellIdentifire: String = "counterCell"
+    let currentID = Int(Date().timeIntervalSince1970)
 
     var effect: UIVisualEffect?
     var currentProject: Project?
@@ -131,7 +130,8 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
        let newCounter = Counter(name: countersNameField.text!,
                                 rows: 0,
                                 rowsMax: Int(countersRowsField.text!)!,
-                                id: currentProject!.id)
+                                projectID: currentProject!.projectID,
+                                counterID: currentID)
         StorageManager.saveCounter(newCounter)
         
     }
