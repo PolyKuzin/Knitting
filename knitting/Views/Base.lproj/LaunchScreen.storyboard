@@ -16,20 +16,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Jle-5G-OPO">
-                                <rect key="frame" x="115" y="242.5" width="184" height="184"/>
+                                <rect key="frame" x="115" y="306" width="184" height="184"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="184" id="mLg-qb-Yh4"/>
-                                    <constraint firstAttribute="height" constant="184" id="uuu-ci-fSg"/>
+                                    <constraint firstAttribute="height" constant="184" id="Es8-nD-7vd"/>
+                                    <constraint firstAttribute="width" constant="184" id="g0R-T0-BUo"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your              Helper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJS-s0-xPS">
-                                <rect key="frame" x="83" y="482.5" width="248" height="32.5"/>
+                                <rect key="frame" x="83" y="522" width="248" height="32.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knitting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYh-Un-mOe">
-                                <rect key="frame" x="148.5" y="482.5" width="93.5" height="32.5"/>
+                                <rect key="frame" x="145.5" y="522" width="93.5" height="32.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="28"/>
                                 <color key="textColor" red="0.92634099719999996" green="0.37922930719999998" blue="0.47450393439999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -37,16 +37,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="baseline" secondItem="eYh-Un-mOe" secondAttribute="baseline" id="0dV-1m-rtx"/>
-                            <constraint firstItem="eYh-Un-mOe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="74s-x2-U6q"/>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="centerY" secondItem="eYh-Un-mOe" secondAttribute="centerY" id="Hu3-D0-czT"/>
-                            <constraint firstItem="Jle-5G-OPO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="R3J-IX-DtI"/>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="top" secondItem="Jle-5G-OPO" secondAttribute="bottom" constant="56" id="XTD-ys-kmo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eYh-Un-mOe" secondAttribute="bottom" constant="347" id="bRv-KH-kpT"/>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="leading" secondItem="eYh-Un-mOe" secondAttribute="trailing" constant="-159" id="pY7-cy-FBK"/>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tvz-sj-Uxt"/>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="centerX" secondItem="Jle-5G-OPO" secondAttribute="centerX" id="vCi-g0-Mfw"/>
-                            <constraint firstItem="AJS-s0-xPS" firstAttribute="baseline" secondItem="eYh-Un-mOe" secondAttribute="firstBaseline" id="xva-Zz-7s4"/>
+                            <constraint firstItem="AJS-s0-xPS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8Zg-ms-G3d"/>
+                            <constraint firstItem="Jle-5G-OPO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HIq-fi-s28"/>
+                            <constraint firstItem="eYh-Un-mOe" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="90" id="HTr-8x-lv4"/>
+                            <constraint firstItem="AJS-s0-xPS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="90" id="YFQ-zU-6TI"/>
+                            <constraint firstItem="eYh-Un-mOe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-15" id="wFV-Zl-dab"/>
+                            <constraint firstItem="Jle-5G-OPO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="wes-sT-Ycy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

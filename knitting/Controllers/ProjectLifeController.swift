@@ -23,12 +23,14 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var addCounterView: UIView!
-    @IBOutlet weak var countersView: UIView!
+    //@IBOutlet weak var countersView: UIView!
     @IBOutlet weak var addCounterBTN: UIButton!
-    @IBOutlet weak var tagTable: UITableView!
+    //@IBOutlet weak var tagTable: UITableView!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var countersNameField: UITextField!
     @IBOutlet weak var countersRowsField: UITextField!
+    
+    @IBOutlet weak var counterTable: UITableView!
     
     //MARK: PopUP
     @IBAction func addCounter (_ sender: Any){
@@ -36,11 +38,9 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     }
     @IBAction func dismissPopUp(_ sender: Any) {
         if !countersNameField.text!.isEmpty {
-            saveProject()
+            insertNewCounter()
         }
         animatedOut()
-        countersNameField.text = ""
-        countersRowsField.text = ""
     }
     @IBAction func cancelCounter(_ sender: Any) {
         animatedOut()
@@ -52,21 +52,45 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         projectImage.layer.cornerRadius = 15
     }
     
-    //MARK: TagTableView
+    //MARK: CounterTableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return currentProject!.tags.isEmpty ? 0 : currentProject!.tags.count
+        let cellRows = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any).count
+        return cellRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-            let cell = tagTable.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! TagTableViewCell
-            cell.projectTag1Cell.text = currentProject?.tags[indexPath.row]
-            cell.projectTag1Cell.backgroundColor = #colorLiteral(red: 1, green: 0.3290538788, blue: 0.4662155509, alpha: 1)
-            cell.projectTag1Cell.layer.cornerRadius = cell.projectTag1Cell.frame.size.height / 2
-            cell.projectTag1Cell.layer.masksToBounds = true
-        return cell
+        let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
+        let counter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        cell.counterName.text = counter.name
+        cell.stepper.value = Double(counter.rows)
+        cell.stepperAct(cell.stepper)
+        cell.viewWithTag(1)?.layer.cornerRadius = 10
+    return cell
+    }
+    // DeleteAction
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            StorageManager.deleteCounters(currentCounter)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        return swipeActions
+    }
+    
+    func insertNewCounter() {
+        saveCounter()
 
+        let indexPath = IndexPath(row: realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any).count - 1, section: 0)
+        counterTable.beginUpdates()
+        counterTable.insertRows(at: [indexPath], with: .automatic)
+        counterTable.endUpdates()
+        
+        countersNameField.text = ""
+        countersRowsField.text = ""
+        
+        view.endEditing(true)
     }
 
     //MARK: Seting UP
@@ -81,10 +105,10 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             guard let data = currentProject?.imageData, let image = UIImage(data: data) else {return}
 
             projectImage.image = image
-            tagTable.tableFooterView = UIView()
+            counterTable.tableFooterView = UIView()
             
             if !currentProject!.tags.isEmpty {
-                tagTable.isHidden = false
+              //  tagTable.isHidden = false
             }
         }
     }
@@ -125,15 +149,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     //MARK: Saving New Counters
-    func saveProject() {
-            
+    func saveCounter() {
        let newCounter = Counter(name: countersNameField.text!,
                                 rows: 0,
                                 rowsMax: Int(countersRowsField.text!)!,
                                 projectID: currentProject!.projectID,
                                 counterID: currentID)
         StorageManager.saveCounter(newCounter)
-        
     }
     
     // MARK: Navigation
