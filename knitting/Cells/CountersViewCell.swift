@@ -14,10 +14,14 @@ class CountersViewCell: UITableViewCell {
     var counterInCell: Results<Counter>!
     
     @IBOutlet weak var counterName: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
+    //@IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var counterNumbers: UILabel!
-    
-    @IBAction func stepperAct(_ sender: UIStepper) {
-        counterNumbers.text = String(sender.value)
+    @IBOutlet weak var plusBtn: UIButton!
+    @IBOutlet weak var minusBtn: UIButton!
+    @IBAction func plusButt(_ sender: Any) {
+        counterNumbers.text = String(Int(counterNumbers.text!)! + 1)
+    }
+    @IBAction func minusButt(_ sender: Any) {
+        counterNumbers.text = String(Int(counterNumbers.text!)! - 1)
     }
 }

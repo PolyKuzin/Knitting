@@ -22,6 +22,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     @IBOutlet weak var projectTag1: UITextField!
     @IBOutlet weak var projectTag2: UITextField!
     @IBOutlet weak var projectTag3: UITextField!
+    @IBOutlet weak var rowsMaxLabel: UILabel!
     @IBOutlet weak var countersRowsMax: UITextField!
     @IBAction func cancelAction(_ sender: Any) {
         
@@ -126,6 +127,10 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             guard let data = editingProject?.imageData, let image = UIImage(data: data) else {return}
             projectImage.image = image
             projectName.text = editingProject?.name
+            countersRowsMax.isHidden = true
+            rowsMaxLabel.isHidden = true
+            
+            //TODO: Rewrite it in a for in statement
             if editingProject?.tags.count == 1 {
                 projectTag1.text = editingProject?.tags[0]
 

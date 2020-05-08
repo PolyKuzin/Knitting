@@ -37,4 +37,10 @@ class StorageManager {
             realm.delete(counter)
         }
     }
+    static func saveRowsInCounter(_ currentCounter: Counter,_ rows: Int){
+        
+        try! realm.write{
+            currentCounter.rows = rows
+        }
+    }
 }
