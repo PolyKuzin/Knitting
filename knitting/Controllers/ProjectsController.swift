@@ -36,15 +36,16 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! CustomTableViewCell
         let project = projects[indexPath.row]
         cell.nameLabel.text = project.name
+        
         if !project.tags.isEmpty {
             cell.tagLabel.text = project.tags[0]
         } else {
-            cell.tagLabel.text = ""
+            cell.tagLabel.isHidden = true
         }
-        cell.imageOfProject.layer.cornerRadius = 15
-        cell.imageOfProject.clipsToBounds = true
+        cell.setUpCell()
         cell.imageOfProject.image = UIImage(data: project.imageData!)
-            return cell
+        
+        return cell
     }
     
     //MARK: DeleteAction

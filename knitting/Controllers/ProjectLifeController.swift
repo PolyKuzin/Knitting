@@ -125,22 +125,30 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             if !currentProject!.tags.isEmpty {
             // TODO: Rewrite it in For - in cicle
                 switch currentProject!.tags.count {
-                case 0:
-                    break
                 case 1:
                     tag1Label.text = currentProject?.tags[0]
+                    tag1Label.layer.cornerRadius = tag1Label.frame.size.height / 2
+                    tag1Label.clipsToBounds = true
                     tag1Label.isHidden = false
                 case 2:
                     tag1Label.text = currentProject?.tags[0]
                     tag2Label.text = currentProject?.tags[1]
+                    tag1Label.clipsToBounds = true
                     tag1Label.isHidden = false
+                    tag2Label.clipsToBounds = true
                     tag2Label.isHidden = false
                 case 3:
                     tag1Label.text = currentProject?.tags[0]
                     tag2Label.text = currentProject?.tags[1]
                     tag3Label.text = currentProject?.tags[2]
+                    tag1Label.layer.cornerRadius = tag1Label.frame.size.height / 2
+                    tag1Label.clipsToBounds = true
                     tag1Label.isHidden = false
+                    tag2Label.layer.cornerRadius = tag1Label.frame.size.height / 2
+                    tag2Label.clipsToBounds = true
                     tag2Label.isHidden = false
+                    tag3Label.layer.cornerRadius = tag1Label.frame.size.height / 2
+                    tag3Label.clipsToBounds = true
                     tag3Label.isHidden = false
                 default:
                     tag1Label.isHidden = true
@@ -157,6 +165,8 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         }
         let title = UIBarButtonItem(title: currentProject?.name, style: .plain, target: self, action: nil)
         navigationItem.rightBarButtonItems?.append(title)
+        navigationItem.rightBarButtonItems?[1].isEnabled = false
+        //navigationItem.rightBarButtonItem?.isEnabled = true
         navigationItem.leftBarButtonItem = nil
     }
     

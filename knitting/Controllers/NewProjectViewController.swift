@@ -71,9 +71,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
 
     //MARK: Saving project (New and chanched)
     func saveProject() {
-        
         var image: UIImage?
-        
         //default images
         if imageIsChanged {
             image = projectImage.image
@@ -83,9 +81,9 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         
         let imageData = image?.pngData()
         let newProject = Project(name: projectName.text!,
-                                 tag1: projectTag1.text,
-                                 tag2: projectTag2.text,
-                                 tag3: projectTag3.text,
+                                 tag1: projectTag1.text!,
+                                 tag2: projectTag2.text!,
+                                 tag3: projectTag3.text!,
                                  projectID: currentID,
                                  imageData: imageData)
         
@@ -96,7 +94,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                 
                 for str in newProject.tags {
                     editingProject?.tags.append(str)
-                    if str!.isEmpty {editingProject?.tags.removeLast()}
                 }
                 editingProject?.imageData = newProject.imageData
                 editingProject?.date = Date()
@@ -130,7 +127,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             countersRowsMax.isHidden = true
             rowsMaxLabel.isHidden = true
             
-            //TODO: Rewrite it in a for in statement
+            //TODO: Rewrite it switch statement
             if editingProject?.tags.count == 1 {
                 projectTag1.text = editingProject?.tags[0]
 
