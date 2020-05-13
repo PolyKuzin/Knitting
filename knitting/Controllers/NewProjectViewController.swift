@@ -12,9 +12,10 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
 
     let currentID = Int(Date().timeIntervalSince1970)
 
-    var imageIsChanged = false
     var editingProject: Project?
     var counter: Counter?
+    var imageIsChanged = false
+    var projectTags: [String?] = []
     
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -78,12 +79,13 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         } else {
             image = #imageLiteral(resourceName: "ball")
         }
+        if projectTag1.text! != "" {projectTags.append(projectTag1.text!)}
+        if projectTag2.text! != "" {projectTags.append(projectTag2.text!)}
+        if projectTag3.text! != "" {projectTags.append(projectTag3.text!)}
         
         let imageData = image?.pngData()
         let newProject = Project(name: projectName.text!,
-                                 tag1: projectTag1.text!,
-                                 tag2: projectTag2.text!,
-                                 tag3: projectTag3.text!,
+                                 tags: projectTags,
                                  projectID: currentID,
                                  imageData: imageData)
         
@@ -93,7 +95,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                 editingProject?.tags.removeAll()
                 
                 for str in newProject.tags {
-                    editingProject?.tags.append(str)
+                    editingProject?.tags.append(str!)
                 }
                 editingProject?.imageData = newProject.imageData
                 editingProject?.date = Date()

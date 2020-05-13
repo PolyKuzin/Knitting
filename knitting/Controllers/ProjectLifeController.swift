@@ -23,14 +23,16 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var addCounterView: UIView!
-    //@IBOutlet weak var countersView: UIView!
     @IBOutlet weak var addCounterBTN: UIButton!
-    //@IBOutlet weak var tagTable: UITableView!
     
     @IBOutlet weak var tag1Label: UILabel!
     @IBOutlet weak var tag2Label: UILabel!
     @IBOutlet weak var tag3Label: UILabel!
+    @IBOutlet weak var tag1LabelView: UIView!
+    @IBOutlet weak var tag2LabelView: UIView!
+    @IBOutlet weak var tag3LabelView: UIView!
 
+    
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var countersNameField: UITextField!
     @IBOutlet weak var countersRowsField: UITextField!
@@ -55,6 +57,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         setupLifeScreen()
         projectImage.layer.cornerRadius = 15
+        
+        tag1LabelView.layer.cornerRadius = tag1Label.frame.size.height / 2
+        tag1LabelView.clipsToBounds = true
+        tag2LabelView.layer.cornerRadius = tag1Label.frame.size.height / 2
+        tag2LabelView.clipsToBounds = true
+        tag3LabelView.layer.cornerRadius = tag1Label.frame.size.height / 2
+        tag3LabelView.clipsToBounds = true
     }
     
     //MARK: CounterTableView
@@ -81,6 +90,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         let rows = Int((cell?.counterNumbers.text!)!)
         
         StorageManager.saveRowsInCounter(currentCounter, rows!)
+        cell?.isSelected = false
     }
     
     // DeleteAction
@@ -127,33 +137,32 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
                 switch currentProject!.tags.count {
                 case 1:
                     tag1Label.text = currentProject?.tags[0]
-                    tag1Label.layer.cornerRadius = tag1Label.frame.size.height / 2
-                    tag1Label.clipsToBounds = true
                     tag1Label.isHidden = false
+                    tag1LabelView.isHidden = false
                 case 2:
                     tag1Label.text = currentProject?.tags[0]
                     tag2Label.text = currentProject?.tags[1]
-                    tag1Label.clipsToBounds = true
                     tag1Label.isHidden = false
-                    tag2Label.clipsToBounds = true
+                    tag1LabelView.isHidden = false
                     tag2Label.isHidden = false
+                    tag2LabelView.isHidden = false
                 case 3:
                     tag1Label.text = currentProject?.tags[0]
                     tag2Label.text = currentProject?.tags[1]
                     tag3Label.text = currentProject?.tags[2]
-                    tag1Label.layer.cornerRadius = tag1Label.frame.size.height / 2
-                    tag1Label.clipsToBounds = true
                     tag1Label.isHidden = false
-                    tag2Label.layer.cornerRadius = tag1Label.frame.size.height / 2
-                    tag2Label.clipsToBounds = true
+                    tag1LabelView.isHidden = false
                     tag2Label.isHidden = false
-                    tag3Label.layer.cornerRadius = tag1Label.frame.size.height / 2
-                    tag3Label.clipsToBounds = true
+                    tag2LabelView.isHidden = false
                     tag3Label.isHidden = false
+                    tag3LabelView.isHidden = false
                 default:
                     tag1Label.isHidden = true
+                    tag1LabelView.isHidden = true
                     tag2Label.isHidden = true
+                    tag2LabelView.isHidden = true
                     tag3Label.isHidden = true
+                    tag3LabelView.isHidden = true
                 }
             }
         }

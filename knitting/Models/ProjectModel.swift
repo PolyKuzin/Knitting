@@ -43,16 +43,14 @@ class Project: Object {
     @objc dynamic var projectID = 0
 
     convenience init(name: String,
-                     tag1: String?,
-                     tag2: String?,
-                     tag3: String?,
+                     tags: [String?],
                      projectID: Int,
                      imageData: Data?) {
         self.init()
         self.name = name
-        self.tags.append(tag1)
-        self.tags.append(tag2)
-        self.tags.append(tag3)
+        for tag in tags {
+            self.tags.append(tag)
+        }
         self.imageData = imageData
         self.projectID = projectID
 

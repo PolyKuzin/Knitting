@@ -44,7 +44,6 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.setUpCell()
         cell.imageOfProject.image = UIImage(data: project.imageData!)
-        
         return cell
     }
     
@@ -84,6 +83,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             let project = projects[indexPath.row]
             let lifeProjectVC = segue.destination as! ProjectLifeController
             lifeProjectVC.currentProject = project
+            table1.cellForRow(at: indexPath)?.isSelected = false
         }
     }
 }
