@@ -93,18 +93,34 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         currentNumber = Int(cell.counterNumbers.text!)!
         cell.plusBtn.tag = indexPath.row
         cell.plusBtn.addTarget(self, action: #selector(self.plusBtnTaped(_:)), for: .touchUpInside)
+        cell.minusBtn.addTarget(self, action: #selector(self.minusBtnTaped(_:)), for: .touchUpInside)
         cell.plusBtn.isUserInteractionEnabled = true
-        if counter.rows >= counter.rowsMax {
-            congatulatuions()
-        }
+        cell.isSelected = false
         
     return cell
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        cell?.isSelected = false
-//    }
+     @objc func plusBtnTaped (_ sender: UIButton) {
+            let tag = sender.tag
+            let indexPath = IndexPath(row: tag, section: 0)
+            let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
+            let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+            cell.counterNumbers.text = String(currentCounter.rows + 1)
+            StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
+            if currentCounter.rows >= currentCounter.rowsMax {
+                congatulatuions()
+            }
+        }
+    @objc func minusBtnTaped(_ sender: UIButton){
+        let tag = sender.tag
+        let indexPath = IndexPath(row: tag, section: 0)
+        let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
+        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        cell.counterNumbers.text = String(currentCounter.rows - 1)
+        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
+        if currentCounter.rows >= currentCounter.rowsMax {
+            congatulatuions()
+        }
+    }
     
     // DeleteAction
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -119,32 +135,16 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     func insertNewCounter() {
         saveCounter()
-
         let indexPath = IndexPath(row: realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any).count - 1, section: 0)
         counterTable.beginUpdates()
         counterTable.insertRows(at: [indexPath], with: .automatic)
         counterTable.endUpdates()
-        
         countersNameField.text = ""
         countersRowsField.text = ""
-        
         view.endEditing(true)
     }
     
-    @objc func plusBtnTaped (_ sender: UIButton) {
-        let tag = sender.tag
-        let indexPath = IndexPath(row: tag, section: 0)
-        let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
-        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
-        cell.counterNumbers.text = String(currentCounter.rows + 1)
-        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-        
-        print(currentCounter.rows)
-        
-//        if counter.rows >= counter.rowsMax {
-//            congatulatuions()
-//        }
-    }
+   
 
 
     //MARK: Seting UP
