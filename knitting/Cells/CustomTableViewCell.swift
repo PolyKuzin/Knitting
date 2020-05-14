@@ -13,6 +13,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var editButton: UIImageView!
+    @IBOutlet weak var tagView: UIView!
     
     func setUpCell(){
         
@@ -21,5 +22,9 @@ class CustomTableViewCell: UITableViewCell {
 
         imageOfProject.layer.cornerRadius = 15
         imageOfProject.clipsToBounds = true
+    }
+    
+    func setConstraints() {
+        
     }
 }

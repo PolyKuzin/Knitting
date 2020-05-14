@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6A5C195DC45C29766AFFDAA9 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B945E6E86143D03C904CBC4F /* Pods_knitting.framework */; };
+		9939C9F5246D97BA0029EFB1 /* RNSavingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F4246D97BA0029EFB1 /* RNSavingModel.swift */; };
+		9941897B246C2C8500B2C541 /* CardViewConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9941897A246C2C8500B2C541 /* CardViewConroller.xib */; };
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* ProjectLifeController.swift */; };
 		997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E851D245A06720074BE4B /* TagTableViewCell.swift */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		8A7A46B5C75C09FD2363FF8D /* Pods-knitting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.debug.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.debug.xcconfig"; sourceTree = "<group>"; };
+		9939C9F4246D97BA0029EFB1 /* RNSavingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNSavingModel.swift; sourceTree = "<group>"; };
+		9941897A246C2C8500B2C541 /* CardViewConroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewConroller.xib; sourceTree = "<group>"; };
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* ProjectLifeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeController.swift; sourceTree = "<group>"; };
 		997E851D245A06720074BE4B /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				999EACF02456FD5B00321D3E /* ProjectModel.swift */,
+				9939C9F4246D97BA0029EFB1 /* RNSavingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,6 +94,7 @@
 			children = (
 				999EACDE2455C17300321D3E /* Main.storyboard */,
 				999EACE32455C17500321D3E /* LaunchScreen.storyboard */,
+				9941897A246C2C8500B2C541 /* CardViewConroller.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +222,7 @@
 				999EACE52455C17600321D3E /* LaunchScreen.storyboard in Resources */,
 				999EACE22455C17500321D3E /* Assets.xcassets in Resources */,
 				999EACE02455C17300321D3E /* Main.storyboard in Resources */,
+				9941897B246C2C8500B2C541 /* CardViewConroller.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +277,7 @@
 			files = (
 				999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */,
 				999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */,
+				9939C9F5246D97BA0029EFB1 /* RNSavingModel.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */,
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
 				999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */,

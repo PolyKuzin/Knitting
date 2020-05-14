@@ -43,6 +43,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
             cell.tagLabel.isHidden = true
         }
         cell.setUpCell()
+        cell.setConstraints()
         cell.imageOfProject.image = UIImage(data: project.imageData!)
         return cell
     }

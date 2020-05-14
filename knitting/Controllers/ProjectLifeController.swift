@@ -14,6 +14,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     let cellIdentifire: String = "tagCell"
     let counterCellIdentifire: String = "counterCell"
     let currentID = Int(Date().timeIntervalSince1970)
+    var currentNumber: Int? = 5
 
     var effect: UIVisualEffect?
     var currentProject: Project?
@@ -24,6 +25,9 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var addCounterView: UIView!
     @IBOutlet weak var addCounterBTN: UIButton!
+    
+    @IBOutlet weak var conratulationView: UIView!
+    @IBOutlet weak var imGoodBtn: UIButton!
     
     @IBOutlet weak var tag1Label: UILabel!
     @IBOutlet weak var tag2Label: UILabel!
@@ -52,17 +56,23 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func cancelCounter(_ sender: Any) {
         animatedOut()
     }
+    @IBAction func imGoodButt(_ sender: Any) {
+        congratulationsOut()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLifeScreen()
         projectImage.layer.cornerRadius = 15
         
-        tag1LabelView.layer.cornerRadius = tag1Label.frame.size.height / 2
+        addCounterView.layer.cornerRadius = 5
+        conratulationView.layer.cornerRadius = 5
+        
+        tag1LabelView.layer.cornerRadius = 5
         tag1LabelView.clipsToBounds = true
-        tag2LabelView.layer.cornerRadius = tag1Label.frame.size.height / 2
+        tag2LabelView.layer.cornerRadius = 5
         tag2LabelView.clipsToBounds = true
-        tag3LabelView.layer.cornerRadius = tag1Label.frame.size.height / 2
+        tag3LabelView.layer.cornerRadius = 5 //tag3Label.frame.size.height / 2
         tag3LabelView.clipsToBounds = true
     }
     
@@ -76,22 +86,25 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let counter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+       cell.viewWithTag(1)?.layer.cornerRadius = 10
         cell.counterName.text = counter.name
         cell.plusButt(cell as Any)
         cell.counterNumbers.text = String(counter.rows)
-        cell.viewWithTag(1)?.layer.cornerRadius = 10
+        currentNumber = Int(cell.counterNumbers.text!)!
+        cell.plusBtn.tag = indexPath.row
+        cell.plusBtn.addTarget(self, action: #selector(self.plusBtnTaped(_:)), for: .touchUpInside)
+        cell.plusBtn.isUserInteractionEnabled = true
+        if counter.rows >= counter.rowsMax {
+            congatulatuions()
+        }
         
     return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
-        let cell = counterTable.cellForRow(at: indexPath) as? CountersViewCell
-        let rows = Int((cell?.counterNumbers.text!)!)
-        
-        StorageManager.saveRowsInCounter(currentCounter, rows!)
-        cell?.isSelected = false
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        cell?.isSelected = false
+//    }
     
     // DeleteAction
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -117,6 +130,22 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         
         view.endEditing(true)
     }
+    
+    @objc func plusBtnTaped (_ sender: UIButton) {
+        let tag = sender.tag
+        let indexPath = IndexPath(row: tag, section: 0)
+        let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
+        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        cell.counterNumbers.text = String(currentCounter.rows + 1)
+        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
+        
+        print(currentCounter.rows)
+        
+//        if counter.rows >= counter.rowsMax {
+//            congatulatuions()
+//        }
+    }
+
 
     //MARK: Seting UP
     private func setupLifeScreen() {
@@ -180,6 +209,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     //MARK: PopUP Animation
+    //ADITING new counter
     func animateIn() {
         self.view.addSubview(addCounterView)
         addCounterView.center = self.view.center
@@ -202,6 +232,35 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
             self.visualEffectView.effect = nil
         }) { (success: Bool) in
             self.addCounterView.removeFromSuperview()
+        }
+    }
+    
+    //Congratulatuons
+    func congatulatuions() {
+        
+        self.view.addSubview(conratulationView)
+        conratulationView.center = self.view.center
+        
+        conratulationView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        conratulationView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.visualEffectView.isHidden = false
+            self.visualEffectView.effect = self.effect
+            self.conratulationView.alpha = 1
+            self.conratulationView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func congratulationsOut() {
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.conratulationView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.conratulationView.alpha = 0
+            self.visualEffectView.isHidden = true
+            self.visualEffectView.effect = nil
+        }) { (success: Bool) in
+            self.conratulationView.removeFromSuperview()
         }
     }
     
