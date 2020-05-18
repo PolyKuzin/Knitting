@@ -23,7 +23,6 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         projects = realm.objects(Project.self)
 
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
-        
         sorting()
       }
     
@@ -36,15 +35,20 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! CustomTableViewCell
         let project = projects[indexPath.row]
         cell.nameLabel.text = project.name
-        
         if !project.tags.isEmpty {
             cell.tagLabel.text = project.tags[0]
         } else {
             cell.tagLabel.isHidden = true
         }
         cell.setUpCell()
-        cell.setConstraints()
+
         cell.imageOfProject.image = UIImage(data: project.imageData!)
+        cell.constraintsAffectingLayout(for: .horizontal)
+        // Seting cell's accesory
+        let image = #imageLiteral(resourceName: "playIcon")
+        let imageView = UIImageView(image: image)
+            imageView.sizeToFit()
+            cell.accessoryView = imageView
         return cell
     }
     
@@ -88,4 +92,3 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 }
-

@@ -36,7 +36,6 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        
         setUpEditScreen()
     }
     

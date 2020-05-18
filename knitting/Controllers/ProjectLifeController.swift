@@ -14,7 +14,6 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     let cellIdentifire: String = "tagCell"
     let counterCellIdentifire: String = "counterCell"
     let currentID = Int(Date().timeIntervalSince1970)
-    var currentNumber: Int? = 5
 
     var effect: UIVisualEffect?
     var currentProject: Project?
@@ -22,33 +21,29 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     var tagLabel: String?
     var countersRows: Int?
     
+//MARK: OUTLETS
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var addCounterView: UIView!
     @IBOutlet weak var addCounterBTN: UIButton!
-    
+    @IBOutlet weak var congratilationsGifView: UIImageView!
     @IBOutlet weak var conratulationView: UIView!
     @IBOutlet weak var imGoodBtn: UIButton!
-    
     @IBOutlet weak var tag1Label: UILabel!
     @IBOutlet weak var tag2Label: UILabel!
     @IBOutlet weak var tag3Label: UILabel!
     @IBOutlet weak var tag1LabelView: UIView!
     @IBOutlet weak var tag2LabelView: UIView!
     @IBOutlet weak var tag3LabelView: UIView!
-
-    
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var countersNameField: UITextField!
     @IBOutlet weak var countersRowsField: UITextField!
-    
     @IBOutlet weak var counterTable: UITableView!
-    
-    //MARK: PopUP
+//MARK: Actions
     @IBAction func addCounter (_ sender: Any){
          animateIn()
     }
     @IBAction func dismissPopUp(_ sender: Any) {
-        if !countersNameField.text!.isEmpty {
+        if !countersNameField.text!.isEmpty && !countersRowsField.text!.isEmpty {
             insertNewCounter()
         }
         animatedOut()
@@ -64,15 +59,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         setupLifeScreen()
         projectImage.layer.cornerRadius = 15
-        
         addCounterView.layer.cornerRadius = 5
         conratulationView.layer.cornerRadius = 5
-        
         tag1LabelView.layer.cornerRadius = 5
         tag1LabelView.clipsToBounds = true
         tag2LabelView.layer.cornerRadius = 5
         tag2LabelView.clipsToBounds = true
-        tag3LabelView.layer.cornerRadius = 5 //tag3Label.frame.size.height / 2
+        tag3LabelView.layer.cornerRadius = 5
         tag3LabelView.clipsToBounds = true
     }
     
@@ -86,30 +79,31 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let counter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
-       cell.viewWithTag(1)?.layer.cornerRadius = 10
+        cell.viewWithTag(1)?.layer.cornerRadius = 10
         cell.counterName.text = counter.name
         cell.plusButt(cell as Any)
         cell.counterNumbers.text = String(counter.rows)
-        currentNumber = Int(cell.counterNumbers.text!)!
         cell.plusBtn.tag = indexPath.row
+        cell.minusBtn.tag = indexPath.row
         cell.plusBtn.addTarget(self, action: #selector(self.plusBtnTaped(_:)), for: .touchUpInside)
         cell.minusBtn.addTarget(self, action: #selector(self.minusBtnTaped(_:)), for: .touchUpInside)
         cell.plusBtn.isUserInteractionEnabled = true
+        cell.minusBtn.isUserInteractionEnabled = true
         cell.isSelected = false
         
     return cell
     }
-     @objc func plusBtnTaped (_ sender: UIButton) {
-            let tag = sender.tag
-            let indexPath = IndexPath(row: tag, section: 0)
-            let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
-            let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
-            cell.counterNumbers.text = String(currentCounter.rows + 1)
-            StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-            if currentCounter.rows >= currentCounter.rowsMax {
-                congatulatuions()
-            }
+    @objc func plusBtnTaped (_ sender: UIButton) {
+        let tag = sender.tag
+        let indexPath = IndexPath(row: tag, section: 0)
+        let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
+        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        cell.counterNumbers.text = String(currentCounter.rows + 1)
+        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
+        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax {
+                congatulatuionsIn()
         }
+    }
     @objc func minusBtnTaped(_ sender: UIButton){
         let tag = sender.tag
         let indexPath = IndexPath(row: tag, section: 0)
@@ -117,8 +111,8 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
         cell.counterNumbers.text = String(currentCounter.rows - 1)
         StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-        if currentCounter.rows >= currentCounter.rowsMax {
-            congatulatuions()
+        if currentCounter.rows <= 0 {
+            StorageManager.saveRowsInCounter(currentCounter, 0)
         }
     }
     
@@ -144,9 +138,82 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         view.endEditing(true)
     }
     
-   
+    //MARK: PopUP Animation
+    //ADITING new counter
+    func animateIn() {
+        self.view.addSubview(addCounterView)
+        addCounterView.center = self.view.center
+        
+        addCounterView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        addCounterView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.visualEffectView.isHidden = false
+            self.visualEffectView.effect = self.effect
+            self.addCounterView.alpha = 1
+            self.addCounterView.transform = CGAffineTransform.identity
+        }
+    }
+    func animatedOut() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.addCounterView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.addCounterView.alpha = 0
+            self.visualEffectView.isHidden = true
+            self.visualEffectView.effect = nil
+        }) { (success: Bool) in
+            self.addCounterView.removeFromSuperview()
+        }
+    }
+    
+    //Congratulatuons
+    func congatulatuionsIn() {
+        self.view.addSubview(conratulationView)
+        conratulationView.center = self.view.center
+        
+        conratulationView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        conratulationView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.visualEffectView.isHidden = false
+            self.visualEffectView.effect = self.effect
+            self.conratulationView.alpha = 1
+            self.conratulationView.transform = CGAffineTransform.identity
+        }
+        congratilationsGifView.loadGif(name: "congratulations")
+    }
+    
+    @objc func congratulationsOut() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.conratulationView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.conratulationView.alpha = 0
+            self.visualEffectView.isHidden = true
+            self.visualEffectView.effect = nil
+        }) { (success: Bool) in
+            self.conratulationView.removeFromSuperview()
+        }
+        congratilationsGifView.image = nil
+    }
+    
+    //MARK: Saving New Counters
+    func saveCounter() {
+       let newCounter = Counter(name: countersNameField.text!,
+                                rows: 0,
+                                rowsMax: Int(countersRowsField.text!)!,
+                                projectID: currentProject!.projectID,
+                                counterID: currentID)
+        StorageManager.saveCounter(newCounter)
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "edit"{
+            let editingProjectVC = segue.destination as! NewProjectViewController
+            editingProjectVC.editingProject = currentProject
+        }
+    }
+}
 
-
+extension ProjectLifeController {
     //MARK: Seting UP
     private func setupLifeScreen() {
         if currentProject != nil {
@@ -160,8 +227,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
 
             projectImage.image = image
             counterTable.tableFooterView = UIView()
-            
-            if !currentProject!.tags.isEmpty {
+            print(currentProject!.tags.count)
             // TODO: Rewrite it in For - in cicle
                 switch currentProject!.tags.count {
                 case 1:
@@ -193,7 +259,6 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
                     tag3Label.isHidden = true
                     tag3LabelView.isHidden = true
                 }
-            }
         }
     }
     private func setUpNavigationBar() {
@@ -208,78 +273,4 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         navigationItem.leftBarButtonItem = nil
     }
     
-    //MARK: PopUP Animation
-    //ADITING new counter
-    func animateIn() {
-        self.view.addSubview(addCounterView)
-        addCounterView.center = self.view.center
-        
-        addCounterView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        addCounterView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4) {
-            self.visualEffectView.isHidden = false
-            self.visualEffectView.effect = self.effect
-            self.addCounterView.alpha = 1
-            self.addCounterView.transform = CGAffineTransform.identity
-        }
-    }
-    func animatedOut() {
-        UIView.animate(withDuration: 0.4, animations: {
-            self.addCounterView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.addCounterView.alpha = 0
-            self.visualEffectView.isHidden = true
-            self.visualEffectView.effect = nil
-        }) { (success: Bool) in
-            self.addCounterView.removeFromSuperview()
-        }
-    }
-    
-    //Congratulatuons
-    func congatulatuions() {
-        
-        self.view.addSubview(conratulationView)
-        conratulationView.center = self.view.center
-        
-        conratulationView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        conratulationView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4) {
-            self.visualEffectView.isHidden = false
-            self.visualEffectView.effect = self.effect
-            self.conratulationView.alpha = 1
-            self.conratulationView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    func congratulationsOut() {
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            self.conratulationView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.conratulationView.alpha = 0
-            self.visualEffectView.isHidden = true
-            self.visualEffectView.effect = nil
-        }) { (success: Bool) in
-            self.conratulationView.removeFromSuperview()
-        }
-    }
-    
-    //MARK: Saving New Counters
-    func saveCounter() {
-       let newCounter = Counter(name: countersNameField.text!,
-                                rows: 0,
-                                rowsMax: Int(countersRowsField.text!)!,
-                                projectID: currentProject!.projectID,
-                                counterID: currentID)
-        StorageManager.saveCounter(newCounter)
-    }
-    
-    // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "edit"{
-            let editingProjectVC = segue.destination as! NewProjectViewController
-            editingProjectVC.editingProject = currentProject
-        }
-    }
 }
-

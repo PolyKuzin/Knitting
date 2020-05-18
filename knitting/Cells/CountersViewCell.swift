@@ -23,6 +23,8 @@ class CountersViewCell: UITableViewCell {
     }
     @IBAction func minusButt(_ sender: Any) {
         counterNumbers.text = String(Int(counterNumbers.text!)! - 1)
-        
+        if Int(counterNumbers.text!)! <= 0 {
+            counterNumbers.text = "0"
+        }
     }
 }

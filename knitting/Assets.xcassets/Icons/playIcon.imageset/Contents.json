@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "playIcon.png",
+      "filename" : "rsz_1webpnet-resizeimage.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "playIcon-1.png",
+      "filename" : "rsz_1webpnet-resizeimage-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "playIcon-2.png",
+      "filename" : "rsz_1webpnet-resizeimage-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
