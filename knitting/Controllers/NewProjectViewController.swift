@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
@@ -36,6 +38,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        countersRowsMax.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setUpEditScreen()
     }
     
@@ -69,7 +72,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         return 3
     }
 
-    //MARK: Saving project (New and chanched)
+    //MARK: Saving project
     func saveProject() {
         var image: UIImage?
         //default images
@@ -82,7 +85,10 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         if projectTag2.text! != "" {projectTags.append(projectTag2.text!)}
         if projectTag3.text! != "" {projectTags.append(projectTag3.text!)}
         
-        let imageData = image?.pngData()
+        let size = CGSize(width: 70.0, height: 70.0)
+        let slaledImage = image!.af.imageAspectScaled(toFit: size)
+        
+        let imageData = slaledImage.pngData()
         let newProject = Project(name: projectName.text!,
                                  tags: projectTags,
                                  projectID: currentID,
@@ -165,8 +171,10 @@ extension NewProjectViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
     @objc private func textFieldChanged() {
-        if projectName.text?.isEmpty == false {
+       
+        if projectName.text?.isEmpty == false && countersRowsMax.text?.isEmpty == false{
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false
