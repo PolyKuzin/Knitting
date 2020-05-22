@@ -16,6 +16,7 @@ class Counter: Object {
     @objc dynamic var rowsMax = 0
     @objc dynamic var projectID = 0
     @objc dynamic var counterID = 0
+    @objc dynamic var congratulations = false
     
     convenience init (name: String,
                       rows: Int,

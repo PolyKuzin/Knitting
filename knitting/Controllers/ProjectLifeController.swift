@@ -100,8 +100,9 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
         cell.counterNumbers.text = String(currentCounter.rows + 1)
         StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax {
-                congatulatuionsIn()
+        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax && currentCounter.congratulations == false {
+            congatulatuionsIn()
+            StorageManager.congratulations(currentCounter)
         }
     }
     @objc func minusBtnTaped(_ sender: UIButton){
@@ -227,7 +228,6 @@ extension ProjectLifeController {
 
             projectImage.image = image
             counterTable.tableFooterView = UIView()
-            print(currentProject!.tags.count)
             // TODO: Rewrite it in For - in cicle
                 switch currentProject!.tags.count {
                 case 1:

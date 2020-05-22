@@ -43,4 +43,10 @@ class StorageManager {
             currentCounter.rows = rows
         }
     }
+    static func congratulations (_ currentCounter: Counter){
+        
+        try! realm.write{
+            currentCounter.congratulations = true
+        }
+    }
 }
