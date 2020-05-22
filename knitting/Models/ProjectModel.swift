@@ -39,20 +39,23 @@ class Project: Object {
     
     @objc dynamic var name = ""
     let tags = List<String?>()
-    @objc dynamic var imageData: Data?
+    @objc dynamic var imageProjectForMainScreen: Data?
+    @objc dynamic var imageProject: Data?
     @objc dynamic var date = Date()
     @objc dynamic var projectID = 0
 
     convenience init(name: String,
                      tags: [String?],
                      projectID: Int,
-                     imageData: Data?) {
+                     imageProjectForMainScreen: Data?,
+                     imageProject: Data? ) {
         self.init()
         self.name = name
         for tag in tags {
             self.tags.append(tag)
         }
-        self.imageData = imageData
+        self.imageProjectForMainScreen = imageProjectForMainScreen
+        self.imageProject = imageProject
         self.projectID = projectID
 
     }

@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		9939C9F5246D97BA0029EFB1 /* RNSavingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F4246D97BA0029EFB1 /* RNSavingModel.swift */; };
-		9939C9F7246DC6DE0029EFB1 /* Swift+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F6246DC6DE0029EFB1 /* Swift+Gif.swift */; };
+		9939C9F7246DC6DE0029EFB1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F6246DC6DE0029EFB1 /* Extensions.swift */; };
 		9939C9F9246DC88B0029EFB1 /* congratulations.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9939C9F8246DC88A0029EFB1 /* congratulations.gif */; };
 		9941897B246C2C8500B2C541 /* CardViewConroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9941897A246C2C8500B2C541 /* CardViewConroller.xib */; };
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* ProjectLifeController.swift */; };
 		997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E851D245A06720074BE4B /* TagTableViewCell.swift */; };
+		9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */; };
+		9998AA4D2477F0FD00629CBF /* SushiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4C2477F0FD00629CBF /* SushiModel.swift */; };
+		9998AA4F2477F15700629CBF /* galleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4E2477F15700629CBF /* galleryCell.swift */; };
+		9998AA512477F99800629CBF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA502477F99800629CBF /* Constants.swift */; };
 		999EACD92455C17300321D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACD82455C17300321D3E /* AppDelegate.swift */; };
 		999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDA2455C17300321D3E /* SceneDelegate.swift */; };
 		999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACDC2455C17300321D3E /* ProjectsController.swift */; };
@@ -30,12 +34,16 @@
 /* Begin PBXFileReference section */
 		5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
 		9939C9F4246D97BA0029EFB1 /* RNSavingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNSavingModel.swift; sourceTree = "<group>"; };
-		9939C9F6246DC6DE0029EFB1 /* Swift+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift+Gif.swift"; sourceTree = "<group>"; };
+		9939C9F6246DC6DE0029EFB1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9939C9F8246DC88A0029EFB1 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = congratulations.gif; sourceTree = "<group>"; };
 		9941897A246C2C8500B2C541 /* CardViewConroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewConroller.xib; sourceTree = "<group>"; };
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* ProjectLifeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeController.swift; sourceTree = "<group>"; };
 		997E851D245A06720074BE4B /* TagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
+		9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryCollectionView.swift; sourceTree = "<group>"; };
+		9998AA4C2477F0FD00629CBF /* SushiModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SushiModel.swift; sourceTree = "<group>"; };
+		9998AA4E2477F15700629CBF /* galleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = galleryCell.swift; sourceTree = "<group>"; };
+		9998AA502477F99800629CBF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		999EACD52455C17300321D3E /* knitting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knitting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		999EACD82455C17300321D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		999EACDA2455C17300321D3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +117,8 @@
 				999EACD82455C17300321D3E /* AppDelegate.swift */,
 				999EACDA2455C17300321D3E /* SceneDelegate.swift */,
 				997E85102458992A0074BE4B /* StorageManager.swift */,
-				9939C9F6246DC6DE0029EFB1 /* Swift+Gif.swift */,
+				9939C9F6246DC6DE0029EFB1 /* Extensions.swift */,
+				9998AA502477F99800629CBF /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -144,6 +153,9 @@
 				999EACE12455C17500321D3E /* Assets.xcassets */,
 				9939C9F8246DC88A0029EFB1 /* congratulations.gif */,
 				999EACE62455C17600321D3E /* Info.plist */,
+				9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */,
+				9998AA4C2477F0FD00629CBF /* SushiModel.swift */,
+				9998AA4E2477F15700629CBF /* galleryCell.swift */,
 			);
 			path = knitting;
 			sourceTree = "<group>";
@@ -154,7 +166,6 @@
 				EDEDC6C5F26B73BD717574D1 /* Pods-knitting.debug.xcconfig */,
 				5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -283,15 +294,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9998AA4F2477F15700629CBF /* galleryCell.swift in Sources */,
 				999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */,
 				999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */,
 				9939C9F5246D97BA0029EFB1 /* RNSavingModel.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */,
-				9939C9F7246DC6DE0029EFB1 /* Swift+Gif.swift in Sources */,
+				9939C9F7246DC6DE0029EFB1 /* Extensions.swift in Sources */,
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
+				9998AA512477F99800629CBF /* Constants.swift in Sources */,
 				999EACEF2456B50400321D3E /* CustomTableViewCell.swift in Sources */,
 				997E851E245A06720074BE4B /* TagTableViewCell.swift in Sources */,
+				9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
+				9998AA4D2477F0FD00629CBF /* SushiModel.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
 				99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */,
 				997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */,

@@ -38,6 +38,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var countersNameField: UITextField!
     @IBOutlet weak var countersRowsField: UITextField!
     @IBOutlet weak var counterTable: UITableView!
+    
 //MARK: Actions
     @IBAction func addCounter (_ sender: Any){
          animateIn()
@@ -224,7 +225,7 @@ extension ProjectLifeController {
             visualEffectView.effect = nil
             addCounterView.layer.cornerRadius = 10
             
-            guard let data = currentProject?.imageData, let image = UIImage(data: data) else {return}
+            guard let data = currentProject?.imageProject, let image = UIImage(data: data) else {return}
 
             projectImage.image = image
             counterTable.tableFooterView = UIView()

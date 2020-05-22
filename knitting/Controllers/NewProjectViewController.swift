@@ -88,11 +88,13 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         let size = CGSize(width: 70.0, height: 70.0)
         let slaledImage = image!.af.imageAspectScaled(toFit: size)
         
-        let imageData = slaledImage.pngData()
+        let imageProjectForMainScreen = slaledImage.pngData()
+        let imageProject = image?.pngData()
         let newProject = Project(name: projectName.text!,
                                  tags: projectTags,
                                  projectID: currentID,
-                                 imageData: imageData)
+                                 imageProjectForMainScreen: imageProjectForMainScreen,
+                                 imageProject: imageProject)
         
         if editingProject != nil {
             try! realm.write {
@@ -102,7 +104,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                 for str in newProject.tags {
                     editingProject?.tags.append(str!)
                 }
-                editingProject?.imageData = newProject.imageData
+                editingProject?.imageProjectForMainScreen = newProject.imageProjectForMainScreen
                 editingProject?.date = Date()
             }
         } else {
@@ -128,7 +130,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         if editingProject != nil {
             setUpNavigationBar()
             imageIsChanged = true
-            guard let data = editingProject?.imageData, let image = UIImage(data: data) else {return}
+            guard let data = editingProject?.imageProjectForMainScreen, let image = UIImage(data: data) else {return}
             projectImage.image = image
             projectName.text = editingProject?.name
             countersRowsMax.isHidden = true

@@ -17,11 +17,21 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var table1: UITableView!
     @IBOutlet weak var addButton: UIButton!
-
+    @IBOutlet weak var workingOnThese: UILabel!
+    
+    private var galeryCollectionView = GallaryCollectionView()
+    
     override func viewDidLoad() {
           super.viewDidLoad()
+        view.addSubview(galeryCollectionView)
+        galeryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        galeryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        galeryCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
+        galeryCollectionView.bottomAnchor.constraint(equalTo: workingOnThese.topAnchor, constant: -10).isActive = true
+        
+        galeryCollectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        
         projects = realm.objects(Project.self)
-
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
         sorting()
       }
@@ -42,7 +52,7 @@ class ProjectsController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.setUpCell()
 
-        cell.imageOfProject.image = UIImage(data: project.imageData!)
+        cell.imageOfProject.image = UIImage(data: project.imageProjectForMainScreen!)
         cell.constraintsAffectingLayout(for: .horizontal)
         // Seting cell's accesory
         let image = #imageLiteral(resourceName: "playIcon")
