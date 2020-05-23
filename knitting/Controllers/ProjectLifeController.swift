@@ -55,6 +55,15 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func imGoodButt(_ sender: Any) {
         congratulationsOut()
     }
+    @IBAction func backButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "projectsController") as! ProjectsController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    @IBAction func editButton(_ sender: Any) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
