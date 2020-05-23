@@ -14,37 +14,43 @@ class ProjectsController: UIViewController{
     let cellIdentifire: String = "cell"
     var projects: Results<Project>!
     var tableView = UITableView()
-    
+    var workingOnThese = UILabel()
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var workingOnThese: UILabel!
+    //@IBOutlet weak var workingOnThese: UILabel!
     
     private var galeryCollectionView = GallaryCollectionView()
     
     override func viewDidLoad() {
           super.viewDidLoad()
-        view.addSubview(galeryCollectionView)
         
         
         projects = realm.objects(Project.self)
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
-        sorting()
-        
-        
-        projects = realm.objects(Project.self)
+    
         configureTableView()
-        collectionViewConstraints()
+        configureCollectionView()
+        configureLabel()
       }
     func configureTableView() {
         
         view.addSubview(tableView)
         setTableViewDetegates()
+        sorting()
         tableView.rowHeight = 80
-        tableView.setConstraints(to: view)
+        tableViewConstraints()
         tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
         view.sendSubviewToBack(tableView)
     }
     
     func configureCollectionView(){
+        view.addSubview(galeryCollectionView)
+
+        collectionViewConstraints()
+    }
+    func configureLabel(){
+        view.addSubview(workingOnThese)
+        labelConstraints()
+        workingOnThese.text = "Working on this?"
         
     }
     
@@ -128,24 +134,30 @@ extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: Constraints
-extension UIView {
-    
-    func setConstraints(to superview: UIView){
-        translatesAutoresizingMaskIntoConstraints = false
-        topAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
-        leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-    }
-}
-
 extension ProjectsController {
     
+    func tableViewConstraints(){
+        //let screenSize: CGRect = UIScreen.main.bounds
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
     func collectionViewConstraints(){
-         galeryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-         galeryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-         galeryCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
-         galeryCollectionView.bottomAnchor.constraint(equalTo: workingOnThese.topAnchor, constant: -10).isActive = true
-         galeryCollectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        galeryCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        galeryCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
+        galeryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        galeryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        galeryCollectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
      }
+    
+    func labelConstraints() {
+        workingOnThese.translatesAutoresizingMaskIntoConstraints = false
+        workingOnThese.topAnchor.constraint(equalTo: galeryCollectionView.bottomAnchor, constant: 5).isActive = true
+        workingOnThese.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        workingOnThese.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 20).isActive = true
+    }
 }

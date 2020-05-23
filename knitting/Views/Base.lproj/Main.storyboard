@@ -27,13 +27,6 @@
                                     <segue destination="ddO-Wg-zLM" kind="showDetail" id="sVs-X7-LbC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Working on these?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVJ-bh-uAG">
-                                <rect key="frame" x="20" y="270" width="241.33333333333337" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -41,7 +34,6 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="EDk-s3-q5p"/>
                     <connections>
                         <outlet property="addButton" destination="VcU-ML-dsw" id="d0A-QY-qWx"/>
-                        <outlet property="workingOnThese" destination="kVJ-bh-uAG" id="oKy-a7-TRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
