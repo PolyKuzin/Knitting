@@ -10,9 +10,7 @@ import RealmSwift
 
 class Counter: Object {
     @objc dynamic var name = ""
-//    let countersNames = List<String?>()
     @objc dynamic var rows = 0
-//    let countersRowsMax = List<Int?>()
     @objc dynamic var rowsMax = 0
     @objc dynamic var projectID = 0
     @objc dynamic var counterID = 0

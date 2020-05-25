@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import RealmSwift
 
 class ProjectsController: UIViewController{
@@ -22,7 +23,7 @@ class ProjectsController: UIViewController{
     
     override func viewDidLoad() {
           super.viewDidLoad()
-        
+        //checkAuth()
         
         projects = realm.objects(Project.self)
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
@@ -60,6 +61,14 @@ class ProjectsController: UIViewController{
         tableView.dataSource = self
     }
     
+    @IBAction func signOut(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+        dismiss(animated: true, completion: nil)
+    }
     //MARK: UnwindSegue
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let newProjectVC = segue.source as? NewProjectViewController else { return }
@@ -67,19 +76,8 @@ class ProjectsController: UIViewController{
         newProjectVC.saveCounter()
         tableView.reloadData()
     }
-    
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            guard let indexPath = tableView.indexPathForSelectedRow else {return print("ERROR IN PASSING DATA")}
-            let project = projects[indexPath.row]
-            let lifeProjectVC = segue.destination as! ProjectLifeController
-            lifeProjectVC.currentProject = project
-            tableView.cellForRow(at: indexPath)?.isSelected = false
-        }
-    }
 }
-
+//MARK: TableView
 extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,8 +113,6 @@ extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
         vc.modalPresentationStyle = .fullScreen
         vc.currentProject = project
         self.navigationController?.pushViewController(vc, animated: true)
-
-        //self.present(vc, animated: true, completion: nil)
     }
 
     //MARK: Sorting

@@ -13,7 +13,6 @@
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* ProjectLifeController.swift */; };
 		9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */; };
-		9998AA4D2477F0FD00629CBF /* SushiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4C2477F0FD00629CBF /* SushiModel.swift */; };
 		9998AA4F2477F15700629CBF /* galleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4E2477F15700629CBF /* galleryCell.swift */; };
 		9998AA512477F99800629CBF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA502477F99800629CBF /* Constants.swift */; };
 		9998AA552478210500629CBF /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA542478210500629CBF /* ProjectsCell.swift */; };
@@ -27,6 +26,8 @@
 		999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF42457175200321D3E /* NewProjectViewController.swift */; };
 		99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */; };
 		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
+		99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F9E77C247C21DE000ACA5A /* LogInVC.swift */; };
+		99F9E77F247C2DBA000ACA5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +38,6 @@
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* ProjectLifeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLifeController.swift; sourceTree = "<group>"; };
 		9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryCollectionView.swift; sourceTree = "<group>"; };
-		9998AA4C2477F0FD00629CBF /* SushiModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SushiModel.swift; sourceTree = "<group>"; };
 		9998AA4E2477F15700629CBF /* galleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = galleryCell.swift; sourceTree = "<group>"; };
 		9998AA502477F99800629CBF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9998AA542478210500629CBF /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
@@ -52,6 +52,8 @@
 		999EACF02456FD5B00321D3E /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		999EACF42457175200321D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
+		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
+		99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_knitting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDEDC6C5F26B73BD717574D1 /* Pods-knitting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.debug.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +76,8 @@
 				997E85122458B6FF0074BE4B /* ProjectLifeController.swift */,
 				999EACF42457175200321D3E /* NewProjectViewController.swift */,
 				999EACDC2455C17300321D3E /* ProjectsController.swift */,
+				9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */,
+				99F9E77C247C21DE000ACA5A /* LogInVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -90,6 +94,7 @@
 		997E851A2459E2830074BE4B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9998AA4E2477F15700629CBF /* galleryCell.swift */,
 				99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */,
 				9998AA542478210500629CBF /* ProjectsCell.swift */,
 			);
@@ -146,10 +151,8 @@
 				997E851A2459E2830074BE4B /* Cells */,
 				999EACE12455C17500321D3E /* Assets.xcassets */,
 				9939C9F8246DC88A0029EFB1 /* congratulations.gif */,
+				99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */,
 				999EACE62455C17600321D3E /* Info.plist */,
-				9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */,
-				9998AA4C2477F0FD00629CBF /* SushiModel.swift */,
-				9998AA4E2477F15700629CBF /* galleryCell.swift */,
 			);
 			path = knitting;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				9939C9F9246DC88B0029EFB1 /* congratulations.gif in Resources */,
 				999EACE52455C17600321D3E /* LaunchScreen.storyboard in Resources */,
+				99F9E77F247C2DBA000ACA5A /* GoogleService-Info.plist in Resources */,
 				999EACE22455C17500321D3E /* Assets.xcassets in Resources */,
 				999EACE02455C17300321D3E /* Main.storyboard in Resources */,
 			);
@@ -295,10 +299,10 @@
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
 				9939C9F7246DC6DE0029EFB1 /* Extensions.swift in Sources */,
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
+				99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */,
 				9998AA512477F99800629CBF /* Constants.swift in Sources */,
 				9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
-				9998AA4D2477F0FD00629CBF /* SushiModel.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
 				99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */,
 				997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */,
