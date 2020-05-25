@@ -91,13 +91,6 @@ extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell") as! ProjectsCell
         let project = projects[indexPath.row]
         cell.setCell(project: project)
-        
-        //        if !project.tags.isEmpty {
-        //            cell.tagLabel.text = project.tags[0]
-        //        } else {
-        //            cell.tagLabel.isHidden = true
-        //        }
-        
         return cell
     }
     

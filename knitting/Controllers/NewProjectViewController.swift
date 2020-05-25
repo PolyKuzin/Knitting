@@ -130,7 +130,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         if editingProject != nil {
             setUpNavigationBar()
             imageIsChanged = true
-            guard let data = editingProject?.imageProjectForMainScreen, let image = UIImage(data: data) else {return}
+            guard let data = editingProject?.imageProject, let image = UIImage(data: data) else {return}
             projectImage.image = image
             projectName.text = editingProject?.name
             countersRowsMax.isHidden = true
