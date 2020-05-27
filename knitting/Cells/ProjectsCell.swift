@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ProjectsCell: UITableViewCell {
     
@@ -29,14 +28,14 @@ class ProjectsCell: UITableViewCell {
     }
     
     
-    func setCell(project: Project){
+    func setCell(project: ProjectToKnit){
         
-        let image = UIImage(data: project.imageProject!)
-        projectImageView.image = image
+        //let image = UIImage(data: project.imageProject!)
+        //projectImageView.image = image
         playImageView.image    = #imageLiteral(resourceName: "playIcon")
         projectNameLabel.text  = project.name
         if !project.tags.isEmpty {
-            projectTagsLabel.text = project.tags[0]
+            projectTagsLabel.text = project.tags
         } else {
             projectTagsLabel.isHidden = true
         }

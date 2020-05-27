@@ -24,6 +24,9 @@
 		999EACE52455C17600321D3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999EACE32455C17500321D3E /* LaunchScreen.storyboard */; };
 		999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF02456FD5B00321D3E /* ProjectModel.swift */; };
 		999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACF42457175200321D3E /* NewProjectViewController.swift */; };
+		99C8176B247D1EAB007836D8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8176A247D1EAB007836D8 /* User.swift */; };
+		99C8178D247D564C007836D8 /* ProjectToKnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8178C247D564C007836D8 /* ProjectToKnit.swift */; };
+		99C8178F247E831E007836D8 /* CounterToKnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8178E247E831E007836D8 /* CounterToKnit.swift */; };
 		99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */; };
 		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
 		99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F9E77C247C21DE000ACA5A /* LogInVC.swift */; };
@@ -51,6 +54,9 @@
 		999EACE62455C17600321D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		999EACF02456FD5B00321D3E /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		999EACF42457175200321D3E /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		99C8176A247D1EAB007836D8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99C8178C247D564C007836D8 /* ProjectToKnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToKnit.swift; sourceTree = "<group>"; };
+		99C8178E247E831E007836D8 /* CounterToKnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToKnit.swift; sourceTree = "<group>"; };
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
 		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -87,6 +93,9 @@
 			children = (
 				999EACF02456FD5B00321D3E /* ProjectModel.swift */,
 				9939C9F4246D97BA0029EFB1 /* RNSavingModel.swift */,
+				99C8176A247D1EAB007836D8 /* User.swift */,
+				99C8178C247D564C007836D8 /* ProjectToKnit.swift */,
+				99C8178E247E831E007836D8 /* CounterToKnit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,7 +194,7 @@
 				999EACD12455C17300321D3E /* Sources */,
 				999EACD22455C17300321D3E /* Frameworks */,
 				999EACD32455C17300321D3E /* Resources */,
-				8A231DC0FAFD79F54065A7D0 /* [CP] Embed Pods Frameworks */,
+				33C4CA3FAD74A9A92BF6C228 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,7 +254,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8A231DC0FAFD79F54065A7D0 /* [CP] Embed Pods Frameworks */ = {
+		33C4CA3FAD74A9A92BF6C228 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,15 +304,18 @@
 				999EACF12456FD5B00321D3E /* ProjectModel.swift in Sources */,
 				999EACF52457175200321D3E /* NewProjectViewController.swift in Sources */,
 				9939C9F5246D97BA0029EFB1 /* RNSavingModel.swift in Sources */,
+				99C8176B247D1EAB007836D8 /* User.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsController.swift in Sources */,
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
 				9939C9F7246DC6DE0029EFB1 /* Extensions.swift in Sources */,
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
 				99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */,
 				9998AA512477F99800629CBF /* Constants.swift in Sources */,
+				99C8178F247E831E007836D8 /* CounterToKnit.swift in Sources */,
 				9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
+				99C8178D247D564C007836D8 /* ProjectToKnit.swift in Sources */,
 				99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */,
 				997E85132458B6FF0074BE4B /* ProjectLifeController.swift in Sources */,
 			);

@@ -8,35 +8,57 @@
 
 import UIKit
 import Firebase
-import RealmSwift
 
 class ProjectsController: UIViewController{
     
+    var ref : DatabaseReference!
+    var user: Users!
     let cellIdentifire: String = "cell"
-    var projects: Results<Project>!
     var tableView = UITableView()
     var workingOnThese = UILabel()
+    var projects = Array<ProjectToKnit>()
+
+    
     @IBOutlet weak var addButton: UIButton!
-    //@IBOutlet weak var workingOnThese: UILabel!
     
     private var galeryCollectionView = GallaryCollectionView()
     
     override func viewDidLoad() {
           super.viewDidLoad()
-        //checkAuth()
-        
-        projects = realm.objects(Project.self)
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
-    
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+        
         configureTableView()
         configureCollectionView()
         configureLabel()
       }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ref.observe(.value, with: { [weak self] (snapshot) in
+            var _projects = Array<ProjectToKnit>()
+            for item in snapshot.children {
+                let task = ProjectToKnit(snapshot: item as! DataSnapshot)
+                _projects.append(task)
+            }
+            self?.projects = _projects
+            self?.tableView.reloadData()
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ref.removeAllObservers()
+    }
     func configureTableView() {
         
         view.addSubview(tableView)
         setTableViewDetegates()
-        sorting()
+//        sorting()
         tableView.rowHeight = 80
         tableViewConstraints()
         tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
@@ -91,19 +113,19 @@ extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
         cell.setCell(project: project)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let project = projects[indexPath.row]
-        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            for counter in realm.objects(Counter.self).filter("projectID == %@", project.projectID as Any) {
-                StorageManager.deleteCounters(counter)
-            }
-            StorageManager.deleteObject(project)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-        return swipeActions
-    }
+//Deleteaction
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let project = projects[indexPath.row]
+//        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+//            for counter in realm.objects(Counter.self).filter("projectID == %@", project.projectID as Any) {
+//                StorageManager.deleteCounters(counter)
+//            }
+//            StorageManager.deleteObject(project)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+//        return swipeActions
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let project = projects[indexPath.row]
@@ -115,11 +137,11 @@ extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    //MARK: Sorting
-      func sorting() {
-          projects = projects.sorted(byKeyPath: "date", ascending: false)
-          tableView.reloadData()
-      }
+//Sorting
+//      func sorting() {
+//          projects = projects.sorted(byKeyPath: "date", ascending: false)
+//          tableView.reloadData()
+//      }
 }
 
 // MARK: Constraints

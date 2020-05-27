@@ -10,23 +10,37 @@ import UIKit
 import Firebase
 
 class LogInVC: UIViewController {
+    
+    var ref: DatabaseReference!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ref = Database.database().reference(withPath: "users")
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "LogInSegue", sender: nil)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(kbDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
     @IBAction func registerTapped(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
 //TODO: Errors of wrong email or password
                     return
                 }
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) {[weak self] (user, error) in
             
-            if error == nil{
-                if user != nil{
-                    
-                } else {
-                    print("user is not created")
-                }
-            } else {
+            guard error == nil, user != nil else {
+                
                 print(error!.localizedDescription)
+                return
             }
+            
+            let userRef = self?.ref.child((user?.user.uid)!)
+            userRef!.setValue(["email":user!.user.email])
         }
     }
     
@@ -66,18 +80,7 @@ class LogInVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var label: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                self.performSegue(withIdentifier: "LogInSegue", sender: nil)
-            }
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(kbDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(kbDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
+
     
     @objc func kbDidShow(notification: Notification) {
         guard  let userInfo = notification.userInfo else {return}

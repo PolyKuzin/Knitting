@@ -5,8 +5,8 @@ target 'knitting' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'RealmSwift'
   pod 'Firebase/Auth'
-  pod 'AlamofireImage', '~> 4.1'
-
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  
 end

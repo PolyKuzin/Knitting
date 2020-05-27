@@ -7,14 +7,17 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
+import Firebase
 
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
     let currentID = Int(Date().timeIntervalSince1970)
 
-    var editingProject: Project?
+    var user: Users!
+    var ref: DatabaseReference!
+    var projects = Array<Project>()
+    
+    var editingProject: ProjectToKnit?
     var counter: Counter?
     var imageIsChanged = false
     var projectTags: [String?] = []
@@ -33,8 +36,12 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+        
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
         projectName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
@@ -81,34 +88,22 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         } else {
             image = #imageLiteral(resourceName: "ball")
         }
+        let imageData = image?.pngData()
+        
         if projectTag1.text! != "" {projectTags.append(projectTag1.text!)}
         if projectTag2.text! != "" {projectTags.append(projectTag2.text!)}
         if projectTag3.text! != "" {projectTags.append(projectTag3.text!)}
         
-        let size = CGSize(width: 70.0, height: 70.0)
-        let slaledImage = image!.af.imageAspectScaled(toFit: size)
         
-        let imageProjectForMainScreen = slaledImage.pngData()
-        let imageProject = image?.pngData()
-        let newProject = Project(name: projectName.text!,
-                                 tags: projectTags,
-                                 projectID: currentID,
-                                 imageProjectForMainScreen: imageProjectForMainScreen,
-                                 imageProject: imageProject)
+        let project = ProjectToKnit(userID      : user.uid, projectID: currentID,
+                                    name        : projectName.text!,
+                                    imageData   : imageData!, tags: projectTag1.text!)
+        let projectRef = self.ref.child(project.name.lowercased())
+        projectRef.setValue(project.projectToDictionary())
         
         if editingProject != nil {
-            try! realm.write {
-                editingProject?.name = newProject.name
-                editingProject?.tags.removeAll()
-                
-                for str in newProject.tags {
-                    editingProject?.tags.append(str!)
-                }
-                editingProject?.imageProjectForMainScreen = newProject.imageProjectForMainScreen
-                editingProject?.date = Date()
-            }
-        } else {
-            StorageManager.saveObject(newProject)
+            
+//вносим изменения в существующий проект
         }
     }
     //MARK: Save new Counter
@@ -122,7 +117,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
                                  rowsMax: Int(countersRowsMax.text!)!,
                                  projectID: currentID,
                                  counterID: currentID - 10)
-        StorageManager.saveCounter(newCounter)
+        //создааем новый счётчик
         }
     }
     //MARK: Seting up...
@@ -130,7 +125,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         if editingProject != nil {
             setUpNavigationBar()
             imageIsChanged = true
-            guard let data = editingProject?.imageProject, let image = UIImage(data: data) else {return}
+            guard let data = editingProject?.imageData, let image = UIImage(data: data) else {return}
             projectImage.image = image
             projectName.text = editingProject?.name
             countersRowsMax.isHidden = true
@@ -138,20 +133,20 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
             
             //TODO: Rewrite it switch statement
             if editingProject?.tags.count == 1 {
-                projectTag1.text = editingProject?.tags[0]
-
-            } else if editingProject?.tags.count == 2 {
-                projectTag1.text = editingProject?.tags[0]
-                projectTag2.text = editingProject?.tags[1]
-            } else if editingProject?.tags.count == 3 {
-                projectTag1.text = editingProject?.tags[0]
-                projectTag2.text = editingProject?.tags[1]
-                projectTag3.text = editingProject?.tags[2]
-            } else {
-                projectTag1.text = ""
-                projectTag2.text = ""
-                projectTag3.text = ""
+                projectTag1.text = editingProject?.tags
             }
+//            } else if editingProject?.tags.count == 2 {
+//                projectTag1.text = editingProject?.tags[0]
+//                projectTag2.text = editingProject?.tags[1]
+//            } else if editingProject?.tags.count == 3 {
+//                projectTag1.text = editingProject?.tags[0]
+//                projectTag2.text = editingProject?.tags[1]
+//                projectTag3.text = editingProject?.tags[2]
+//            } else {
+//                projectTag1.text = ""
+//                projectTag2.text = ""
+//                projectTag3.text = ""
+//            }
         }
     }
     

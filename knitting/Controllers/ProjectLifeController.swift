@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RealmSwift
+import Firebase
 
 class ProjectLifeController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
@@ -15,9 +15,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     let counterCellIdentifire: String = "counterCell"
     let currentID = Int(Date().timeIntervalSince1970)
 
+    var ref : DatabaseReference!
+    var user: Users!
+    
     var effect: UIVisualEffect?
-    var currentProject: Project?
+    var currentProject: ProjectToKnit?
     var counter: Counter?
+    let counters = [Counter(name: "Head", rows: 12, rowsMax: 14, projectID: 12, counterID: 12)]
     var tagLabel: String?
     var countersRows: Int?
     
@@ -58,6 +62,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("counters")
         setupLifeScreen()
         projectImage.layer.cornerRadius = 15
         addCounterView.layer.cornerRadius = 5
@@ -73,13 +78,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: CounterTableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let cellRows = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any).count
+        let cellRows = counters.count
         return cellRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
-        let counter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        let counter = counters[indexPath.row]
         cell.viewWithTag(1)?.layer.cornerRadius = 10
         cell.counterName.text = counter.name
         cell.plusButt(cell as Any)
@@ -98,31 +103,35 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         let tag = sender.tag
         let indexPath = IndexPath(row: tag, section: 0)
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
-        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        let currentCounter = counters[indexPath.row]
         cell.counterNumbers.text = String(currentCounter.rows + 1)
-        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax && currentCounter.congratulations == false {
-            congatulatuionsIn()
-            StorageManager.congratulations(currentCounter)
-        }
+        //Сохраняем числа счётчика
+//        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
+//        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax && currentCounter.congratulations == false {
+//            congatulatuionsIn()
+//            StorageManager.congratulations(currentCounter)
+//        }
     }
     @objc func minusBtnTaped(_ sender: UIButton){
         let tag = sender.tag
         let indexPath = IndexPath(row: tag, section: 0)
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
-        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        let currentCounter = counters[indexPath.row]
         cell.counterNumbers.text = String(currentCounter.rows - 1)
-        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-        if currentCounter.rows <= 0 {
-            StorageManager.saveRowsInCounter(currentCounter, 0)
-        }
+        
+        //сохраняем числа счётчика
+//        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
+//        if currentCounter.rows <= 0 {
+//            StorageManager.saveRowsInCounter(currentCounter, 0)
+//        }
     }
     
     // DeleteAction
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let currentCounter = realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any)[indexPath.row]
+        let currentCounter = counters[indexPath.row]
         let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            StorageManager.deleteCounters(currentCounter)
+            //удаляем счётчик из БД
+//            StorageManager.deleteCounters(currentCounter)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
@@ -131,7 +140,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     func insertNewCounter() {
         saveCounter()
-        let indexPath = IndexPath(row: realm.objects(Counter.self).filter("projectID == %@", currentProject?.projectID as Any).count - 1, section: 0)
+        let indexPath = IndexPath(row: counters.count - 1, section: 0)
         counterTable.beginUpdates()
         counterTable.insertRows(at: [indexPath], with: .automatic)
         counterTable.endUpdates()
@@ -198,12 +207,15 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: Saving New Counters
     func saveCounter() {
-       let newCounter = Counter(name: countersNameField.text!,
-                                rows: 0,
-                                rowsMax: Int(countersRowsField.text!)!,
-                                projectID: currentProject!.projectID,
-                                counterID: currentID)
-        StorageManager.saveCounter(newCounter)
+        let newCounter = CounterToKnit(userID: user.uid,
+                                       projectID: currentProject!.projectID,
+                                       name: countersNameField.text!,
+                                       rows: 0,
+                                       rowsMax: Int(countersRowsField.text!)!
+                                       )
+        
+        let counterRef = self.ref.child(newCounter.name.lowercased())
+        counterRef.setValue(newCounter.counterToDictionary())
     }
     
     // MARK: Navigation
@@ -225,33 +237,33 @@ extension ProjectLifeController {
             visualEffectView.effect = nil
             addCounterView.layer.cornerRadius = 10
             
-            guard let data = currentProject?.imageProject, let image = UIImage(data: data) else {return}
+            guard let data = currentProject?.imageData, let image = UIImage(data: data) else {return}
 
             projectImage.image = image
             counterTable.tableFooterView = UIView()
             // TODO: Rewrite it in For - in cicle
                 switch currentProject!.tags.count {
-                case 1:
-                    tag1Label.text = currentProject?.tags[0]
+                case 1,2,3:
+                    tag1Label.text = currentProject?.tags
                     tag1Label.isHidden = false
                     tag1LabelView.isHidden = false
-                case 2:
-                    tag1Label.text = currentProject?.tags[0]
-                    tag2Label.text = currentProject?.tags[1]
-                    tag1Label.isHidden = false
-                    tag1LabelView.isHidden = false
-                    tag2Label.isHidden = false
-                    tag2LabelView.isHidden = false
-                case 3:
-                    tag1Label.text = currentProject?.tags[0]
-                    tag2Label.text = currentProject?.tags[1]
-                    tag3Label.text = currentProject?.tags[2]
-                    tag1Label.isHidden = false
-                    tag1LabelView.isHidden = false
-                    tag2Label.isHidden = false
-                    tag2LabelView.isHidden = false
-                    tag3Label.isHidden = false
-                    tag3LabelView.isHidden = false
+//                case 2:
+////                    tag1Label.text = currentProject?.tags[0]
+////                    tag2Label.text = currentProject?.tags[1]
+//                    tag1Label.isHidden = false
+//                    tag1LabelView.isHidden = false
+//                    tag2Label.isHidden = false
+//                    tag2LabelView.isHidden = false
+//                case 3:
+////                    tag1Label.text = currentProject?.tags[0]
+////                    tag2Label.text = currentProject?.tags[1]
+////                    tag3Label.text = currentProject?.tags[2]
+//                    tag1Label.isHidden = false
+//                    tag1LabelView.isHidden = false
+//                    tag2Label.isHidden = false
+//                    tag2LabelView.isHidden = false
+//                    tag3Label.isHidden = false
+//                    tag3LabelView.isHidden = false
                 default:
                     tag1Label.isHidden = true
                     tag1LabelView.isHidden = true
