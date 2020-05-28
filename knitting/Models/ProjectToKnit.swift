@@ -13,27 +13,31 @@ struct ProjectToKnit {
     
     let ref             : DatabaseReference?
     let userID          : String
-    let projectID       : Int
+    let projectID       : String
     var name            : String
-    var imageData       : Data
+    var imageData       : String
     var tags            : String
     var completed       : Bool = false
     
-    init(userID: String, projectID: Int, name: String, imageData: Data, tags: String) {
-        self.userID = userID
-        self.projectID = projectID
-        self.name = name
-        self.imageData = imageData
-        self.tags = tags
-        self.ref = nil
+    init(userID: String,
+         projectID: String,
+         name: String,
+         imageData: String,
+         tags: String) {
+        self.userID         = userID
+        self.projectID      = projectID
+        self.name           = name
+        self.imageData      = imageData
+        self.tags           = tags
+        self.ref            = nil
     }
     
     init( snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value          as! [String: AnyObject]
         userID      = snapshotValue["userID"]       as! String
-        projectID   = snapshotValue["projectID"]    as! Int
+        projectID   = snapshotValue["projectID"]    as! String
         name        = snapshotValue["name"]         as! String
-        imageData   = snapshotValue["imageData"]    as! Data
+        imageData   = snapshotValue["imageData"]    as! String
         tags        = snapshotValue["tags"]         as! String
         completed   = snapshotValue["completed"]    as! Bool
         ref         = snapshot.ref
@@ -41,10 +45,10 @@ struct ProjectToKnit {
     
     func projectToDictionary() -> Any {
         return ["userID"     : userID,
-                "projectID" : projectID,
-                "name"      : name,
-                "imageData" : imageData,
-                "tags"      : tags,
-                "completed" : completed]
+                "projectID"  : projectID,
+                "name"       : name,
+                "imageData"  : imageData,
+                "tags"       : tags,
+                "completed"  : completed]
     }
 }

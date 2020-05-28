@@ -26,7 +26,6 @@ class ProjectsController: UIViewController{
     override func viewDidLoad() {
           super.viewDidLoad()
         addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
-        
         guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
@@ -103,29 +102,27 @@ class ProjectsController: UIViewController{
 extension ProjectsController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projects.isEmpty ? 0 : projects.count
+        return projects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell") as! ProjectsCell
         let project = projects[indexPath.row]
-        cell.setCell(project: project)
+        cell.setCell(project: project, indexPath : indexPath.row)
         return cell
     }
-//Deleteaction
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let project = projects[indexPath.row]
-//        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-//            for counter in realm.objects(Counter.self).filter("projectID == %@", project.projectID as Any) {
-//                StorageManager.deleteCounters(counter)
-//            }
-//            StorageManager.deleteObject(project)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-//        return swipeActions
-//    }
+//Delete Action
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let project = projects[indexPath.row]
+            project.ref?.removeValue()
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let project = projects[indexPath.row]

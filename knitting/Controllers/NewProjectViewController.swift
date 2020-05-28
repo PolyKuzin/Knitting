@@ -8,6 +8,16 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
+import FirebaseFirestore
+import Kingfisher
+
+struct MyKeys {
+    static let imagesFolder = "imagesFolder"
+    static let imagesCollection = "projectsImages"
+    static var projectID = "uid"
+    static let imageUrl = "imageUrl"
+}
 
 class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
 
@@ -37,10 +47,10 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        MyKeys.projectID = String(currentID)
         guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
-        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
+        ref = Database.database().reference(withPath: "users").child(String(user.uid))
         
         tableView.tableFooterView = UIView()
         saveButton.isEnabled = false
@@ -81,43 +91,55 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
 
     //MARK: Saving project
     func saveProject() {
+        
+        if editingProject == nil {
         var image: UIImage?
-        //default images
         if imageIsChanged {
             image = projectImage.image
         } else {
             image = #imageLiteral(resourceName: "ball")
         }
-        let imageData = image?.pngData()
+        let imageData = image?.toString()
         
         if projectTag1.text! != "" {projectTags.append(projectTag1.text!)}
         if projectTag2.text! != "" {projectTags.append(projectTag2.text!)}
         if projectTag3.text! != "" {projectTags.append(projectTag3.text!)}
         
         
-        let project = ProjectToKnit(userID      : user.uid, projectID: currentID,
+        let project = ProjectToKnit(userID      : user.uid,
+                                    projectID   : MyKeys.projectID,
                                     name        : projectName.text!,
-                                    imageData   : imageData!, tags: projectTag1.text!)
-        let projectRef = self.ref.child(project.name.lowercased())
+                                    imageData   : imageData!,
+                                    tags        : projectTag1.text!)
+        let projectRef = self.ref.child("projects").child(project.name.lowercased())
         projectRef.setValue(project.projectToDictionary())
-        
-        if editingProject != nil {
-            
-//вносим изменения в существующий проект
         }
+        if editingProject != nil {
+            var image: UIImage?
+            if imageIsChanged {
+                image = projectImage.image
+            } else {
+                image = #imageLiteral(resourceName: "ball")
+            }
+            let imageData = image?.toString()
+            editingProject?.ref?.updateChildValues(["name": projectName.text!,
+                                                    "tags": projectTag1.text!,
+                                                    "imageData" : imageData! ])        }
     }
+
     //MARK: Save new Counter
     func saveCounter(){
         if editingProject != nil {
             // do nothing yet
         } else {
         
-        let newCounter = Counter(name: projectName.text!,
-                                 rows: 0,
-                                 rowsMax: Int(countersRowsMax.text!)!,
-                                 projectID: currentID,
-                                 counterID: currentID - 10)
-        //создааем новый счётчик
+            let counter = CounterToKnit(userID: user.uid,
+                                        projectID: MyKeys.projectID,
+                                        name: projectName.text!,
+                                        rows: 0,
+                                        rowsMax: 1000)
+        let counterRef = self.ref.child("counters").child(counter.name.lowercased())
+        counterRef.setValue(counter.counterToDictionary())
         }
     }
     //MARK: Seting up...
@@ -125,7 +147,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
         if editingProject != nil {
             setUpNavigationBar()
             imageIsChanged = true
-            guard let data = editingProject?.imageData, let image = UIImage(data: data) else {return}
+            guard let image = editingProject?.imageData.toImage() else {return}
             projectImage.image = image
             projectName.text = editingProject?.name
             countersRowsMax.isHidden = true
@@ -171,7 +193,7 @@ extension NewProjectViewController: UITextFieldDelegate {
     
     @objc private func textFieldChanged() {
        
-        if projectName.text?.isEmpty == false && countersRowsMax.text?.isEmpty == false{
+        if projectName.text?.isEmpty == false {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false

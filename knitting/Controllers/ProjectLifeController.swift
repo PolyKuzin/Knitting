@@ -13,17 +13,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
 
     let cellIdentifire: String = "tagCell"
     let counterCellIdentifire: String = "counterCell"
-    let currentID = Int(Date().timeIntervalSince1970)
 
     var ref : DatabaseReference!
     var user: Users!
     
     var effect: UIVisualEffect?
     var currentProject: ProjectToKnit?
-    var counter: Counter?
-    let counters = [Counter(name: "Head", rows: 12, rowsMax: 14, projectID: 12, counterID: 12)]
-    var tagLabel: String?
-    var countersRows: Int?
+    var counters = Array<CounterToKnit>()
     
 //MARK: OUTLETS
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
@@ -62,32 +58,48 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("counters")
+        
+        print(counters.count)
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+        ref = Database.database().reference().child("users").child(user.uid).child("counters")
+        
         setupLifeScreen()
-        projectImage.layer.cornerRadius = 15
-        addCounterView.layer.cornerRadius = 5
-        conratulationView.layer.cornerRadius = 5
-        tag1LabelView.layer.cornerRadius = 5
-        tag1LabelView.clipsToBounds = true
-        tag2LabelView.layer.cornerRadius = 5
-        tag2LabelView.clipsToBounds = true
-        tag3LabelView.layer.cornerRadius = 5
-        tag3LabelView.clipsToBounds = true
+        setUpNavigationBar()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ref.queryOrdered(byChild: "projectID").queryEqual(toValue: currentProject?.projectID).observe(.value, with: { [weak self] (snapshot) in
+            var _counters = Array<CounterToKnit>()
+            for item in snapshot.children {
+                
+                let counter = CounterToKnit(snapshot: item as! DataSnapshot)
+//
+                _counters.append(counter)
+            }
+            self?.counters = _counters
+            self?.counterTable.reloadData()
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ref.removeAllObservers()
     }
     
     //MARK: CounterTableView
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let cellRows = counters.count
-        return cellRows
+    func tableView(_ counterTable: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return counters.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ counterTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let counter = counters[indexPath.row]
-        cell.viewWithTag(1)?.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 10
         cell.counterName.text = counter.name
-        cell.plusButt(cell as Any)
         cell.counterNumbers.text = String(counter.rows)
         cell.plusBtn.tag = indexPath.row
         cell.minusBtn.tag = indexPath.row
@@ -96,21 +108,20 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         cell.plusBtn.isUserInteractionEnabled = true
         cell.minusBtn.isUserInteractionEnabled = true
         cell.isSelected = false
-        
     return cell
     }
+    
     @objc func plusBtnTaped (_ sender: UIButton) {
         let tag = sender.tag
         let indexPath = IndexPath(row: tag, section: 0)
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let currentCounter = counters[indexPath.row]
         cell.counterNumbers.text = String(currentCounter.rows + 1)
-        //Сохраняем числа счётчика
-//        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-//        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax && currentCounter.congratulations == false {
-//            congatulatuionsIn()
-//            StorageManager.congratulations(currentCounter)
-//        }
+        currentCounter.ref?.updateChildValues(["rows": Int(cell.counterNumbers.text!)!])
+        if Int(cell.counterNumbers.text!)! == currentCounter.rowsMax && currentCounter.congratulations == false {
+            congatulatuionsIn()
+            currentCounter.ref?.updateChildValues(["congratulations" : true])
+        }
     }
     @objc func minusBtnTaped(_ sender: UIButton){
         let tag = sender.tag
@@ -118,35 +129,32 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let currentCounter = counters[indexPath.row]
         cell.counterNumbers.text = String(currentCounter.rows - 1)
-        
-        //сохраняем числа счётчика
-//        StorageManager.saveRowsInCounter(currentCounter, Int(cell.counterNumbers.text!)!)
-//        if currentCounter.rows <= 0 {
-//            StorageManager.saveRowsInCounter(currentCounter, 0)
-//        }
+        currentCounter.ref?.updateChildValues(["rows": Int(cell.counterNumbers.text!)!])
+        if currentCounter.rows <= 0 {
+            currentCounter.ref?.updateChildValues(["rows": 0])
+        }
     }
     
     // DeleteAction
-     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let currentCounter = counters[indexPath.row]
-        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-            //удаляем счётчик из БД
-//            StorageManager.deleteCounters(currentCounter)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+    func tableView(_ counterTable: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ counterTable: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let counter = counters[indexPath.row]
+            counter.ref?.removeValue()
         }
-        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
-        return swipeActions
     }
     
     func insertNewCounter() {
         saveCounter()
-        let indexPath = IndexPath(row: counters.count - 1, section: 0)
-        counterTable.beginUpdates()
-        counterTable.insertRows(at: [indexPath], with: .automatic)
-        counterTable.endUpdates()
+//        let indexPath = IndexPath(row: counters.count - 1, section: 0)
+//        counterTable.beginUpdates()
+//        counterTable.insertRows(at: [indexPath], with: .automatic)
+//        counterTable.endUpdates()
         countersNameField.text = ""
         countersRowsField.text = ""
-        view.endEditing(true)
+//        view.endEditing(true)
     }
     
     //MARK: PopUP Animation
@@ -211,8 +219,7 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
                                        projectID: currentProject!.projectID,
                                        name: countersNameField.text!,
                                        rows: 0,
-                                       rowsMax: Int(countersRowsField.text!)!
-                                       )
+                                       rowsMax: Int(countersRowsField.text!)!)
         
         let counterRef = self.ref.child(newCounter.name.lowercased())
         counterRef.setValue(newCounter.counterToDictionary())
@@ -231,17 +238,25 @@ extension ProjectLifeController {
     //MARK: Seting UP
     private func setupLifeScreen() {
         if currentProject != nil {
-            setUpNavigationBar()
+            projectImage.layer.cornerRadius = 15
+            addCounterView.layer.cornerRadius = 5
+            conratulationView.layer.cornerRadius = 5
+            tag1LabelView.layer.cornerRadius = 5
+            tag1LabelView.clipsToBounds = true
+            tag2LabelView.layer.cornerRadius = 5
+            tag2LabelView.clipsToBounds = true
+            tag3LabelView.layer.cornerRadius = 5
+            tag3LabelView.clipsToBounds = true
             
             effect = visualEffectView.effect
             visualEffectView.effect = nil
             addCounterView.layer.cornerRadius = 10
             
-            guard let data = currentProject?.imageData, let image = UIImage(data: data) else {return}
+            guard let image = currentProject?.imageData.toImage() else {return}
 
             projectImage.image = image
             counterTable.tableFooterView = UIView()
-            // TODO: Rewrite it in For - in cicle
+// TODO: Rewrite it in For - in cicle
                 switch currentProject!.tags.count {
                 case 1,2,3:
                     tag1Label.text = currentProject?.tags

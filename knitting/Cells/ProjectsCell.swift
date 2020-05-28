@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import Kingfisher
 
 class ProjectsCell: UITableViewCell {
     
@@ -28,10 +30,9 @@ class ProjectsCell: UITableViewCell {
     }
     
     
-    func setCell(project: ProjectToKnit){
-        
-        //let image = UIImage(data: project.imageProject!)
-        //projectImageView.image = image
+    func setCell(project: ProjectToKnit, indexPath: Int){
+        let image = project.imageData.toImage()
+        projectImageView.image = image
         playImageView.image    = #imageLiteral(resourceName: "playIcon")
         projectNameLabel.text  = project.name
         if !project.tags.isEmpty {

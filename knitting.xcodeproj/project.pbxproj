@@ -79,9 +79,9 @@
 		997E85182459E2500074BE4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				999EACDC2455C17300321D3E /* ProjectsController.swift */,
 				997E85122458B6FF0074BE4B /* ProjectLifeController.swift */,
 				999EACF42457175200321D3E /* NewProjectViewController.swift */,
-				999EACDC2455C17300321D3E /* ProjectsController.swift */,
 				9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */,
 				99F9E77C247C21DE000ACA5A /* LogInVC.swift */,
 			);
@@ -104,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				9998AA4E2477F15700629CBF /* galleryCell.swift */,
-				99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */,
 				9998AA542478210500629CBF /* ProjectsCell.swift */,
+				99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
