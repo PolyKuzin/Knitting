@@ -8,7 +8,7 @@
 
 import UIKit
 
-class galleryCell: UICollectionViewCell {
+class GalleryCell: UICollectionViewCell {
     
     static let reusedID = "galleryCell"
     

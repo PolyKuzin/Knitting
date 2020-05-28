@@ -10,7 +10,6 @@ import UIKit
 
 class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    //let cells = [SushiModel]()
     
     init() {
         
@@ -23,7 +22,7 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         delegate = self
         dataSource = self
         
-        register(galleryCell.self, forCellWithReuseIdentifier: galleryCell.reusedID)
+        register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reusedID)
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -43,7 +42,7 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(withReuseIdentifier: galleryCell.reusedID, for: indexPath)
+        let cell = dequeueReusableCell(withReuseIdentifier: GalleryCell.reusedID, for: indexPath)
         return cell
     }
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L3y-Fs-c5P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ftp-az-RaT">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="1192.753623188406" y="128.57142857142856"/>
         </scene>
-        <!--Projects Controller-->
+        <!--ProjectsVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController restorationIdentifier="projectsController" storyboardIdentifier="projectsController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ProjectsController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="projectsController" storyboardIdentifier="projectsController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ProjectsVC" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
@@ -130,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="1956.521739130435" y="128.57142857142856"/>
         </scene>
-        <!--Project Life Controller-->
+        <!--CountersVC-->
         <scene sceneID="gLl-86-Uhk">
             <objects>
-                <viewController storyboardIdentifier="projectLifeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U4U-zD-IEJ" customClass="ProjectLifeController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="projectLifeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U4U-zD-IEJ" customClass="CountersVC" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AF9-MK-6TO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -477,10 +477,10 @@
             </objects>
             <point key="canvasLocation" x="2800" y="128.57142857142856"/>
         </scene>
-        <!--New Project View Controller-->
+        <!--Create ProjectVC-->
         <scene sceneID="cqB-m7-op3">
             <objects>
-                <tableViewController id="s5f-wv-KUo" customClass="NewProjectViewController" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="s5f-wv-KUo" customClass="CreateProjectVC" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5ww-2G-c2l">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -722,22 +722,20 @@
             </objects>
             <point key="canvasLocation" x="2751" y="-686"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fdR-Yd-gjh">
+        <!--First Screen-->
+        <scene sceneID="gJl-9X-dqe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="L3y-Fs-c5P" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eEG-nf-9L2">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bQ0-w2-ALQ" kind="relationship" relationship="rootViewController" id="rkv-Sd-5BN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t3Z-Ya-1RU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="Ftp-az-RaT" customClass="FirstScreen" customModule="knitting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vtz-0Z-SXr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dg3-nP-UTU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jzc-qk-2HS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282.60869565217394" y="128.57142857142856"/>
+            <point key="canvasLocation" x="288" y="129"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

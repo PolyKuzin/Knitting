@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ProjectLifeController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
     let cellIdentifire: String = "tagCell"
     let counterCellIdentifire: String = "counterCell"
@@ -228,13 +228,13 @@ class ProjectLifeController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "edit"{
-            let editingProjectVC = segue.destination as! NewProjectViewController
+            let editingProjectVC = segue.destination as! CreateProjectVC
             editingProjectVC.editingProject = currentProject
         }
     }
 }
 
-extension ProjectLifeController {
+extension CountersVC {
     //MARK: Seting UP
     private func setupLifeScreen() {
         if currentProject != nil {

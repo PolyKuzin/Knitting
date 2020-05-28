@@ -64,7 +64,7 @@ class LogInVC: UIViewController {
             }
             if user != nil {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "projectsController") as! ProjectsController
+                let vc = storyboard.instantiateViewController(withIdentifier: "projectsController") as! ProjectsVC
                 vc.modalPresentationStyle = .fullScreen
                 self.navigationController?.pushViewController(vc, animated: true)
                 //performSegue(withIdentifier: "LogInSegue", sender: nil)

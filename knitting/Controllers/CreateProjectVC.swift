@@ -19,16 +19,16 @@ struct MyKeys {
     static let imageUrl = "imageUrl"
 }
 
-class NewProjectViewController: UITableViewController, UINavigationControllerDelegate {
+class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
 
     let currentID = Int(Date().timeIntervalSince1970)
 
     var user: Users!
     var ref: DatabaseReference!
-    var projects = Array<Project>()
+    var projects = Array<ProjectToKnit>()
     
     var editingProject: ProjectToKnit?
-    var counter: Counter?
+    var counter: CounterToKnit?
     var imageIsChanged = false
     var projectTags: [String?] = []
     
@@ -183,7 +183,7 @@ class NewProjectViewController: UITableViewController, UINavigationControllerDel
 }
 
 //MARK: TextField Delegate
-extension NewProjectViewController: UITextFieldDelegate {
+extension CreateProjectVC: UITextFieldDelegate {
 
        // Скрываем клавиатуру по нажатию на continue
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -202,7 +202,7 @@ extension NewProjectViewController: UITextFieldDelegate {
 }
 
 // MARK: Work with IMAGE
-extension NewProjectViewController: UIImagePickerControllerDelegate {
+extension CreateProjectVC: UIImagePickerControllerDelegate {
     
     func chooesImagePicker (sourse: UIImagePickerController.SourceType){
         if UIImagePickerController.isSourceTypeAvailable(sourse) {
