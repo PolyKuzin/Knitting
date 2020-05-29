@@ -12,18 +12,13 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
 
     
     init() {
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        
         backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        
         delegate = self
         dataSource = self
-        
         register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reusedID)
-        
         translatesAutoresizingMaskIntoConstraints = false
         
         layout.minimumLineSpacing = 10
@@ -49,4 +44,10 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: Constants.galleryItemWidth, height: frame.height * 0.8)
     }
+}
+struct Constants {
+    static let leftDistanceToView: CGFloat = 40
+    static let rightDistanceToView: CGFloat = 40
+    static let galleryMinimumLineSpacing: CGFloat = 10
+    static let galleryItemWidth = (UIScreen.main.bounds.width - Constants.leftDistanceToView - Constants.rightDistanceToView - (Constants.galleryMinimumLineSpacing / 2)) / 3
 }

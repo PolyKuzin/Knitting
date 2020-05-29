@@ -11,33 +11,37 @@ import Firebase
 
 class ProjectsVC: UIViewController{
     
-    var ref : DatabaseReference!
-    var user: Users!
-    let cellIdentifire: String = "cell"
-    var tableView = UITableView()
-    var workingOnThese = UILabel()
-    var projects = Array<ProjectToKnit>()
+    var ai              : UIActivityIndicatorView = UIActivityIndicatorView()
+    var ref             : DatabaseReference!
+    var user            : Users!
+
+    let cellIdentifire          = "cell"
+    var cardView                = UIView()
+    var tableView               = UITableView()
+    var workingOnThese          = UILabel()
+    var addProject              = UIButton()
+    var profileImage            = UIImageView()
+    var galeryCollectionView    = GallaryCollectionView()
+    var projects                = Array<ProjectToKnit>()
 
     
     @IBOutlet weak var addButton: UIButton!
     
-    private var galeryCollectionView = GallaryCollectionView()
-    
     override func viewDidLoad() {
-          super.viewDidLoad()
-        addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
+        super.viewDidLoad()
+        //view.bringSubviewToFront(addButton)
+        activiryIndicator()
+        //addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
         guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
-        
-        configureTableView()
-        configureCollectionView()
-        configureLabel()
+        configureAllUI()
       }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        activiryIndicator()
+
         ref.observe(.value, with: { [weak self] (snapshot) in
             var _projects = Array<ProjectToKnit>()
             for item in snapshot.children {
@@ -47,39 +51,95 @@ class ProjectsVC: UIViewController{
             self?.projects = _projects
             self?.tableView.reloadData()
         })
+        stopActivityIndicator()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         ref.removeAllObservers()
     }
-    func configureTableView() {
-        
-        view.addSubview(tableView)
-        setTableViewDetegates()
-//        sorting()
-        tableView.rowHeight = 80
-        tableViewConstraints()
-        tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
-        view.sendSubviewToBack(tableView)
+    
+//MARK: Configuring
+    
+    func configureAllUI(){
+        configureCollectionView()
+        configuratingCardView()
+        configureLabel()
+        configuringProfileImage()
+        configureTableView()
+        configureAddProjectBtn()
     }
     
     func configureCollectionView(){
         view.addSubview(galeryCollectionView)
-
         collectionViewConstraints()
     }
+    
+    func configuratingCardView(){
+        
+        cardView.backgroundColor = .purple
+        cardView.layer.cornerRadius = 20
+        cardView.clipsToBounds = true
+        view.addSubview(cardView)
+        view.sendSubviewToBack(cardView)
+        cardViewConstraints()
+    }
+    
     func configureLabel(){
-        view.addSubview(workingOnThese)
+        cardView.addSubview(workingOnThese)
         labelConstraints()
         workingOnThese.text = "Working on this?"
+        workingOnThese.font = UIFont(name: "Helvetica", size: 25)
         
     }
     
-    func setTableViewDetegates (){
+    func configuringProfileImage(){
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        profileImage.backgroundColor = .black
+        profileImage.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        cardView.addSubview(profileImage)
+        profileImageConstraints()
+    }
+    
+    func configureTableView(){
+        
+        cardView.addSubview(tableView)
+        setTableViewDetegates()
+//        sorting()
+        tableView.backgroundView?.isOpaque = true
+        tableView.backgroundColor = .purple
+        tableView.separatorStyle = .none
+        tableView.rowHeight = UIScreen.main.bounds.height / 6
+        
+        tableViewConstraints()
+        tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
+    }
+    
+    func configureAddProjectBtn(){
+        
+        addProject.setImage(#imageLiteral(resourceName: "Add"), for: .normal)
+        //addProject.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 500, height: UIScreen.main.bounds.size.height / 2)
+        addProject.addTarget(self, action: #selector(showNewProjectVC), for: .touchUpInside)
+        view.addSubview(addProject)
+        setAddProjectConstraints()
+    }
+    
+    @objc func showNewProjectVC(){
+        let viewController : UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateProjectVC") as! CreateProjectVC
+        self.present(viewController, animated: true, completion: nil)
+    }
+
+//MARK: Activity Indicator
+    func activiryIndicator(){
+        
+        ai.center = self.view.center
+        ai.hidesWhenStopped = true
+        ai.style = UIActivityIndicatorView.Style.large
+        view.addSubview(ai)
+        ai.startAnimating()
+    }
+    func stopActivityIndicator(){
+        ai.stopAnimating()
     }
     
     @IBAction func signOut(_ sender: UIBarButtonItem) {
@@ -90,41 +150,12 @@ class ProjectsVC: UIViewController{
         }
         dismiss(animated: true, completion: nil)
     }
-    //MARK: UnwindSegue
+    
+//MARK: Navigation
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let newProjectVC = segue.source as? CreateProjectVC else { return }
         newProjectVC.saveProject()
         newProjectVC.saveCounter()
         tableView.reloadData()
-    }
-}
-//MARK: TableView
-
-// MARK: Constraints
-extension ProjectsVC {
-    
-    func tableViewConstraints(){
-        //let screenSize: CGRect = UIScreen.main.bounds
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
-    
-    func collectionViewConstraints(){
-        galeryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        galeryCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
-        galeryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        galeryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        galeryCollectionView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-     }
-    
-    func labelConstraints() {
-        workingOnThese.translatesAutoresizingMaskIntoConstraints = false
-        workingOnThese.topAnchor.constraint(equalTo: galeryCollectionView.bottomAnchor, constant: 5).isActive = true
-        workingOnThese.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        workingOnThese.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 20).isActive = true
     }
 }

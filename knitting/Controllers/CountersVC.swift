@@ -148,13 +148,8 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
     
     func insertNewCounter() {
         saveCounter()
-//        let indexPath = IndexPath(row: counters.count - 1, section: 0)
-//        counterTable.beginUpdates()
-//        counterTable.insertRows(at: [indexPath], with: .automatic)
-//        counterTable.endUpdates()
         countersNameField.text = ""
         countersRowsField.text = ""
-//        view.endEditing(true)
     }
     
     //MARK: PopUP Animation
@@ -162,9 +157,9 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
     func animateIn() {
         self.view.addSubview(addCounterView)
         addCounterView.center = self.view.center
-        
         addCounterView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         addCounterView.alpha = 0
+        countersRowsField.text = "0"
         
         UIView.animate(withDuration: 0.4) {
             self.visualEffectView.isHidden = false
@@ -216,7 +211,7 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
     //MARK: Saving New Counters
     func saveCounter() {
         var rowsMax: Int = 0
-        if countersRowsField.text == "" {
+        if countersRowsField.text == "" || countersRowsField.text == "0"{
             rowsMax = 1000
         } else {
             rowsMax = Int(countersRowsField.text!)!

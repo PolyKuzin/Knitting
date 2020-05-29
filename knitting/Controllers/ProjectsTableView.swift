@@ -11,6 +11,12 @@ import UIKit
 
 extension ProjectsVC: UITableViewDelegate, UITableViewDataSource {
     
+    func setTableViewDetegates (){
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projects.count
     }
@@ -20,6 +26,7 @@ extension ProjectsVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell") as! ProjectsCell
         let project = projects[indexPath.row]
         cell.setCell(project: project, indexPath : indexPath.row)
+        cell.contentView.backgroundColor = .purple
         return cell
     }
 //Delete Action

@@ -12,12 +12,14 @@ import Kingfisher
 
 class ProjectsCell: UITableViewCell {
     
-    var projectImageView = UIImageView()
+    var cellView         = UIView()
     var projectNameLabel = UILabel()
     var projectTagsLabel = UILabel()
+    var projectImageView = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureCellView()
         configureProjectImageView()
         configureProjectNameLabel()
         configureProjectTagsLabel()
@@ -26,7 +28,6 @@ class ProjectsCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func setCell(project: ProjectToKnit, indexPath: Int){
         let image = project.imageData.toImage()
@@ -43,21 +44,30 @@ class ProjectsCell: UITableViewCell {
 //MARK: Confuguring the content
 extension ProjectsCell {
     
+    func configureCellView(){
+        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50, height: UIScreen.main.bounds.height / 7)
+        cellView.backgroundColor = .blue
+        cellView.layer.cornerRadius = 20
+        cellView.clipsToBounds = true
+        addSubview(cellView)
+        bringSubviewToFront(cellView)
+    }
+    
     func configureProjectImageView(){
-        addSubview(projectImageView)
+        cellView.addSubview(projectImageView)
         projectImageView.layer.cornerRadius = 10
         projectImageView.clipsToBounds      = true
         setProjectImageConstraints()
     }
     
     func configureProjectNameLabel(){
-        addSubview(projectNameLabel)
+        cellView.addSubview(projectNameLabel)
         projectNameLabel.numberOfLines             = 0
         projectNameLabel.adjustsFontSizeToFitWidth = true
         setProjectNameConstraints()
        }
     func configureProjectTagsLabel(){
-        addSubview(projectTagsLabel)
+        cellView.addSubview(projectTagsLabel)
         projectTagsLabel.numberOfLines             = 0
         projectTagsLabel.adjustsFontSizeToFitWidth = true
         setProjectTagsConstraints()
@@ -67,11 +77,19 @@ extension ProjectsCell {
 //MARK: Constraints
 extension ProjectsCell {
     
+    func setCellViewConstraints(){
+        
+        cellView.translatesAutoresizingMaskIntoConstraints = false
+        cellView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        cellView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        cellView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+    }
+    
     func setProjectImageConstraints(){
         
         projectImageView.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive                                              = true
-        projectImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive                                = true
+        projectImageView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive                                              = true
+        projectImageView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20).isActive                                = true
         projectImageView.heightAnchor.constraint(equalToConstant: 70).isActive                                                  = true
         projectImageView.widthAnchor.constraint(equalToConstant: 70).isActive                                                   = true
     }
@@ -79,18 +97,18 @@ extension ProjectsCell {
     func setProjectNameConstraints(){
         
         projectNameLabel.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive                               = true
+        projectNameLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor, constant: -20).isActive                               = true
         projectNameLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
         projectNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: -12).isActive   = true
+        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: cellView.leadingAnchor, constant: -12).isActive   = true
     }
     func setProjectTagsConstraints(){
         
         projectTagsLabel.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectTagsLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive                                = true
+        projectTagsLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor, constant: 20).isActive                           = true
         projectTagsLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
         projectTagsLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: -12).isActive   = true
+        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: cellView.leadingAnchor, constant: -12).isActive   = true
     }
     
     
