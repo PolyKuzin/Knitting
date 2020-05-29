@@ -118,7 +118,7 @@ extension ProjectsVC {
         galeryCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
         galeryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         galeryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        galeryCollectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        galeryCollectionView.heightAnchor.constraint(equalToConstant: 150).isActive = true
      }
     
     func labelConstraints() {

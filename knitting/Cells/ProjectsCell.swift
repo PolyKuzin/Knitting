@@ -13,13 +13,11 @@ import Kingfisher
 class ProjectsCell: UITableViewCell {
     
     var projectImageView = UIImageView()
-    var playImageView    = UIImageView()
     var projectNameLabel = UILabel()
     var projectTagsLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configurePlayImageView()
         configureProjectImageView()
         configureProjectNameLabel()
         configureProjectTagsLabel()
@@ -33,7 +31,6 @@ class ProjectsCell: UITableViewCell {
     func setCell(project: ProjectToKnit, indexPath: Int){
         let image = project.imageData.toImage()
         projectImageView.image = image
-        playImageView.image    = #imageLiteral(resourceName: "playIcon")
         projectNameLabel.text  = project.name
         if !project.tags.isEmpty {
             projectTagsLabel.text = project.tags
@@ -51,12 +48,6 @@ extension ProjectsCell {
         projectImageView.layer.cornerRadius = 10
         projectImageView.clipsToBounds      = true
         setProjectImageConstraints()
-    }
-    
-    func configurePlayImageView(){
-        addSubview(playImageView)
-        
-        setPlayImageConstraints()
     }
     
     func configureProjectNameLabel(){
@@ -91,7 +82,7 @@ extension ProjectsCell {
         projectNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive                               = true
         projectNameLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
         projectNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: playImageView.leadingAnchor, constant: -12).isActive   = true
+        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: -12).isActive   = true
     }
     func setProjectTagsConstraints(){
         
@@ -99,14 +90,9 @@ extension ProjectsCell {
         projectTagsLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive                                = true
         projectTagsLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
         projectTagsLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: playImageView.leadingAnchor, constant: -12).isActive   = true
+        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: -12).isActive   = true
     }
     
-    func setPlayImageConstraints() {
-        playImageView.translatesAutoresizingMaskIntoConstraints                                                                 = false
-        playImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive                                                 = true
-        playImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive                                = true
-        playImageView.widthAnchor.constraint(equalTo: playImageView.heightAnchor).isActive                                      = true
-    }
+    
 }
 

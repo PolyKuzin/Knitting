@@ -138,7 +138,8 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
                                         name: projectName.text!,
                                         rows: 0,
                                         rowsMax: 1000)
-        let counterRef = self.ref.child("counters").child(counter.name.lowercased())
+            //let projectRef = self.ref.child("projects").child(project.name.lowercased()
+            let counterRef = self.ref.child("projects").child((projectName.text?.lowercased())!).child(counter.name.lowercased())
         counterRef.setValue(counter.counterToDictionary())
         }
     }

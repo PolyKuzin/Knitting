@@ -48,12 +48,3 @@ struct CounterToKnit {
                 "congratulations"    : congratulations]
     }
 }
-
-//    func converToDictionary() -> Any {
-//        return ["useID"     : userID,
-//                "name"      : name,
-//                "imageData" : imageData,
-//                "tags"      : tags,
-//                "completed" : completed]
-//    }
-//}

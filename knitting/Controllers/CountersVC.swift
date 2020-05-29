@@ -63,7 +63,7 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
         
         guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
-        ref = Database.database().reference().child("users").child(user.uid).child("counters")
+        ref = Database.database().reference().child("users").child(user.uid).child("projects").child((currentProject?.name.lowercased())!)
         
         setupLifeScreen()
         setUpNavigationBar()
@@ -215,11 +215,17 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
     
     //MARK: Saving New Counters
     func saveCounter() {
+        var rowsMax: Int = 0
+        if countersRowsField.text == "" {
+            rowsMax = 1000
+        } else {
+            rowsMax = Int(countersRowsField.text!)!
+        }
         let newCounter = CounterToKnit(userID: user.uid,
                                        projectID: currentProject!.projectID,
                                        name: countersNameField.text!,
                                        rows: 0,
-                                       rowsMax: Int(countersRowsField.text!)!)
+                                       rowsMax: rowsMax)
         
         let counterRef = self.ref.child(newCounter.name.lowercased())
         counterRef.setValue(newCounter.counterToDictionary())
