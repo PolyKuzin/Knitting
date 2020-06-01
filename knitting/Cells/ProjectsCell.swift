@@ -8,21 +8,39 @@
 
 import UIKit
 import FirebaseFirestore
-import Kingfisher
 
-class ProjectsCell: UITableViewCell {
+class ProjectCell: UICollectionViewCell {
     
     var cellView         = UIView()
     var projectNameLabel = UILabel()
     var projectTagsLabel = UILabel()
     var projectImageView = UIImageView()
+    
+    let reusedID = "ProjectCell"
+    
+    let mainImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        return imageView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(mainImageView)
         configureCellView()
         configureProjectImageView()
         configureProjectNameLabel()
         configureProjectTagsLabel()
+
+        
+        mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        mainImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
     }
     
     required init?(coder: NSCoder) {
@@ -39,78 +57,131 @@ class ProjectsCell: UITableViewCell {
             projectTagsLabel.isHidden = true
         }
     }
-}
-
-//MARK: Confuguring the content
-extension ProjectsCell {
     
     func configureCellView(){
-        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50, height: UIScreen.main.bounds.height / 7)
+        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50,
+                                            height: UIScreen.main.bounds.height / 7)
         cellView.backgroundColor = .blue
-        cellView.layer.cornerRadius = 20
-        cellView.clipsToBounds = true
+        cellView.layer.cornerRadius                 = 20
+        cellView.clipsToBounds                      = true
         addSubview(cellView)
+        //setCellViewConstraints()
         bringSubviewToFront(cellView)
     }
     
     func configureProjectImageView(){
         cellView.addSubview(projectImageView)
-        projectImageView.layer.cornerRadius = 10
-        projectImageView.clipsToBounds      = true
+        projectImageView.layer.cornerRadius         = 10
+        projectImageView.clipsToBounds              = true
         setProjectImageConstraints()
     }
     
     func configureProjectNameLabel(){
         cellView.addSubview(projectNameLabel)
-        projectNameLabel.numberOfLines             = 0
-        projectNameLabel.adjustsFontSizeToFitWidth = true
+        projectNameLabel.numberOfLines              = 0
+        projectNameLabel.adjustsFontSizeToFitWidth  = true
         setProjectNameConstraints()
        }
     func configureProjectTagsLabel(){
         cellView.addSubview(projectTagsLabel)
-        projectTagsLabel.numberOfLines             = 0
-        projectTagsLabel.adjustsFontSizeToFitWidth = true
+        projectTagsLabel.numberOfLines              = 0
+        projectTagsLabel.adjustsFontSizeToFitWidth  = true
         setProjectTagsConstraints()
     }
 }
 
-//MARK: Constraints
-extension ProjectsCell {
-    
-    func setCellViewConstraints(){
-        
-        cellView.translatesAutoresizingMaskIntoConstraints = false
-        cellView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        cellView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        cellView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    }
-    
-    func setProjectImageConstraints(){
-        
-        projectImageView.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectImageView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive                                              = true
-        projectImageView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 20).isActive                                = true
-        projectImageView.heightAnchor.constraint(equalToConstant: 70).isActive                                                  = true
-        projectImageView.widthAnchor.constraint(equalToConstant: 70).isActive                                                   = true
-    }
-    
-    func setProjectNameConstraints(){
-        
-        projectNameLabel.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectNameLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor, constant: -20).isActive                               = true
-        projectNameLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
-        projectNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: cellView.leadingAnchor, constant: -12).isActive   = true
-    }
-    func setProjectTagsConstraints(){
-        
-        projectTagsLabel.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectTagsLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor, constant: 20).isActive                           = true
-        projectTagsLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
-        projectTagsLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: cellView.leadingAnchor, constant: -12).isActive   = true
-    }
-    
-    
-}
-
+//class ProjectsCellLLLLLLLLLLLL: UICollectionViewCell {
+//    
+//    var cellView         = UIView()
+//    var projectNameLabel = UILabel()
+//    var projectTagsLabel = UILabel()
+//    var projectImageView = UIImageView()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        configureCellView()
+//        configureProjectImageView()
+//        configureProjectNameLabel()
+//        configureProjectTagsLabel()
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
+//    func setCell(project: ProjectToKnit, indexPath: Int){
+//        let image = project.imageData.toImage()
+//        projectImageView.image = image
+//        projectNameLabel.text  = project.name
+//        if !project.tags.isEmpty {
+//            projectTagsLabel.text = project.tags
+//        } else {
+//            projectTagsLabel.isHidden = true
+//        }
+//    }
+//    func configureCellView(){
+//        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50,
+//                                            height: UIScreen.main.bounds.height / 7)
+//        cellView.backgroundColor = .blue
+//        cellView.layer.cornerRadius                 = 20
+//        cellView.clipsToBounds                      = true
+//        addSubview(cellView)
+//        //setCellViewConstraints()
+//        bringSubviewToFront(cellView)
+//    }
+//    
+//    func configureProjectImageView(){
+//        cellView.addSubview(projectImageView)
+//        projectImageView.layer.cornerRadius         = 10
+//        projectImageView.clipsToBounds              = true
+//        setProjectImageConstraints()
+//    }
+//    
+//    func configureProjectNameLabel(){
+//        cellView.addSubview(projectNameLabel)
+//        projectNameLabel.numberOfLines              = 0
+//        projectNameLabel.adjustsFontSizeToFitWidth  = true
+//        setProjectNameConstraints()
+//       }
+//    func configureProjectTagsLabel(){
+//        cellView.addSubview(projectTagsLabel)
+//        projectTagsLabel.numberOfLines              = 0
+//        projectTagsLabel.adjustsFontSizeToFitWidth  = true
+//        setProjectTagsConstraints()
+//    }
+//}
+//
+////MARK: Confuguring the content
+//extension ProjectsCellLLLLLLLLLLLL {
+//    
+//    func configureCellView(){
+//        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50,
+//                                            height: UIScreen.main.bounds.height / 7)
+//        cellView.backgroundColor = .blue
+//        cellView.layer.cornerRadius                 = 20
+//        cellView.clipsToBounds                      = true
+//        addSubview(cellView)
+//        //setCellViewConstraints()
+//        bringSubviewToFront(cellView)
+//    }
+//    
+//    func configureProjectImageView(){
+//        cellView.addSubview(projectImageView)
+//        projectImageView.layer.cornerRadius         = 10
+//        projectImageView.clipsToBounds              = true
+//        setProjectImageConstraints()
+//    }
+//    
+//    func configureProjectNameLabel(){
+//        cellView.addSubview(projectNameLabel)
+//        projectNameLabel.numberOfLines              = 0
+//        projectNameLabel.adjustsFontSizeToFitWidth  = true
+//        setProjectNameConstraints()
+//       }
+//    func configureProjectTagsLabel(){
+//        cellView.addSubview(projectTagsLabel)
+//        projectTagsLabel.numberOfLines              = 0
+//        projectTagsLabel.adjustsFontSizeToFitWidth  = true
+//        setProjectTagsConstraints()
+//    }
+//}

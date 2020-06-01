@@ -10,7 +10,7 @@ import UIKit
 
 class GalleryCell: UICollectionViewCell {
     
-    static let reusedID = "galleryCell"
+    static let reusedID = "GalleryCell"
     
     let mainImageView: UIImageView = {
         let imageView = UIImageView()

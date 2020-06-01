@@ -301,5 +301,4 @@ extension CountersVC {
         //navigationItem.rightBarButtonItem?.isEnabled = true
         navigationItem.leftBarButtonItem = nil
     }
-    
 }

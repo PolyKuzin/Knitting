@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ProjectsVC: UIViewController{
+class ProjectsVC: UIViewController {
     
     var ai              : UIActivityIndicatorView = UIActivityIndicatorView()
     var ref             : DatabaseReference!
@@ -21,7 +21,8 @@ class ProjectsVC: UIViewController{
     var workingOnThese          = UILabel()
     var addProject              = UIButton()
     var profileImage            = UIImageView()
-    var galeryCollectionView    = GallaryCollectionView()
+    var upStorysCollectionView  = GallaryCollectionView()
+    var projectsCollectionView  = ProjectsCollectionView()
     var projects                = Array<ProjectToKnit>()
 
     
@@ -29,9 +30,7 @@ class ProjectsVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.bringSubviewToFront(addButton)
         activiryIndicator()
-        //addButton.layer.cornerRadius = addButton.intrinsicContentSize.height / 2
         guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("projects")
@@ -59,6 +58,7 @@ class ProjectsVC: UIViewController{
         ref.removeAllObservers()
     }
     
+    
 //MARK: Configuring
     
     func configureAllUI(){
@@ -66,18 +66,18 @@ class ProjectsVC: UIViewController{
         configuratingCardView()
         configureLabel()
         configuringProfileImage()
-        configureTableView()
+        configureProjectsCollectionView()
         configureAddProjectBtn()
     }
     
     func configureCollectionView(){
-        view.addSubview(galeryCollectionView)
+        view.addSubview(upStorysCollectionView)
         collectionViewConstraints()
     }
     
     func configuratingCardView(){
-        
-        cardView.backgroundColor = .purple
+        shadowsToView(view: cardView)
+        cardView.backgroundColor = .white
         cardView.layer.cornerRadius = 20
         cardView.clipsToBounds = true
         view.addSubview(cardView)
@@ -90,7 +90,6 @@ class ProjectsVC: UIViewController{
         labelConstraints()
         workingOnThese.text = "Working on this?"
         workingOnThese.font = UIFont(name: "Helvetica", size: 25)
-        
     }
     
     func configuringProfileImage(){
@@ -101,18 +100,19 @@ class ProjectsVC: UIViewController{
         profileImageConstraints()
     }
     
-    func configureTableView(){
+    func configureProjectsCollectionView(){
         
-        cardView.addSubview(tableView)
-        setTableViewDetegates()
+        cardView.addSubview(projectsCollectionView)
+        setProjectsCollectionViewConstraints()
+//        setTableViewDetegates()
 //        sorting()
-        tableView.backgroundView?.isOpaque = true
-        tableView.backgroundColor = .purple
-        tableView.separatorStyle = .none
-        tableView.rowHeight = UIScreen.main.bounds.height / 6
-        
-        tableViewConstraints()
-        tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
+//        tableView.backgroundView?.isOpaque = true
+//        tableView.backgroundColor = .white
+//        tableView.separatorStyle = .none
+//        tableView.rowHeight = UIScreen.main.bounds.height / 6
+//        cardView.bringSubviewToFront(projectsCollectionView)
+//        tableViewConstraints()
+//        tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
     }
     
     func configureAddProjectBtn(){

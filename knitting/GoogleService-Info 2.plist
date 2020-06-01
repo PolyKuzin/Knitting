@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>564854892089-hfvjof0vdui2ovvueqteul0i7i9pda6s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.564854892089-hfvjof0vdui2ovvueqteul0i7i9pda6s</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCkPkPxc8Luk1zRXInZPEL-5J0bT7T39uo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>564854892089</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ru.polykuzin.knitting</string>
+	<key>PROJECT_ID</key>
+	<string>knitting-19a3f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>knitting-19a3f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:564854892089:ios:740d847024c96019630fe8</string>
+	<key>DATABASE_URL</key>
+	<string>https://knitting-19a3f.firebaseio.com</string>
+</dict>
+</plist>

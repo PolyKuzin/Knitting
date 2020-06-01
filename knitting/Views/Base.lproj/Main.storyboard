@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sge-ej-F1k">
-                                <rect key="frame" x="0.0" y="329" width="414" height="567"/>
+                                <rect key="frame" x="0.0" y="329" width="414" height="393"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="counterCell" rowHeight="100" id="5iC-fP-3cI" customClass="CountersViewCell" customModule="knitting" customModuleProvider="target">
@@ -296,7 +296,7 @@
                             <constraint firstItem="QGL-5u-VSh" firstAttribute="top" secondItem="HqL-zJ-EYT" secondAttribute="bottom" constant="10" id="acm-YI-13q"/>
                             <constraint firstItem="vpc-jB-l9d" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PEU-eZ-Swu" secondAttribute="trailing" constant="10" id="cef-Dc-nEt"/>
                             <constraint firstItem="5hT-1k-65O" firstAttribute="leading" secondItem="euE-fL-m29" secondAttribute="trailing" constant="20" id="dld-CL-NHp"/>
-                            <constraint firstItem="vpc-jB-l9d" firstAttribute="bottom" secondItem="Sge-ej-F1k" secondAttribute="bottom" constant="-34" id="ekh-4q-eQb"/>
+                            <constraint firstItem="vpc-jB-l9d" firstAttribute="bottom" secondItem="Sge-ej-F1k" secondAttribute="bottom" constant="140" id="ekh-4q-eQb"/>
                             <constraint firstItem="5hT-1k-65O" firstAttribute="top" secondItem="PEU-eZ-Swu" secondAttribute="bottom" constant="10" id="lXP-q5-eUG"/>
                             <constraint firstItem="vpc-jB-l9d" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pap-bb-t61" secondAttribute="trailing" constant="10" id="ooN-8O-Yrv"/>
                             <constraint firstItem="PEU-eZ-Swu" firstAttribute="leading" secondItem="euE-fL-m29" secondAttribute="trailing" constant="20" id="tX7-WY-iwA"/>
@@ -424,7 +424,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         <sections>
-                            <tableViewSection id="zOR-Qc-Rwd">
+                            <tableViewSection footerTitle="" id="zOR-Qc-Rwd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="250" id="hsb-6h-MF6">
                                         <rect key="frame" x="0.0" y="28" width="414" height="250"/>

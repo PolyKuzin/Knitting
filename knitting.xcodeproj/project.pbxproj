@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		991A00C62481CBF0003DE7C2 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C52481CBF0003DE7C2 /* Constraints.swift */; };
-		9939C9F7246DC6DE0029EFB1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F6246DC6DE0029EFB1 /* Extensions.swift */; };
+		991A00C82482911E003DE7C2 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C72482911E003DE7C2 /* Shadows.swift */; };
+		9939C9F7246DC6DE0029EFB1 /* Gifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F6246DC6DE0029EFB1 /* Gifs.swift */; };
 		9939C9F9246DC88B0029EFB1 /* congratulations.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9939C9F8246DC88A0029EFB1 /* congratulations.gif */; };
 		997E85112458992A0074BE4B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85102458992A0074BE4B /* StorageManager.swift */; };
 		997E85132458B6FF0074BE4B /* CountersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* CountersVC.swift */; };
-		9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */; };
+		9998AA4B2477EC7000629CBF /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4A2477EC7000629CBF /* CollectionsView.swift */; };
 		9998AA4F2477F15700629CBF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4E2477F15700629CBF /* GalleryCell.swift */; };
 		9998AA552478210500629CBF /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA542478210500629CBF /* ProjectsCell.swift */; };
 		999EACD92455C17300321D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999EACD82455C17300321D3E /* AppDelegate.swift */; };
@@ -36,11 +37,12 @@
 /* Begin PBXFileReference section */
 		5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
 		991A00C52481CBF0003DE7C2 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
-		9939C9F6246DC6DE0029EFB1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		991A00C72482911E003DE7C2 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
+		9939C9F6246DC6DE0029EFB1 /* Gifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gifs.swift; sourceTree = "<group>"; };
 		9939C9F8246DC88A0029EFB1 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = congratulations.gif; sourceTree = "<group>"; };
 		997E85102458992A0074BE4B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* CountersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersVC.swift; sourceTree = "<group>"; };
-		9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryCollectionView.swift; sourceTree = "<group>"; };
+		9998AA4A2477EC7000629CBF /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		9998AA4E2477F15700629CBF /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		9998AA542478210500629CBF /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
 		999EACD52455C17300321D3E /* knitting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knitting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,9 +83,9 @@
 			children = (
 				999EACDC2455C17300321D3E /* ProjectsVC.swift */,
 				99E7860C24803D7F00F3D6E7 /* ProjectsTableView.swift */,
+				9998AA4A2477EC7000629CBF /* CollectionsView.swift */,
 				997E85122458B6FF0074BE4B /* CountersVC.swift */,
 				999EACF42457175200321D3E /* CreateProjectVC.swift */,
-				9998AA4A2477EC7000629CBF /* GallaryCollectionView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -123,8 +125,9 @@
 				999EACD82455C17300321D3E /* AppDelegate.swift */,
 				999EACDA2455C17300321D3E /* SceneDelegate.swift */,
 				997E85102458992A0074BE4B /* StorageManager.swift */,
-				9939C9F6246DC6DE0029EFB1 /* Extensions.swift */,
+				9939C9F6246DC6DE0029EFB1 /* Gifs.swift */,
 				991A00C52481CBF0003DE7C2 /* Constraints.swift */,
+				991A00C72482911E003DE7C2 /* Shadows.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -315,12 +318,13 @@
 				991A00C62481CBF0003DE7C2 /* Constraints.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsVC.swift in Sources */,
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
-				9939C9F7246DC6DE0029EFB1 /* Extensions.swift in Sources */,
+				9939C9F7246DC6DE0029EFB1 /* Gifs.swift in Sources */,
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
 				99E7860D24803D7F00F3D6E7 /* ProjectsTableView.swift in Sources */,
 				99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */,
+				991A00C82482911E003DE7C2 /* Shadows.swift in Sources */,
 				99C8178F247E831E007836D8 /* CounterToKnit.swift in Sources */,
-				9998AA4B2477EC7000629CBF /* GallaryCollectionView.swift in Sources */,
+				9998AA4B2477EC7000629CBF /* CollectionsView.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
 				99C8178D247D564C007836D8 /* ProjectToKnit.swift in Sources */,
