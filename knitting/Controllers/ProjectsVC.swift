@@ -72,22 +72,30 @@ class ProjectsVC: UIViewController {
     
     func configureCollectionView(){
         view.addSubview(upStorysCollectionView)
+        view.sendSubviewToBack(upStorysCollectionView)
         collectionViewConstraints()
     }
     
     func configuratingCardView(){
-        shadowsToView(view: cardView)
+        //shadowsToView(view: cardView)
         cardView.backgroundColor = .white
-        cardView.layer.cornerRadius = 20
-        cardView.clipsToBounds = true
+//        cardView.layer.cornerRadius = 40
+//        //cardView.layer.shadowRadius = 5
+//        cardView.layer.shadowOpacity = 1
+//        cardView.layer.shadowColor =  UIColor(red: 1, green: 1, blue: 1, alpha: 0.12).cgColor
+//        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
+//        cardView.layer.bounds = cardView.bounds
+//        cardView.layer.position = cardView.center
+//        cardView.clipsToBounds = false
         view.addSubview(cardView)
-        view.sendSubviewToBack(cardView)
+        view.bringSubviewToFront(cardView)
         cardViewConstraints()
     }
     
     func configureLabel(){
         cardView.addSubview(workingOnThese)
         labelConstraints()
+        cardView.bringSubviewToFront(workingOnThese)
         workingOnThese.text = "Working on this?"
         workingOnThese.font = UIFont(name: "Helvetica", size: 25)
     }
@@ -97,30 +105,32 @@ class ProjectsVC: UIViewController {
         profileImage.backgroundColor = .black
         profileImage.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         cardView.addSubview(profileImage)
+        cardView.bringSubviewToFront(profileImage)
         profileImageConstraints()
     }
     
     func configureProjectsCollectionView(){
         
         cardView.addSubview(projectsCollectionView)
+        cardView.sendSubviewToBack(projectsCollectionView)
         setProjectsCollectionViewConstraints()
-//        setTableViewDetegates()
-//        sorting()
-//        tableView.backgroundView?.isOpaque = true
-//        tableView.backgroundColor = .white
-//        tableView.separatorStyle = .none
-//        tableView.rowHeight = UIScreen.main.bounds.height / 6
-//        cardView.bringSubviewToFront(projectsCollectionView)
-//        tableViewConstraints()
-//        tableView.register(ProjectsCell.self, forCellReuseIdentifier: "ProjectCell")
     }
     
     func configureAddProjectBtn(){
         
         addProject.setImage(#imageLiteral(resourceName: "Add"), for: .normal)
-        //addProject.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 500, height: UIScreen.main.bounds.size.height / 2)
         addProject.addTarget(self, action: #selector(showNewProjectVC), for: .touchUpInside)
         view.addSubview(addProject)
+        let shadowPath0 = UIBezierPath(roundedRect: addProject.bounds, cornerRadius: 37)
+        let layer0 = CALayer()
+        layer0.shadowPath = shadowPath0.cgPath
+        layer0.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        layer0.shadowOpacity = 1
+        layer0.shadowRadius = 10
+        layer0.shadowOffset = CGSize(width: 0, height: 4)
+        layer0.bounds = addProject.bounds
+        layer0.position = addProject.center
+        addProject.layer.addSublayer(layer0)
         setAddProjectConstraints()
     }
     

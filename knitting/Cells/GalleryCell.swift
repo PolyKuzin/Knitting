@@ -12,27 +12,34 @@ class GalleryCell: UICollectionViewCell {
     
     static let reusedID = "GalleryCell"
     
-    let mainImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        return imageView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        addSubview(mainImageView)
-        
-        mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        mainImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+//        addSubview(mainImageView)
+        backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        layer.cornerRadius = 10
+//        mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+//        mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+//        mainImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+//        mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let shadowPath0 = UIBezierPath(roundedRect: self.bounds, cornerRadius: 10)
+        self.layer.cornerRadius = 20
+        self.layer.shadowRadius = 8
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
+        layer.shadowPath = shadowPath0.cgPath
+        layer.shadowOpacity = 1
+        layer.bounds = self.bounds
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.position = self.center
+        
+        self.clipsToBounds = false
     }
 }

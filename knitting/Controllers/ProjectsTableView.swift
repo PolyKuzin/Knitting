@@ -19,15 +19,15 @@ class ProjectsCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         super.init(frame: .zero, collectionViewLayout: layout)
-        backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         delegate = self
         dataSource = self
         register(ProjectCell.self, forCellWithReuseIdentifier: "ProjectCell")
         translatesAutoresizingMaskIntoConstraints = false
         
         layout.minimumLineSpacing = 10
-        contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        
+        contentInset = UIEdgeInsets(top: 80, left: 20, bottom: 20, right: 20)
+        layer.cornerRadius = 30
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
         
@@ -44,6 +44,22 @@ class ProjectsCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
             self?.reloadData()
         })
         print("Inition complete")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let shadowPath0 = UIBezierPath(roundedRect: self.bounds, cornerRadius: 20)
+               
+        self.layer.cornerRadius = 20
+        self.layer.shadowRadius = 20
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
+        layer.shadowPath = shadowPath0.cgPath
+        layer.shadowOpacity = 1
+        layer.bounds = self.bounds
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.position = self.center
+               
+        self.clipsToBounds = false
     }
     
     required init?(coder: NSCoder) {
@@ -68,7 +84,7 @@ class ProjectsCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath)  as! ProjectCell
+        //let cell = dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath)  as! ProjectCell
         let project = projects[indexPath.row]
         self.deselectItem(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -78,6 +94,8 @@ class ProjectsCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
         
         print("!!!!")
     }
+    
+    
 }
 
 
