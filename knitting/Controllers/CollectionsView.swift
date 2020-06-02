@@ -19,11 +19,10 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         delegate = self
         dataSource = self
         register(GalleryCell.self, forCellWithReuseIdentifier: "GalleryCell")
-        translatesAutoresizingMaskIntoConstraints = false
         
         layout.minimumLineSpacing = 10
         contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        
+        clipsToBounds = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
     }
@@ -33,7 +32,7 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

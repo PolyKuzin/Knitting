@@ -22,7 +22,10 @@ class ProjectsVC: UIViewController {
     var addProject              = UIButton()
     var profileImage            = UIImageView()
     var upStorysCollectionView  = GallaryCollectionView()
-    var projectsCollectionView  = ProjectsCollectionView()
+    let layout = UICollectionViewFlowLayout()
+    var collectionViewForProjects = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+//    var projectsCollectionView  = ProjectsCollectionView()
+    //var collectionViewForProjects = UICollectionView()
     var projects                = Array<ProjectToKnit>()
 
     
@@ -48,7 +51,7 @@ class ProjectsVC: UIViewController {
                 _projects.append(task)
             }
             self?.projects = _projects
-            self?.tableView.reloadData()
+            self?.collectionViewForProjects.reloadData()
         })
         stopActivityIndicator()
     }
@@ -66,8 +69,10 @@ class ProjectsVC: UIViewController {
         configuratingCardView()
         configureLabel()
         configuringProfileImage()
-        configureProjectsCollectionView()
+//        configureProjectsCollectionView()
         configureAddProjectBtn()
+        configureCollectionViewForProjects()
+        
     }
     
     func configureCollectionView(){
@@ -97,7 +102,7 @@ class ProjectsVC: UIViewController {
         labelConstraints()
         cardView.bringSubviewToFront(workingOnThese)
         workingOnThese.text = "Working on this?"
-        workingOnThese.font = UIFont(name: "Helvetica", size: 25)
+        workingOnThese.font = UIFont(name: "SF Pro Rounded", size: 28)
     }
     
     func configuringProfileImage(){
@@ -109,12 +114,12 @@ class ProjectsVC: UIViewController {
         profileImageConstraints()
     }
     
-    func configureProjectsCollectionView(){
-        
-        cardView.addSubview(projectsCollectionView)
-        cardView.sendSubviewToBack(projectsCollectionView)
-        setProjectsCollectionViewConstraints()
-    }
+//    func configureProjectsCollectionView(){
+//
+//        cardView.addSubview(projectsCollectionView)
+//        cardView.sendSubviewToBack(projectsCollectionView)
+//        setProjectsCollectionViewConstraints()
+//    }
     
     func configureAddProjectBtn(){
         

@@ -52,15 +52,15 @@ extension ProjectsVC {
         upStorysCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive                     = true
         upStorysCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                           = true
         upStorysCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                         = true
-        upStorysCollectionView.heightAnchor.constraint(equalToConstant: 150).isActive                                   = true
+        upStorysCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4).isActive       = true
      }
     
     func setProjectsCollectionViewConstraints(){
-        projectsCollectionView.translatesAutoresizingMaskIntoConstraints                                                = false
-        projectsCollectionView.topAnchor.constraint(equalTo: cardView.topAnchor).isActive                 = true
-        projectsCollectionView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive                         = true
-        projectsCollectionView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor).isActive                       = true
-        projectsCollectionView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor).isActive                     = true
+        collectionViewForProjects.translatesAutoresizingMaskIntoConstraints                                                = false
+        collectionViewForProjects.topAnchor.constraint(equalTo: cardView.topAnchor).isActive                            = true
+        collectionViewForProjects.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive                         = true
+        collectionViewForProjects.leadingAnchor.constraint(equalTo: cardView.leadingAnchor).isActive                       = true
+        collectionViewForProjects.trailingAnchor.constraint(equalTo: cardView.trailingAnchor).isActive                     = true
     }
     
     func cardViewConstraints(){

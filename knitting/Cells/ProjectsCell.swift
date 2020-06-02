@@ -32,18 +32,16 @@ class ProjectCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-         let shadowPath0 = UIBezierPath(roundedRect: self.bounds, cornerRadius: 20)
-               
-        self.layer.cornerRadius = 20
-        self.layer.shadowRadius = 20
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
+        let shadowPath0 = UIBezierPath(roundedRect: self.bounds, cornerRadius: 20)
+        layer.shadowRadius = 20
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
         layer.shadowPath = shadowPath0.cgPath
         layer.shadowOpacity = 0.8
         layer.bounds = self.bounds
         layer.shadowOffset = CGSize(width: 0, height: 8)
         layer.position = self.center
-               
-        self.clipsToBounds = false
+        layer.cornerRadius = 20
+        clipsToBounds = false
     }
     
     func setCell(project: ProjectToKnit, indexPath: Int){
@@ -55,16 +53,6 @@ class ProjectCell: UICollectionViewCell {
         } else {
             projectTagsLabel.isHidden = true
         }
-    }
-    
-    func configureCellView(){
-        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50,
-                                            height: UIScreen.main.bounds.height / 7)
-        cellView.backgroundColor = .blue
-        cellView.layer.cornerRadius                 = 20
-        cellView.clipsToBounds                      = true
-        addSubview(cellView)
-        bringSubviewToFront(cellView)
     }
     
     func configureProjectImageView(){

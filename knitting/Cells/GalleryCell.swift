@@ -14,14 +14,8 @@ class GalleryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        addSubview(mainImageView)
-        backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         layer.cornerRadius = 10
-//        mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-//        mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-//        mainImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-
     }
     
     required init?(coder: NSCoder) {
@@ -37,9 +31,9 @@ class GalleryCell: UICollectionViewCell {
         layer.shadowPath = shadowPath0.cgPath
         layer.shadowOpacity = 1
         layer.bounds = self.bounds
-        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.position = self.center
-        
+
         self.clipsToBounds = false
     }
 }
