@@ -85,7 +85,7 @@ class ProjectsVC: UIViewController {
         //shadowsToView(view: cardView)
         cardView.backgroundColor = .white
 //        cardView.layer.cornerRadius = 40
-//        //cardView.layer.shadowRadius = 5
+//        cardView.layer.shadowRadius = 5
 //        cardView.layer.shadowOpacity = 1
 //        cardView.layer.shadowColor =  UIColor(red: 1, green: 1, blue: 1, alpha: 0.12).cgColor
 //        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
