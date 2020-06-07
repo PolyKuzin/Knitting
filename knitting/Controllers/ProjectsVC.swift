@@ -15,16 +15,16 @@ class ProjectsVC: UIViewController {
     var ref             : DatabaseReference!
     var user            : Users!
 
-    let cellIdentifire          = "cell"
-    var cardView                = UIView()
-    var tableView               = UITableView()
-    var workingOnThese          = UILabel()
-    var addProject              = UIButton()
-    var profileImage            = UIImageView()
-    var upStorysCollectionView  = GallaryCollectionView()
-    let layout = UICollectionViewFlowLayout()
-    var collectionViewForProjects = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    var projects                = Array<ProjectToKnit>()
+    let cellIdentifire              = "cell"
+    var cardView                    = UIView()
+    var tableView                   = UITableView()
+    var workingOnThese              = UILabel()
+    var addProject                  = UIButton()
+    var profileImage                = UIImageView()
+    var upStorysCollectionView      = GallaryCollectionView()
+    let layout                      = UICollectionViewFlowLayout()
+    var collectionViewForProjects   = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var projects                    = Array<ProjectToKnit>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,8 @@ class ProjectsVC: UIViewController {
         ref.observe(.value, with: { [weak self] (snapshot) in
             var _projects = Array<ProjectToKnit>()
             for item in snapshot.children {
-                let task = ProjectToKnit(snapshot: item as! DataSnapshot)
-                _projects.append(task)
+                let project = ProjectToKnit(snapshot: item as! DataSnapshot)
+                _projects.append(project)
             }
             self?.projects = _projects
             self?.collectionViewForProjects.reloadData()
@@ -143,6 +143,7 @@ class ProjectsVC: UIViewController {
         ai.center = self.view.center
         ai.hidesWhenStopped = true
         ai.style = UIActivityIndicatorView.Style.large
+        ai.color = .black
         view.addSubview(ai)
         ai.startAnimating()
     }

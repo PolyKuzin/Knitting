@@ -20,6 +20,7 @@ class LogInVC: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         authitication()
@@ -36,6 +37,10 @@ class LogInVC: UIViewController {
         emailTextField.text = ""
         passwordTextField.text = ""
     }
+    
+    @IBAction func loginTapped(_ sender: Any) {
+    }
+    
 }
 
 //MARK: AUTH

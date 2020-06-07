@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		991A00C62481CBF0003DE7C2 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C52481CBF0003DE7C2 /* Constraints.swift */; };
-		991A00C82482911E003DE7C2 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C72482911E003DE7C2 /* Shadows.swift */; };
+		991A00C62481CBF0003DE7C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C52481CBF0003DE7C2 /* Constants.swift */; };
 		991A00CB248702D1003DE7C2 /* SFProRounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */; };
 		991A00CD248702E1003DE7C2 /* SFProRounded.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991A00CC248702E1003DE7C2 /* SFProRounded.ttf */; };
 		991A00CF2488192F003DE7C2 /* userCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00CE2488192F003DE7C2 /* userCell.swift */; };
@@ -40,8 +39,7 @@
 
 /* Begin PBXFileReference section */
 		5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
-		991A00C52481CBF0003DE7C2 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
-		991A00C72482911E003DE7C2 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
+		991A00C52481CBF0003DE7C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Bold.ttf"; sourceTree = "<group>"; };
 		991A00CC248702E1003DE7C2 /* SFProRounded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRounded.ttf; sourceTree = "<group>"; };
 		991A00CE2488192F003DE7C2 /* userCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCell.swift; sourceTree = "<group>"; };
@@ -135,8 +133,7 @@
 				999EACDA2455C17300321D3E /* SceneDelegate.swift */,
 				997E85102458992A0074BE4B /* StorageManager.swift */,
 				9939C9F6246DC6DE0029EFB1 /* Gifs.swift */,
-				991A00C52481CBF0003DE7C2 /* Constraints.swift */,
-				991A00C72482911E003DE7C2 /* Shadows.swift */,
+				991A00C52481CBF0003DE7C2 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -328,7 +325,7 @@
 				9998AA4F2477F15700629CBF /* GalleryCell.swift in Sources */,
 				999EACF52457175200321D3E /* CreateProjectVC.swift in Sources */,
 				99C8176B247D1EAB007836D8 /* MUser.swift in Sources */,
-				991A00C62481CBF0003DE7C2 /* Constraints.swift in Sources */,
+				991A00C62481CBF0003DE7C2 /* Constants.swift in Sources */,
 				991EA405248C1F9D005327C4 /* FirstScreenViewController.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsVC.swift in Sources */,
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
@@ -336,7 +333,6 @@
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
 				99E7860D24803D7F00F3D6E7 /* ProjectsTableView.swift in Sources */,
 				99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */,
-				991A00C82482911E003DE7C2 /* Shadows.swift in Sources */,
 				991A00CF2488192F003DE7C2 /* userCell.swift in Sources */,
 				99C8178F247E831E007836D8 /* MCounterToKnit.swift in Sources */,
 				9998AA4B2477EC7000629CBF /* CollectionsView.swift in Sources */,
