@@ -41,7 +41,7 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Constants.galleryItemWidth, height: frame.height * 0.8)
+        return CGSize(width: Constants.galleryItemWidth, height: (UIScreen.main.bounds.height / 4) - 40)
     }
 }
 struct Constants {

@@ -33,11 +33,9 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
     var projectTags: [String?] = []
     
     @IBOutlet weak var projectImage: UIImageView!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var projectName: UITextField!
     @IBOutlet weak var projectTag1: UITextField!
-    @IBOutlet weak var projectTag2: UITextField!
-    @IBOutlet weak var projectTag3: UITextField!
     @IBOutlet weak var rowsMaxLabel: UILabel!
     @IBOutlet weak var countersRowsMax: UITextField!
     @IBAction func cancelAction(_ sender: Any) {
@@ -102,9 +100,6 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
         let imageData = image?.toString()
         
         if projectTag1.text! != "" {projectTags.append(projectTag1.text!)}
-        if projectTag2.text! != "" {projectTags.append(projectTag2.text!)}
-        if projectTag3.text! != "" {projectTags.append(projectTag3.text!)}
-        
         
         let project = ProjectToKnit(userID      : user.uid,
                                     projectID   : MyKeys.projectID,

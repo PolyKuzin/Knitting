@@ -13,8 +13,8 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func configureCollectionViewForProjects(){
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        cardView.addSubview(collectionViewForProjects)
-        cardView.sendSubviewToBack(collectionViewForProjects)
+        view.addSubview(collectionViewForProjects)
+        view.sendSubviewToBack(collectionViewForProjects)
         collectionViewForProjects.frame                             = cardView.bounds
         collectionViewForProjects.collectionViewLayout              = layout
         collectionViewForProjects.backgroundColor                   = .white
@@ -26,7 +26,6 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         layout.minimumLineSpacing = 10
         collectionViewForProjects.contentInset                      = UIEdgeInsets(top: 80, left: 20, bottom: 20, right: 20)
-        collectionViewForProjects.layer.cornerRadius                = 30
         collectionViewForProjects.backgroundColor                   = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         collectionViewForProjects.showsHorizontalScrollIndicator    = false
         collectionViewForProjects.showsVerticalScrollIndicator      = false
