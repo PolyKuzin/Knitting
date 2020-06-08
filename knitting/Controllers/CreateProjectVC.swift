@@ -36,7 +36,6 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var projectName: UITextField!
     @IBOutlet weak var projectTag1: UITextField!
-    @IBOutlet weak var rowsMaxLabel: UILabel!
     @IBOutlet weak var countersRowsMax: UITextField!
     @IBAction func cancelAction(_ sender: Any) {
         
@@ -60,7 +59,7 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
     //MARK: TableView Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.row == 1 {
             let actionSheet = UIAlertController(title: nil,
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
@@ -84,7 +83,7 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 4
     }
 
     //MARK: Saving project
@@ -147,24 +146,10 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
             projectImage.image = image
             projectName.text = editingProject?.name
             countersRowsMax.isHidden = true
-            rowsMaxLabel.isHidden = true
-            
             //TODO: Rewrite it switch statement
             if editingProject?.tags.count == 1 {
                 projectTag1.text = editingProject?.tags
             }
-//            } else if editingProject?.tags.count == 2 {
-//                projectTag1.text = editingProject?.tags[0]
-//                projectTag2.text = editingProject?.tags[1]
-//            } else if editingProject?.tags.count == 3 {
-//                projectTag1.text = editingProject?.tags[0]
-//                projectTag2.text = editingProject?.tags[1]
-//                projectTag3.text = editingProject?.tags[2]
-//            } else {
-//                projectTag1.text = ""
-//                projectTag2.text = ""
-//                projectTag3.text = ""
-//            }
         }
     }
     

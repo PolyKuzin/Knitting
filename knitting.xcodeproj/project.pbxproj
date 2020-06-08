@@ -32,7 +32,7 @@
 		99C8178F247E831E007836D8 /* MCounterToKnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8178E247E831E007836D8 /* MCounterToKnit.swift */; };
 		99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */; };
 		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
-		99E7860D24803D7F00F3D6E7 /* ProjectsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7860C24803D7F00F3D6E7 /* ProjectsTableView.swift */; };
+		99E7860D24803D7F00F3D6E7 /* ProjectsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */; };
 		99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F9E77C247C21DE000ACA5A /* LogInVC.swift */; };
 		99F9E77F247C2DBA000ACA5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -65,7 +65,7 @@
 		99C8178C247D564C007836D8 /* MProjectToKnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProjectToKnit.swift; sourceTree = "<group>"; };
 		99C8178E247E831E007836D8 /* MCounterToKnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCounterToKnit.swift; sourceTree = "<group>"; };
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
-		99E7860C24803D7F00F3D6E7 /* ProjectsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableView.swift; sourceTree = "<group>"; };
+		99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCollectionView.swift; sourceTree = "<group>"; };
 		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_knitting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				999EACDC2455C17300321D3E /* ProjectsVC.swift */,
-				99E7860C24803D7F00F3D6E7 /* ProjectsTableView.swift */,
+				99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */,
 				9998AA4A2477EC7000629CBF /* CollectionsView.swift */,
 				997E85122458B6FF0074BE4B /* CountersVC.swift */,
 				999EACF42457175200321D3E /* CreateProjectVC.swift */,
@@ -331,7 +331,7 @@
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
 				9939C9F7246DC6DE0029EFB1 /* Gifs.swift in Sources */,
 				997E85112458992A0074BE4B /* StorageManager.swift in Sources */,
-				99E7860D24803D7F00F3D6E7 /* ProjectsTableView.swift in Sources */,
+				99E7860D24803D7F00F3D6E7 /* ProjectsCollectionView.swift in Sources */,
 				99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */,
 				991A00CF2488192F003DE7C2 /* userCell.swift in Sources */,
 				99C8178F247E831E007836D8 /* MCounterToKnit.swift in Sources */,

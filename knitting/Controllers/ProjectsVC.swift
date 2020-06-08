@@ -78,18 +78,6 @@ class ProjectsVC: UIViewController {
     func configuratingCardView(){
         cardView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cardView.frame = .zero
-//        let shadowPath0 = UIBezierPath(roundedRect: cardView.bounds, cornerRadius: 29)
-//        cardView.layer.shadowPath = shadowPath0.cgPath
-//        cardView.clipsToBounds = true
-//        cardView.layer.cornerRadius = 30
-//        cardView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-//        cardView.layer.shadowRadius = 5
-//        cardView.layer.shadowOpacity = 1
-//        cardView.layer.shadowColor =  UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
-//        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
-//        cardView.layer.bounds = cardView.bounds
-//        cardView.layer.position = cardView.center
-//        cardView.clipsToBounds = false
         view.addSubview(cardView)
         view.bringSubviewToFront(cardView)
         cardViewConstraints()

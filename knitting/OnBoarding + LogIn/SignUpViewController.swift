@@ -11,9 +11,10 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     var ref: DatabaseReference!
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -23,29 +24,38 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
+        authitication()
         super.viewDidLoad()
         ref = Database.database().reference(withPath: "users")
+        view.addGestureRecognizer(tap)
+        setingUpKeyboardHiding()
     }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
     func isPasswordValid(_ password: String) -> Bool {
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@S#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@",
+                                               "^(?=.*[a-z])(?=.*[$@S#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)
     }
     
     func validateFields() -> String? {
         
         //check that fields are filled in
-        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-        lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-        emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-        passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)     == "" ||
+        lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" ||
+        emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)            == "" ||
+        passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" {
             return "Please fill in all fields"
         }
         //check the passwird
-//        let cleanPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-//        if isPasswordValid(cleanPassword) == false {
-//            return "Please make sure your password is at least 8 characters or contains # % & 0-9"
-//        }
+        let cleanPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if isPasswordValid(cleanPassword) == false {
+            return "Please make sure your password is at least 8 characters or contains # % & 0-9"
+        }
         
         return nil
     }
@@ -84,23 +94,7 @@ class SignUpViewController: UIViewController {
 
             self.transitionToMain()
         }
-//         guard let email = emailTextField.text, email != "" else {
-//        //TODO: Errors of wrong email
-//                    return
-//                }
-//                guard let password = passwordTextField.text, password != "" else {
-//        //TODO: Errors of wrong password
-//                    return
-//                }
-//                Auth.auth().createUser(withEmail: email, password: password) {[weak self] (user, error) in
-//                    guard error == nil, user != nil else {
-//                        print(error!.localizedDescription)
-//                        return
-//                    }
-//
-//                    let userRef = self?.ref.child((user?.user.uid)!)
-//                    userRef!.setValue(["email":user!.user.email])
-//                }
+        hideKeyboard()
     }
     
     func showError(_ message: String) {
@@ -118,14 +112,61 @@ class SignUpViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-    */
+}
+extension SignUpViewController {
+    
+    func setingUpKeyboardHiding(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
+        delegates()
+    }
+    
+    func hideKeyboard(){
+        firstNameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+    
+    func delegates(){
+        firstNameTextField.delegate     = self
+        lastNameTextField.delegate      = self
+        emailTextField.delegate         = self
+        passwordTextField.delegate      = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
+    }
+    
+    @objc func keyboardWillChange(notification: Notification){
+
+        guard let userInfo = notification.userInfo else {return}
+              let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if notification.name == UIResponder.keyboardWillShowNotification ||
+           notification.name == UIResponder.keyboardWillChangeFrameNotification {
+           view.frame.origin.y = -keyboardRect.height
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
+}
+//MARK: AUTH
+extension SignUpViewController {
+    func authitication() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "LogInSegue", sender: nil)
+            }
+        }
+    }
 }

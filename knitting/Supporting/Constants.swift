@@ -17,35 +17,20 @@ struct ConstantIdentifires {
 extension LogInVC{
     
     func constraints(){
-        
-        emailTextField.translatesAutoresizingMaskIntoConstraints                                                        = false
-        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive                     = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive                   = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 60).isActive                                            = true
-        emailTextField.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 40).isActive           = true
-        emailTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -85).isActive                    = true
-        
-        passwordTextField.translatesAutoresizingMaskIntoConstraints                                                     = false
-        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive                  = true
-        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive                = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 60).isActive                                         = true
-        passwordTextField.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 40).isActive        = true
-        passwordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive                                = true
-        
-        warningPasswordLabel.translatesAutoresizingMaskIntoConstraints                                                  = false
-        warningPasswordLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 3).isActive        = true
-        warningPasswordLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive             = true
-        warningPasswordLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 20).isActive  = true
-        
-        logIn.translatesAutoresizingMaskIntoConstraints                                                                 = false
-        logIn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive                                            = true
-        logIn.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 40).isActive                      = true
-        logIn.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor,constant: -80).isActive               = true
-        logIn.heightAnchor.constraint(equalTo: passwordTextField.heightAnchor).isActive                                 = true
-
-        register.translatesAutoresizingMaskIntoConstraints                                                              = false
-        register.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive                                         = true
-        register.topAnchor.constraint(equalTo: logIn.bottomAnchor, constant: 40).isActive                               = true
+//        
+//        emailTextField.translatesAutoresizingMaskIntoConstraints                                                        = false
+//        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive                     = true
+//        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive                   = true
+//        emailTextField.heightAnchor.constraint(equalToConstant: 60).isActive                                            = true
+//        emailTextField.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 40).isActive           = true
+//        emailTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -85).isActive                    = true
+//        
+//        passwordTextField.translatesAutoresizingMaskIntoConstraints                                                     = false
+//        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive                  = true
+//        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive                = true
+//        passwordTextField.heightAnchor.constraint(equalToConstant: 60).isActive                                         = true
+//        passwordTextField.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 40).isActive        = true
+//        passwordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive                                = true
     }
 }
 
