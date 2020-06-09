@@ -15,6 +15,7 @@ class ProjectCell: UICollectionViewCell {
     var projectNameLabel = UILabel()
     var projectTagsLabel = UILabel()
     var projectImageView = UIImageView()
+    var row            : Int?
     
     let reusedID = "ProjectCell"
     

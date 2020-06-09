@@ -56,7 +56,6 @@ class ProjectsVC: UIViewController {
         ref.removeAllObservers()
     }
     
-    
 //MARK: Configuring
     
     func configureAllUI(){
