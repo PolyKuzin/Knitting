@@ -77,7 +77,6 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                         self.emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
                         self.passwordTextField.textColor            = Colors.errorTextFieldBorder
                         self.emailTextField.textColor               = Colors.errorTextFieldBorder
-
                         self.showError(err!.localizedDescription)
                         return
                     }

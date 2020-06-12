@@ -37,6 +37,7 @@
 		99D4CC002493898C00C5B803 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CBFF2493898C00C5B803 /* SF-Pro-Text-Bold.otf */; };
 		99D4CC04249389CF00C5B803 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */; };
 		99D4CC062493A82D00C5B803 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D4CC052493A82D00C5B803 /* CustomTextField.swift */; };
+		99D4CC0824940ED500C5B803 /* SwipeableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D4CC0724940ED500C5B803 /* SwipeableCollectionViewCell.swift */; };
 		99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */; };
 		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
 		99E7860D24803D7F00F3D6E7 /* ProjectsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */; };
@@ -78,6 +79,7 @@
 		99D4CBFF2493898C00C5B803 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		99D4CC052493A82D00C5B803 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		99D4CC0724940ED500C5B803 /* SwipeableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCollectionViewCell.swift; sourceTree = "<group>"; };
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
 		99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCollectionView.swift; sourceTree = "<group>"; };
 		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				9998AA542478210500629CBF /* ProjectsCell.swift */,
 				99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */,
 				991A00CE2488192F003DE7C2 /* userCell.swift */,
+				99D4CC0724940ED500C5B803 /* SwipeableCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
 				99C8178D247D564C007836D8 /* MProjectToKnit.swift in Sources */,
+				99D4CC0824940ED500C5B803 /* SwipeableCollectionViewCell.swift in Sources */,
 				99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */,
 				997E85132458B6FF0074BE4B /* CountersVC.swift in Sources */,
 			);

@@ -52,8 +52,7 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let cell = collectionViewForProjects.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath)  as! ProjectCell
         let project = projects[indexPath.row]
         cell.setCell(project: project, indexPath : indexPath.row)
-//        longPressGesture(cell, indexPath)
-         
+        cell.delegate      = self
         return cell
     }
     
@@ -71,25 +70,6 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-//MARK: Delete project
-//
-//
-//
-//    func longPressGesture(_ cell: UICollectionViewCell, _ indexPath: IndexPath){
-//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureAction))
-//        longPress.minimumPressDuration = 1.5
-//        self.view.addGestureRecognizer(longPress)
-//    }
-//
-//    @objc func longPressGestureAction(){
-//        let alert = UIAlertController(title: "Delete project?", message: "Do you really want to delete the project ?", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil))
-//        present(alert, animated: true)
-//
-//    }
-    
 }
 
 extension UIView {
@@ -119,5 +99,31 @@ extension UIView {
         shake.toValue = toValue
         
         layer.add(shake, forKey: "position")
+    }
+}
+    
+
+    //MARK: Delete project
+extension ProjectsVC: SwipeableCollectionViewCellDelegate {
+    func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
+        guard let indexPath = collectionViewForProjects.indexPath(for: cell) else { return }
+        collectionViewForProjects.performBatchUpdates({
+            self.collectionViewForProjects.deleteItems(at: [indexPath])
+        })
+        let project = projects[indexPath.row]
+        project.ref?.removeValue()
+        collectionViewForProjects.reloadData()
+    }
+    
+    func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
+        guard let indexPath = collectionViewForProjects.indexPath(for: cell) else { return }
+        print("Tapped item at index path: \(indexPath)")
+        let project = projects[indexPath.row]
+        collectionViewForProjects.deselectItem(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "projectLifeController") as! CountersVC
+        vc.modalPresentationStyle = .fullScreen
+        vc.currentProject = project
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -9,18 +9,25 @@
 import UIKit
 import FirebaseFirestore
 
-class ProjectCell: UICollectionViewCell {
+class ProjectCell: SwipeableCollectionViewCell {
     
+    let reusedID = "ProjectCell"
     var cellView         = UIView()
     var projectNameLabel = UILabel()
     var projectTagsLabel = UILabel()
     var projectImageView = UIImageView()
     var row            : Int?
-    
-    let reusedID = "ProjectCell"
+        
+    let deleteImageView: UIImageView = {
+        let image = UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = .white
+        return imageView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupSubviews()
         backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         configureProjectImageView()
         configureProjectNameLabel()
@@ -57,118 +64,34 @@ class ProjectCell: UICollectionViewCell {
     }
     
     func configureProjectImageView(){
-        addSubview(projectImageView)
         projectImageView.layer.cornerRadius         = 10
         projectImageView.clipsToBounds              = true
         setProjectImageConstraints()
     }
     
     func configureProjectNameLabel(){
-        addSubview(projectNameLabel)
         projectNameLabel.numberOfLines              = 0
         projectNameLabel.adjustsFontSizeToFitWidth  = true
         setProjectNameConstraints()
        }
     func configureProjectTagsLabel(){
-        addSubview(projectTagsLabel)
         projectTagsLabel.numberOfLines              = 0
         projectTagsLabel.adjustsFontSizeToFitWidth  = true
         setProjectTagsConstraints()
     }
 }
-
-//class ProjectsCellLLLLLLLLLLLL: UICollectionViewCell {
-//    
-//    var cellView         = UIView()
-//    var projectNameLabel = UILabel()
-//    var projectTagsLabel = UILabel()
-//    var projectImageView = UIImageView()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        configureCellView()
-//        configureProjectImageView()
-//        configureProjectNameLabel()
-//        configureProjectTagsLabel()
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    func setCell(project: ProjectToKnit, indexPath: Int){
-//        let image = project.imageData.toImage()
-//        projectImageView.image = image
-//        projectNameLabel.text  = project.name
-//        if !project.tags.isEmpty {
-//            projectTagsLabel.text = project.tags
-//        } else {
-//            projectTagsLabel.isHidden = true
-//        }
-//    }
-//    func configureCellView(){
-//        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50,
-//                                            height: UIScreen.main.bounds.height / 7)
-//        cellView.backgroundColor = .blue
-//        cellView.layer.cornerRadius                 = 20
-//        cellView.clipsToBounds                      = true
-//        addSubview(cellView)
-//        //setCellViewConstraints()
-//        bringSubviewToFront(cellView)
-//    }
-//    
-//    func configureProjectImageView(){
-//        cellView.addSubview(projectImageView)
-//        projectImageView.layer.cornerRadius         = 10
-//        projectImageView.clipsToBounds              = true
-//        setProjectImageConstraints()
-//    }
-//    
-//    func configureProjectNameLabel(){
-//        cellView.addSubview(projectNameLabel)
-//        projectNameLabel.numberOfLines              = 0
-//        projectNameLabel.adjustsFontSizeToFitWidth  = true
-//        setProjectNameConstraints()
-//       }
-//    func configureProjectTagsLabel(){
-//        cellView.addSubview(projectTagsLabel)
-//        projectTagsLabel.numberOfLines              = 0
-//        projectTagsLabel.adjustsFontSizeToFitWidth  = true
-//        setProjectTagsConstraints()
-//    }
-//}
-//
-////MARK: Confuguring the content
-//extension ProjectsCellLLLLLLLLLLLL {
-//    
-//    func configureCellView(){
-//        cellView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 50,
-//                                            height: UIScreen.main.bounds.height / 7)
-//        cellView.backgroundColor = .blue
-//        cellView.layer.cornerRadius                 = 20
-//        cellView.clipsToBounds                      = true
-//        addSubview(cellView)
-//        //setCellViewConstraints()
-//        bringSubviewToFront(cellView)
-//    }
-//    
-//    func configureProjectImageView(){
-//        cellView.addSubview(projectImageView)
-//        projectImageView.layer.cornerRadius         = 10
-//        projectImageView.clipsToBounds              = true
-//        setProjectImageConstraints()
-//    }
-//    
-//    func configureProjectNameLabel(){
-//        cellView.addSubview(projectNameLabel)
-//        projectNameLabel.numberOfLines              = 0
-//        projectNameLabel.adjustsFontSizeToFitWidth  = true
-//        setProjectNameConstraints()
-//       }
-//    func configureProjectTagsLabel(){
-//        cellView.addSubview(projectTagsLabel)
-//        projectTagsLabel.numberOfLines              = 0
-//        projectTagsLabel.adjustsFontSizeToFitWidth  = true
-//        setProjectTagsConstraints()
-//    }
-//}
+extension ProjectCell{
+    private func setupSubviews() {
+        visibleContainerView.backgroundColor = .white
+        visibleContainerView.addSubview(projectTagsLabel)
+        visibleContainerView.addSubview(projectNameLabel)
+        visibleContainerView.addSubview(projectImageView)
+        hiddenContainerView.backgroundColor = UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
+        hiddenContainerView.addSubview(deleteImageView)
+        deleteImageView.translatesAutoresizingMaskIntoConstraints = false
+        deleteImageView.centerXAnchor.constraint(equalTo: hiddenContainerView.centerXAnchor).isActive = true
+        deleteImageView.centerYAnchor.constraint(equalTo: hiddenContainerView.centerYAnchor).isActive = true
+        deleteImageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        deleteImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    }
+}
