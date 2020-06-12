@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		991A00C62481CBF0003DE7C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C52481CBF0003DE7C2 /* Constants.swift */; };
+		991A00C62481CBF0003DE7C2 /* Constants + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C52481CBF0003DE7C2 /* Constants + Extensions.swift */; };
 		991A00CB248702D1003DE7C2 /* SFProRounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */; };
 		991A00CD248702E1003DE7C2 /* SFProRounded.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991A00CC248702E1003DE7C2 /* SFProRounded.ttf */; };
 		991A00CF2488192F003DE7C2 /* userCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00CE2488192F003DE7C2 /* userCell.swift */; };
@@ -30,6 +30,13 @@
 		99C8176B247D1EAB007836D8 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8176A247D1EAB007836D8 /* MUser.swift */; };
 		99C8178D247D564C007836D8 /* MProjectToKnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8178C247D564C007836D8 /* MProjectToKnit.swift */; };
 		99C8178F247E831E007836D8 /* MCounterToKnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8178E247E831E007836D8 /* MCounterToKnit.swift */; };
+		99D4CBF82493892C00C5B803 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CBF72493892C00C5B803 /* SF-Pro-Display-Bold.otf */; };
+		99D4CBFA2493893E00C5B803 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CBF92493893E00C5B803 /* SF-Pro-Display-Medium.otf */; };
+		99D4CBFC2493895F00C5B803 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CBFB2493895F00C5B803 /* SF-Pro-Text-Semibold.otf */; };
+		99D4CBFE2493897C00C5B803 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CBFD2493897C00C5B803 /* SF-Pro-Text-Regular.otf */; };
+		99D4CC002493898C00C5B803 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CBFF2493898C00C5B803 /* SF-Pro-Text-Bold.otf */; };
+		99D4CC04249389CF00C5B803 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */; };
+		99D4CC062493A82D00C5B803 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D4CC052493A82D00C5B803 /* CustomTextField.swift */; };
 		99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */; };
 		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
 		99E7860D24803D7F00F3D6E7 /* ProjectsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */; };
@@ -39,7 +46,7 @@
 
 /* Begin PBXFileReference section */
 		5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
-		991A00C52481CBF0003DE7C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		991A00C52481CBF0003DE7C2 /* Constants + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants + Extensions.swift"; sourceTree = "<group>"; };
 		991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Bold.ttf"; sourceTree = "<group>"; };
 		991A00CC248702E1003DE7C2 /* SFProRounded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRounded.ttf; sourceTree = "<group>"; };
 		991A00CE2488192F003DE7C2 /* userCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCell.swift; sourceTree = "<group>"; };
@@ -64,6 +71,13 @@
 		99C8176A247D1EAB007836D8 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		99C8178C247D564C007836D8 /* MProjectToKnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MProjectToKnit.swift; sourceTree = "<group>"; };
 		99C8178E247E831E007836D8 /* MCounterToKnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCounterToKnit.swift; sourceTree = "<group>"; };
+		99D4CBF72493892C00C5B803 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		99D4CBF92493893E00C5B803 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		99D4CBFB2493895F00C5B803 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		99D4CBFD2493897C00C5B803 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		99D4CBFF2493898C00C5B803 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		99D4CC052493A82D00C5B803 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
 		99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCollectionView.swift; sourceTree = "<group>"; };
 		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -129,11 +143,13 @@
 		997E851C2459E2AC0074BE4B /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				99D4CBF6249388E500C5B803 /* Fonts */,
 				999EACD82455C17300321D3E /* AppDelegate.swift */,
+				99D4CC052493A82D00C5B803 /* CustomTextField.swift */,
 				999EACDA2455C17300321D3E /* SceneDelegate.swift */,
 				997E85102458992A0074BE4B /* StorageManager.swift */,
 				9939C9F6246DC6DE0029EFB1 /* Gifs.swift */,
-				991A00C52481CBF0003DE7C2 /* Constants.swift */,
+				991A00C52481CBF0003DE7C2 /* Constants + Extensions.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -174,6 +190,19 @@
 				999EACE62455C17600321D3E /* Info.plist */,
 			);
 			path = knitting;
+			sourceTree = "<group>";
+		};
+		99D4CBF6249388E500C5B803 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				99D4CBF72493892C00C5B803 /* SF-Pro-Display-Bold.otf */,
+				99D4CBF92493893E00C5B803 /* SF-Pro-Display-Medium.otf */,
+				99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */,
+				99D4CBFB2493895F00C5B803 /* SF-Pro-Text-Semibold.otf */,
+				99D4CBFD2493897C00C5B803 /* SF-Pro-Text-Regular.otf */,
+				99D4CBFF2493898C00C5B803 /* SF-Pro-Text-Bold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		99E7860E24803E4500F3D6E7 /* OnBoarding + LogIn */ = {
@@ -263,12 +292,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99D4CBFE2493897C00C5B803 /* SF-Pro-Text-Regular.otf in Resources */,
 				9939C9F9246DC88B0029EFB1 /* congratulations.gif in Resources */,
+				99D4CC002493898C00C5B803 /* SF-Pro-Text-Bold.otf in Resources */,
 				999EACE52455C17600321D3E /* LaunchScreen.storyboard in Resources */,
+				99D4CBFC2493895F00C5B803 /* SF-Pro-Text-Semibold.otf in Resources */,
 				991A00CB248702D1003DE7C2 /* SFProRounded-Bold.ttf in Resources */,
 				991A00CD248702E1003DE7C2 /* SFProRounded.ttf in Resources */,
 				99F9E77F247C2DBA000ACA5A /* GoogleService-Info.plist in Resources */,
 				999EACE22455C17500321D3E /* Assets.xcassets in Resources */,
+				99D4CBFA2493893E00C5B803 /* SF-Pro-Display-Medium.otf in Resources */,
+				99D4CC04249389CF00C5B803 /* SF-Pro-Display-Semibold.otf in Resources */,
+				99D4CBF82493892C00C5B803 /* SF-Pro-Display-Bold.otf in Resources */,
 				999EACE02455C17300321D3E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,7 +360,7 @@
 				9998AA4F2477F15700629CBF /* GalleryCell.swift in Sources */,
 				999EACF52457175200321D3E /* CreateProjectVC.swift in Sources */,
 				99C8176B247D1EAB007836D8 /* MUser.swift in Sources */,
-				991A00C62481CBF0003DE7C2 /* Constants.swift in Sources */,
+				991A00C62481CBF0003DE7C2 /* Constants + Extensions.swift in Sources */,
 				991EA405248C1F9D005327C4 /* FirstScreenViewController.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsVC.swift in Sources */,
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
@@ -336,6 +371,7 @@
 				991A00CF2488192F003DE7C2 /* userCell.swift in Sources */,
 				99C8178F247E831E007836D8 /* MCounterToKnit.swift in Sources */,
 				9998AA4B2477EC7000629CBF /* CollectionsView.swift in Sources */,
+				99D4CC062493A82D00C5B803 /* CustomTextField.swift in Sources */,
 				991EA403248C1F74005327C4 /* SignUpViewController.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,
@@ -493,6 +529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.polykuzin.knitting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -512,6 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.polykuzin.knitting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

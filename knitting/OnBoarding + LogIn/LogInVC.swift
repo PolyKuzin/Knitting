@@ -16,14 +16,15 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var singUpBtn: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         authitication()
         super.viewDidLoad()
         setingUpKeyboardHiding()
-        constraints()
         ref = Database.database().reference(withPath: "users")
+        setUpUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,11 +33,13 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         emailTextField.text = ""
         passwordTextField.text = ""
     }
-
-    func showError(_ message: String) {
-        
-        errorLabel.text = message
-        errorLabel.alpha = 1
+    
+    func setUpUI(){
+        emailTextField.designTextField(emailTextField)
+        passwordTextField.designTextField(passwordTextField)
+        errorLabel.isHidden = true
+        loginButton.designButton(loginButton, 17)
+        singUpBtn.designButtonAsLabel(singUpBtn, 14)
     }
     
     func validateFields() -> String? {
@@ -50,18 +53,32 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         return nil
     }
     
+    
+    func showError(_ message: String) {
+        errorLabel.isHidden = false
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
+    
     @IBAction func loginTapped(_ sender: Any) {
         let error = validateFields()
+        if error != nil {
+            showError(error!)
+        }
         if error == nil {
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
 //TODO: Warning label
                     if err != nil{
-                        self.passwordTextField.backgroundColor = UIColor(red: 1, green: 0.954, blue: 0.976, alpha: 1)
-                        self.passwordTextField.layer.borderColor = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1).cgColor
-                        self.emailTextField.backgroundColor = UIColor(red: 1, green: 0.954, blue: 0.976, alpha: 1)
-                        self.emailTextField.layer.borderColor = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1).cgColor
+                        self.passwordTextField.backgroundColor      = Colors.errorTextField
+                        self.passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
+                        self.emailTextField.backgroundColor         = Colors.errorTextField
+                        self.emailTextField.layer.borderColor       = Colors.errorTextFieldBorder.cgColor
+                        self.passwordTextField.textColor            = Colors.errorTextFieldBorder
+                        self.emailTextField.textColor               = Colors.errorTextFieldBorder
+
+                        self.showError(err!.localizedDescription)
                         return
                     }
                     if user != nil {
@@ -118,7 +135,7 @@ extension LogInVC {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
-           view.frame.origin.y = -keyboardRect.height
+           view.frame.origin.y = -keyboardRect.height + 20
         } else {
             view.frame.origin.y = 0
         }
@@ -135,70 +152,3 @@ extension LogInVC {
         }
     }
 }
-//MARK: Configuring
-extension LogInVC{
-    
-//    func configureAllUI(){
-//        configureLoginBtn()
-//    }
-//
-//    func configureLoginBtn(){
-//        loginButton.setTitle("Log In", for: .normal)
-//        loginButton.setTitleColor(.white, for: .normal)
-//        loginButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 80, height: UIScreen.main.bounds.size.height / 15)
-//        let layer1 = CAGradientLayer()
-//        layer1.colors = [
-//          UIColor(red: 0.278, green: 0.596, blue: 0.775, alpha: 1).cgColor,
-//          UIColor(red: 0.271, green: 0.438, blue: 0.867, alpha: 1).cgColor
-//        ]
-//        layer1.locations = [0, 1]
-//        layer1.startPoint = CGPoint(x: 0.25, y: 0.5)
-//        layer1.endPoint = CGPoint(x: 0.75, y: 0.5)
-//        layer1.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0.96, b: 0.44, c: -0.44, d: 18.03, tx: 0.26, ty: -8.81))
-//        layer1.bounds = loginButton.bounds.insetBy(dx: -0.5 * loginButton.bounds.size.width, dy: -0.5 * loginButton.bounds.size.height)
-//        layer1.position = loginButton.center
-//        loginButton.layer.addSublayer(layer1)
-//
-//        loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
-//        loginButton.clipsToBounds = true
-////        loginButton.addTarget(self, action: #selector(logInBtn), for: .touchUpInside)
-//        view.addSubview(loginButton)
-//    }
-    
-//    @objc func logInBtn(){
-//        guard let email = emailTextField.text, let password = passwordTextField.text, password != "" || email != "" else {
-//            if emailTextField.text == "" && passwordTextField.text == ""{
-//                self.emailTextField.backgroundColor         = UIColor(red: 1, green: 0.954, blue: 0.976, alpha: 1)
-//                self.emailTextField.layer.borderColor       = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1).cgColor
-//                self.passwordTextField.backgroundColor      = UIColor(red: 1, green: 0.954, blue: 0.976, alpha: 1)
-//                self.passwordTextField.textColor            = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1)
-//                self.passwordTextField.layer.borderColor    = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1).cgColor
-//            }
-//            return
-//        }
-//        emailTextField.backgroundColor      = .white
-//        passwordTextField.backgroundColor   = .white
-//        passwordTextField.textColor         = .black
-//        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-////TODO: Warning label
-//        if error != nil{
-//            self.passwordTextField.backgroundColor = UIColor(red: 1, green: 0.954, blue: 0.976, alpha: 1)
-//            self.passwordTextField.layer.borderColor = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1).cgColor
-//            self.emailTextField.backgroundColor = UIColor(red: 1, green: 0.954, blue: 0.976, alpha: 1)
-//            self.emailTextField.layer.borderColor = UIColor(red: 0.962, green: 0.188, blue: 0.467, alpha: 1).cgColor
-//            return
-//        }
-//                if user != nil {
-//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let vc = storyboard.instantiateViewController(withIdentifier: "projectsController") as! ProjectsVC
-//                    vc.modalPresentationStyle = .fullScreen
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                    return
-//                        }
-//
-//        //TODO: Warning label error:
-//                    print("No such User")
-//                }
-//    }
-}
-

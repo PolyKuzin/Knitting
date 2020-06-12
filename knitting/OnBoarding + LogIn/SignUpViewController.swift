@@ -16,12 +16,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     var ref: DatabaseReference!
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signupButton: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var firstNameTextField   : UITextField!
+    @IBOutlet weak var emailTextField       : UITextField!
+    @IBOutlet weak var passwordTextField    : UITextField!
+    @IBOutlet weak var signupButton         : UIButton!
+    @IBOutlet weak var logInBtn             : UIButton!
+    @IBOutlet weak var errorLabel           : UILabel!
     
     override func viewDidLoad() {
         authitication()
@@ -29,10 +29,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         ref = Database.database().reference(withPath: "users")
         view.addGestureRecognizer(tap)
         setingUpKeyboardHiding()
+        settingUpUI()
     }
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
+    }
+    
+    func settingUpUI(){
+        firstNameTextField.designTextField(firstNameTextField)
+        emailTextField.designTextField(emailTextField)
+        passwordTextField.designTextField(passwordTextField)
+        errorLabel.isHidden = true
+        signupButton.designButton(signupButton, 17)
+        logInBtn.designButtonAsLabel(logInBtn, 14)
     }
     
     func isPasswordValid(_ password: String) -> Bool {
@@ -46,7 +56,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         //check that fields are filled in
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)     == "" ||
-        lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" ||
         emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)            == "" ||
         passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" {
             return "Please fill in all fields"
@@ -54,7 +63,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //check the passwird
         let cleanPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if isPasswordValid(cleanPassword) == false {
-            return "Please make sure your password is at least 8 characters or contains # % & 0-9"
+            return "Please make sure your password is at least 8 characters and contains # % & 0-9"
         }
         
         return nil
@@ -66,15 +75,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             showError(error!)
         } else {
             //Create cleaned versions of the data
-            let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let firstName   = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email       = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password    = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
-//             users to FireStore
             let db = Firestore.firestore()
             db.collection("users").addDocument(data: ["firstname"   : firstName,
-                                                      "lastname"    : lastName,
                                                       "email"       : email]) { (error) in
                 if error != nil {
                     self.showError("Error saving user data")
@@ -101,6 +107,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         errorLabel.text = message
         errorLabel.alpha = 1
+        errorLabel.isHidden = false
     }
     
     func transitionToMain(){
@@ -130,14 +137,12 @@ extension SignUpViewController {
     
     func hideKeyboard(){
         firstNameTextField.resignFirstResponder()
-        lastNameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
     
     func delegates(){
         firstNameTextField.delegate     = self
-        lastNameTextField.delegate      = self
         emailTextField.delegate         = self
         passwordTextField.delegate      = self
     }
@@ -154,7 +159,7 @@ extension SignUpViewController {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
-           view.frame.origin.y = -keyboardRect.height
+           view.frame.origin.y = -keyboardRect.height + 20
         } else {
             view.frame.origin.y = 0
         }

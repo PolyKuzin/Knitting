@@ -10,11 +10,15 @@ import UIKit
 import FirebaseAuth
 
 class FirstScreenViewController: UIViewController {
+    
+    @IBOutlet weak var singUpBtn    : UIButton!
+    @IBOutlet weak var logInBtn     : UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         authitication()
-        // Do any additional setup after loading the view.
+        singUpBtn.designButton(singUpBtn, 22)
+        logInBtn.designButtonAsLabel(logInBtn, 17)
     }
 }
 

@@ -13,13 +13,11 @@ struct Users {
     
     let uid             : String
     let email           : String
-//    let firstName       : String
-//    let lastName: String
+
     
     init (user: User){
         self.uid        = user.uid
         self.email      = user.email!
-//        self.firstName  = user.displayName!
-//        self.lastName   = lastName
+
     }
 }

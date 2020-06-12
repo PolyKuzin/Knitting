@@ -9,6 +9,6 @@ target 'knitting' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
-  pod 'Kingfisher', '~> 5.0'
+  pod 'TextFieldEffects'
   
 end

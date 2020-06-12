@@ -52,8 +52,8 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let cell = collectionViewForProjects.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath)  as! ProjectCell
         let project = projects[indexPath.row]
         cell.setCell(project: project, indexPath : indexPath.row)
-        longPressGesture(cell, indexPath)
-        
+//        longPressGesture(cell, indexPath)
+         
         return cell
     }
     
@@ -68,26 +68,27 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let vc = storyboard.instantiateViewController(withIdentifier: "projectLifeController") as! CountersVC
         vc.modalPresentationStyle = .fullScreen
         vc.currentProject = project
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
 //MARK: Delete project
-    
-    
-    
-    func longPressGesture(_ cell: UICollectionViewCell, _ indexPath: IndexPath){
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureAction))
-        longPress.minimumPressDuration = 1.5
-        self.view.addGestureRecognizer(longPress)
-    }
-    
-    @objc func longPressGestureAction(){
-        let alert = UIAlertController(title: "Delete project?", message: "Do you really want to delete the project ?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil))
-        present(alert, animated: true)
-        
-    }
+//
+//
+//
+//    func longPressGesture(_ cell: UICollectionViewCell, _ indexPath: IndexPath){
+//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureAction))
+//        longPress.minimumPressDuration = 1.5
+//        self.view.addGestureRecognizer(longPress)
+//    }
+//
+//    @objc func longPressGestureAction(){
+//        let alert = UIAlertController(title: "Delete project?", message: "Do you really want to delete the project ?", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: nil))
+//        present(alert, animated: true)
+//
+//    }
     
 }
 

@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
-import Kingfisher
 
 struct MyKeys {
     static let imagesFolder = "imagesFolder"
