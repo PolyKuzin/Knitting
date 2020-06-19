@@ -111,14 +111,6 @@ extension ProjectsVC {
         profileImage.widthAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                                      = true
     }
     
-    func setAddProjectConstraints(){
-        addProject.translatesAutoresizingMaskIntoConstraints                                                                    = false
-        addProject.topAnchor.constraint(equalTo: viewToBtn.topAnchor, constant: 15).isActive                                    = true
-        addProject.leadingAnchor.constraint(equalTo: viewToBtn.leadingAnchor, constant: 39).isActive                            = true
-        addProject.trailingAnchor.constraint(equalTo: viewToBtn.trailingAnchor, constant: -39).isActive                         = true
-        addProject.bottomAnchor.constraint(equalTo: viewToBtn.bottomAnchor, constant: -15).isActive                             = true
-        addProject.centerXAnchor.constraint(equalTo: viewToBtn.centerXAnchor).isActive                                          = true
-    }
     func setViewToBtnConstraints(){
         viewToBtn.translatesAutoresizingMaskIntoConstraints                                                                     = false
         viewToBtn.addConstraint(NSLayoutConstraint(item: viewToBtn, attribute: .height, relatedBy: .equal, toItem: viewToBtn, attribute: .width, multiplier: 110 / 60, constant: 0))
@@ -126,6 +118,14 @@ extension ProjectsVC {
         viewToBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 135).isActive                                 = true
         viewToBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive                                   = true
         viewToBtn.heightAnchor.constraint(equalToConstant: 60).isActive                                                         = true
+    }
+    
+    func setAddProjectConstraints(){
+        addProject.translatesAutoresizingMaskIntoConstraints                                                                    = false
+        addProject.centerYAnchor.constraint(equalTo: viewToBtn.centerYAnchor).isActive                                          = true
+        addProject.centerXAnchor.constraint(equalTo: viewToBtn.centerXAnchor).isActive                                          = true
+        addProject.heightAnchor.constraint(equalTo: viewToBtn.heightAnchor, constant: -30).isActive                             = true
+        addProject.widthAnchor.constraint(equalTo: addProject.heightAnchor).isActive                                            = true
     }
 }
 

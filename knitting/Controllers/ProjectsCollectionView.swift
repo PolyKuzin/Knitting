@@ -26,7 +26,7 @@ extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         collectionViewForProjects.register(ProjectCell.self, forCellWithReuseIdentifier: "ProjectCell")
         
         layout.minimumLineSpacing = 10
-        collectionViewForProjects.contentInset                      = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        collectionViewForProjects.contentInset                      = UIEdgeInsets(top: 20, left: 20, bottom: 95, right: 20)
         collectionViewForProjects.backgroundColor                   = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         collectionViewForProjects.showsHorizontalScrollIndicator    = false
         collectionViewForProjects.showsVerticalScrollIndicator      = false

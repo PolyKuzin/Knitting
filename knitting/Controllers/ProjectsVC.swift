@@ -100,35 +100,33 @@ class ProjectsVC: UIViewController {
     }
     
     func configureAddProjectBtn(){
-//TODO переписать кнопку как uiview c картинкой внутри, чтобы поставить к нему тени
-        let shadowPath0 = UIBezierPath(roundedRect: addProject.bounds, cornerRadius: 37)
-        let layer0 = CALayer()
-        layer0.shadowPath = shadowPath0.cgPath
-        layer0.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
-        layer0.shadowOpacity = 1
-        layer0.shadowRadius = 10
-        layer0.shadowOffset = CGSize(width: 0, height: -8)
-        layer0.bounds = addProject.bounds
-        layer0.position = addProject.center
-        
+    
+        viewToBtn.addSubview(addProject)
+        view.addSubview(viewToBtn)
+        viewToBtn.bringSubviewToFront(addProject)
+        view.bringSubviewToFront(viewToBtn)
+        setViewToBtnConstraints()
+        setAddProjectConstraints()
+
         addProject.setImage(#imageLiteral(resourceName: "Add"), for: .normal)
         addProject.addTarget(self, action: #selector(showNewProjectVC), for: .touchUpInside)
-        viewToBtn.addSubview(addProject)
-//        viewToBtn.frame = addProject.frame
-        viewToBtn.backgroundColor = .red
-        view.addSubview(viewToBtn)
-        setViewToBtnConstraints()
-        view.bringSubviewToFront(viewToBtn)
-        viewToBtn.addSubview(addProject)
-        viewToBtn.bringSubviewToFront(addProject)
-        viewToBtn.layer.addSublayer(layer0)
-//        view.addSubview(addProject)
+       
+        viewToBtn.frame = CGRect(x: 0, y: 0, width: 110, height: 60)
+        viewToBtn.backgroundColor = .white
         viewToBtn.layer.cornerRadius = viewToBtn.frame.size.height / 2
         viewToBtn.clipsToBounds = true
         addProject.frame = viewToBtn.frame
-        setAddProjectConstraints()
         
+        viewToBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        viewToBtn.layer.shadowOpacity = 1
+        viewToBtn.layer.shadowOffset = CGSize.zero
+        viewToBtn.layer.shadowRadius = 10
+        viewToBtn.layer.shouldRasterize = true
+        viewToBtn.layer.masksToBounds = false
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showNewProjectVC))
+        viewToBtn.addGestureRecognizer(tap)
+
     }
     
     @objc func showNewProjectVC(){
@@ -146,6 +144,7 @@ class ProjectsVC: UIViewController {
         view.addSubview(ai)
         ai.startAnimating()
     }
+    
     func stopActivityIndicator(){
         ai.stopAnimating()
     }
