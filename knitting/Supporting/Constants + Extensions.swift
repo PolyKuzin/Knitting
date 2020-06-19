@@ -14,6 +14,7 @@ struct ConstantIdentifires {
     }
 }
 
+//MARK: Design
 struct Colors {
     static let firstColor               = UIColor(red: 0.584, green: 0.475, blue: 0.820, alpha: 1)
     static let secondColor              = UIColor(red: 0.745, green: 0.616, blue: 0.875, alpha: 1)
@@ -64,9 +65,6 @@ extension UIButton {
             button.titleLabel?.font   = UIFont(name: Fonts.displaySemiBold, size: textSize)
 
         }
-        
-        if textSize == 22 {
-        }
     }
 }
 
@@ -74,50 +72,60 @@ extension UIButton {
 extension ProjectsVC {
     
     func collectionViewConstraints(){
-        upStorysCollectionView.translatesAutoresizingMaskIntoConstraints                                                = false
-        upStorysCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive                     = true
-        upStorysCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                           = true
-        upStorysCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                         = true
-        upStorysCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4).isActive       = true
+        upStorysCollectionView.translatesAutoresizingMaskIntoConstraints                                                        = false
+        upStorysCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive                             = true
+        upStorysCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                                   = true
+        upStorysCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                                 = true
+        upStorysCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4).isActive               = true
      }
     
     func setProjectsCollectionViewConstraints(){
-        collectionViewForProjects.translatesAutoresizingMaskIntoConstraints                                            = false
-        collectionViewForProjects.topAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
-        collectionViewForProjects.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive                         = true
-        collectionViewForProjects.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                       = true
-        collectionViewForProjects.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                     = true
+        collectionViewForProjects.translatesAutoresizingMaskIntoConstraints                                                     = false
+        collectionViewForProjects.topAnchor.constraint(equalTo: cardView.bottomAnchor).isActive                                 = true
+        collectionViewForProjects.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive                                  = true
+        collectionViewForProjects.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                                = true
+        collectionViewForProjects.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                              = true
     }
     
     func cardViewConstraints(){
-        cardView.translatesAutoresizingMaskIntoConstraints                                                              = false
-        cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                                         = true
-        cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                                       = true
-        cardView.topAnchor.constraint(equalTo: upStorysCollectionView.bottomAnchor).isActive                            = true
-        cardView.heightAnchor.constraint(equalToConstant: 60).isActive                                                  = true
+        cardView.translatesAutoresizingMaskIntoConstraints                                                                      = false
+        cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                                                 = true
+        cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                                               = true
+        cardView.topAnchor.constraint(equalTo: upStorysCollectionView.bottomAnchor).isActive                                    = true
+        cardView.heightAnchor.constraint(equalToConstant: 60).isActive                                                          = true
     }
     
     func labelConstraints() {
-        workingOnThese.translatesAutoresizingMaskIntoConstraints                                                        = false
-        workingOnThese.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive                         = true
-        workingOnThese.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20).isActive                 = true
-        workingOnThese.trailingAnchor.constraint(greaterThanOrEqualTo: cardView.trailingAnchor, constant: 20).isActive  = true
-        workingOnThese.heightAnchor.constraint(equalToConstant: 30).isActive                                            = true
+        workingOnThese.translatesAutoresizingMaskIntoConstraints                                                                = false
+        workingOnThese.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive                                 = true
+        workingOnThese.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20).isActive                         = true
+        workingOnThese.trailingAnchor.constraint(greaterThanOrEqualTo: cardView.trailingAnchor, constant: 20).isActive          = true
+        workingOnThese.heightAnchor.constraint(equalToConstant: 30).isActive                                                    = true
     }
     
     func profileImageConstraints(){
-        profileImage.translatesAutoresizingMaskIntoConstraints                                                          = false
-        profileImage.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive                           = true
-        profileImage.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20).isActive                = true
-        profileImage.heightAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                             = true
-        profileImage.widthAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                              = true
+        profileImage.translatesAutoresizingMaskIntoConstraints                                                                  = false
+        profileImage.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive                                   = true
+        profileImage.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20).isActive                        = true
+        profileImage.heightAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                                     = true
+        profileImage.widthAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                                      = true
     }
     
     func setAddProjectConstraints(){
-        
-        addProject.translatesAutoresizingMaskIntoConstraints                                                            = false
-        addProject.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive                          = true
-        addProject.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive                                       = true
+        addProject.translatesAutoresizingMaskIntoConstraints                                                                    = false
+        addProject.topAnchor.constraint(equalTo: viewToBtn.topAnchor, constant: 15).isActive                                    = true
+        addProject.leadingAnchor.constraint(equalTo: viewToBtn.leadingAnchor, constant: 39).isActive                            = true
+        addProject.trailingAnchor.constraint(equalTo: viewToBtn.trailingAnchor, constant: -39).isActive                         = true
+        addProject.bottomAnchor.constraint(equalTo: viewToBtn.bottomAnchor, constant: -15).isActive                             = true
+        addProject.centerXAnchor.constraint(equalTo: viewToBtn.centerXAnchor).isActive                                          = true
+    }
+    func setViewToBtnConstraints(){
+        viewToBtn.translatesAutoresizingMaskIntoConstraints                                                                     = false
+        viewToBtn.addConstraint(NSLayoutConstraint(item: viewToBtn, attribute: .height, relatedBy: .equal, toItem: viewToBtn, attribute: .width, multiplier: 110 / 60, constant: 0))
+        viewToBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -135).isActive                              = true
+        viewToBtn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 135).isActive                                 = true
+        viewToBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive                                   = true
+        viewToBtn.heightAnchor.constraint(equalToConstant: 60).isActive                                                         = true
     }
 }
 
@@ -126,17 +134,15 @@ extension ProjectCell {
     
     func setCellViewConstraints(){
         
-        cellView.translatesAutoresizingMaskIntoConstraints = false
-        //cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20).isActive = true
-        cellView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        cellView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        //cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -20).isActive = true
+        cellView.translatesAutoresizingMaskIntoConstraints                                                                      = false
+        cellView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive                                                      = true
+        cellView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive                                                      = true
     }
     
     func setProjectImageConstraints(){
         
         projectImageView.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive                                           = true
+        projectImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive                                              = true
         projectImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive                                = true
         projectImageView.heightAnchor.constraint(equalToConstant: 90).isActive                                                  = true
         projectImageView.widthAnchor.constraint(equalToConstant: 90).isActive                                                   = true
@@ -148,15 +154,15 @@ extension ProjectCell {
         projectNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20).isActive                               = true
         projectNameLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
         projectNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: -12).isActive   = true
+        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: -12).isActive                 = true
     }
     func setProjectTagsConstraints(){
         
         projectTagsLabel.translatesAutoresizingMaskIntoConstraints                                                              = false
-        projectTagsLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive                           = true
+        projectTagsLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20).isActive                                = true
         projectTagsLabel.leadingAnchor.constraint(equalTo: projectImageView.trailingAnchor, constant: 20).isActive              = true
         projectTagsLabel.heightAnchor.constraint(equalToConstant: 25).isActive                                                  = true
-        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: -12).isActive   = true
+        projectNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: -12).isActive                 = true
     }
 }
 
@@ -182,4 +188,21 @@ extension UIView {
            bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
            rightAnchor.constraint(equalTo: superView.rightAnchor).isActive = true
        }
+    
+}
+
+//MARK: String to Image
+extension String {
+    func toImage() -> UIImage? {
+        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters){
+            return UIImage(data: data)
+        }
+        return nil
+    }
+}
+extension UIImage {
+    func toString() -> String? {
+        let data: Data? = self.pngData()
+        return data?.base64EncodedString(options: .endLineWithLineFeed)
+    }
 }

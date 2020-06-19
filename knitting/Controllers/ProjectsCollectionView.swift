@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 extension ProjectsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
     func configureCollectionViewForProjects(){
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -106,18 +107,26 @@ extension UIView {
     //MARK: Delete project
 extension ProjectsVC: SwipeableCollectionViewCellDelegate {
     func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
+        activiryIndicator()
         guard let indexPath = collectionViewForProjects.indexPath(for: cell) else { return }
+        let project = projects[indexPath.row]
+        project.ref?.removeValue()
         collectionViewForProjects.performBatchUpdates({
             self.collectionViewForProjects.deleteItems(at: [indexPath])
         })
-        let project = projects[indexPath.row]
-        project.ref?.removeValue()
-        collectionViewForProjects.reloadData()
+        selfPresentation()
+        stopActivityIndicator()
+    }
+    
+    func selfPresentation(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "projectsController") as! ProjectsVC
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
         guard let indexPath = collectionViewForProjects.indexPath(for: cell) else { return }
-        print("Tapped item at index path: \(indexPath)")
         let project = projects[indexPath.row]
         collectionViewForProjects.deselectItem(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

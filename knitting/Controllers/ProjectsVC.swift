@@ -20,6 +20,7 @@ class ProjectsVC: UIViewController {
     var tableView                   = UITableView()
     var workingOnThese              = UILabel()
     var addProject                  = UIButton()
+    var viewToBtn                   = UIView()
     var profileImage                = UIImageView()
     var upStorysCollectionView      = GallaryCollectionView()
     let layout                      = UICollectionViewFlowLayout()
@@ -65,7 +66,6 @@ class ProjectsVC: UIViewController {
         configuringProfileImage()
         configureAddProjectBtn()
         configureCollectionViewForProjects()
-        
     }
     
     func setStorysCollectionView(){
@@ -101,8 +101,6 @@ class ProjectsVC: UIViewController {
     
     func configureAddProjectBtn(){
 //TODO переписать кнопку как uiview c картинкой внутри, чтобы поставить к нему тени
-        addProject.setImage(#imageLiteral(resourceName: "Add"), for: .normal)
-        addProject.addTarget(self, action: #selector(showNewProjectVC), for: .touchUpInside)
         let shadowPath0 = UIBezierPath(roundedRect: addProject.bounds, cornerRadius: 37)
         let layer0 = CALayer()
         layer0.shadowPath = shadowPath0.cgPath
@@ -112,8 +110,22 @@ class ProjectsVC: UIViewController {
         layer0.shadowOffset = CGSize(width: 0, height: -8)
         layer0.bounds = addProject.bounds
         layer0.position = addProject.center
-        addProject.layer.addSublayer(layer0)
-        view.addSubview(addProject)
+        
+        addProject.setImage(#imageLiteral(resourceName: "Add"), for: .normal)
+        addProject.addTarget(self, action: #selector(showNewProjectVC), for: .touchUpInside)
+        viewToBtn.addSubview(addProject)
+//        viewToBtn.frame = addProject.frame
+        viewToBtn.backgroundColor = .red
+        view.addSubview(viewToBtn)
+        setViewToBtnConstraints()
+        view.bringSubviewToFront(viewToBtn)
+        viewToBtn.addSubview(addProject)
+        viewToBtn.bringSubviewToFront(addProject)
+        viewToBtn.layer.addSublayer(layer0)
+//        view.addSubview(addProject)
+        viewToBtn.layer.cornerRadius = viewToBtn.frame.size.height / 2
+        viewToBtn.clipsToBounds = true
+        addProject.frame = viewToBtn.frame
         setAddProjectConstraints()
         
         

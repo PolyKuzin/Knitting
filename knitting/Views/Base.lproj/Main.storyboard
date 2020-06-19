@@ -13,7 +13,7 @@
         <array key="SF-Pro-Text-Semibold.otf">
             <string>SFProText-Semibold</string>
         </array>
-        <array key="SFProRounded-Bold.ttf">
+        <array key="SFProRounded.ttf">
             <string>SFRounded-Ultralight</string>
         </array>
     </customFonts>
@@ -764,7 +764,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a counter with the project name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-NO-9cz">
-                                                    <rect key="frame" x="16" y="128" width="307.33333333333331" height="27"/>
+                                                    <rect key="frame" x="16" y="128" width="281.33333333333331" height="27"/>
                                                     <fontDescription key="fontDescription" name="SFRounded-Ultralight" family="SF Pro Rounded" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
