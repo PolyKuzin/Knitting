@@ -76,7 +76,7 @@ extension ProjectsVC {
         upStorysCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive                             = true
         upStorysCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                                   = true
         upStorysCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                                 = true
-        upStorysCollectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4).isActive               = true
+        upStorysCollectionView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.height / 4) + 20).isActive        = true
      }
     
     func setProjectsCollectionViewConstraints(){
@@ -91,7 +91,7 @@ extension ProjectsVC {
         cardView.translatesAutoresizingMaskIntoConstraints                                                                      = false
         cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive                                                 = true
         cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive                                               = true
-        cardView.topAnchor.constraint(equalTo: upStorysCollectionView.bottomAnchor).isActive                                    = true
+        cardView.topAnchor.constraint(equalTo: upStorysCollectionView.bottomAnchor, constant: -20).isActive                     = true
         cardView.heightAnchor.constraint(equalToConstant: 60).isActive                                                          = true
     }
     

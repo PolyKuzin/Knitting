@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    var ref             : DatabaseReference!
+    var stories         = Array<Story>()
+    var user            : Users!
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -19,12 +23,28 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         delegate = self
         dataSource = self
         register(GalleryCell.self, forCellWithReuseIdentifier: "GalleryCell")
-        
+        ref = Database.database().reference(withPath: "users").child(String(user.uid))
         layout.minimumLineSpacing = 10
-        contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
         clipsToBounds = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+       saveNewStory()
+    }
+    
+    func selfInit(){
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("stories")
+        ref.observe(.value, with: { [weak self] (snapshot) in
+            var _stories = Array<Story>()
+            for item in snapshot.children {
+                let story = Story(snapshot: item as! DataSnapshot)
+                _stories.append(story)
+            }
+            self?.stories = _stories
+            self?.reloadData()
+        })
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +52,7 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return stories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,4 +69,13 @@ struct Constants {
     static let rightDistanceToView: CGFloat = 40
     static let galleryMinimumLineSpacing: CGFloat = 10
     static let galleryItemWidth = (UIScreen.main.bounds.width - Constants.leftDistanceToView - Constants.rightDistanceToView - (Constants.galleryMinimumLineSpacing / 2)) / 3
+}
+
+extension GallaryCollectionView {
+    
+    func saveNewStory(){
+        let story = Story(title: "Test", imageData: "test", url: "test.com", text: "test test")
+        let storytRef = self.ref.child("stories").child(story.title.lowercased())
+        storytRef.setValue(story.storyToDictionary())
+    }
 }

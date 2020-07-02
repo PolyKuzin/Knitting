@@ -19,7 +19,12 @@ struct CounterToKnit {
     var rowsMax         : Int
     var congratulations : Bool = false
     
-    init(userID: String, projectID: String, name: String, rows: Int, rowsMax: Int) {
+    init(userID: String,
+         projectID: String,
+         name: String,
+         rows: Int,
+         rowsMax: Int) {
+        
         self.userID         = userID
         self.projectID      = projectID
         self.name           = name
