@@ -23,13 +23,12 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         delegate = self
         dataSource = self
         register(GalleryCell.self, forCellWithReuseIdentifier: "GalleryCell")
-        ref = Database.database().reference(withPath: "users").child(String(user.uid))
         layout.minimumLineSpacing = 10
         contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
         clipsToBounds = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
-       saveNewStory()
+//        selfInit()
     }
     
     func selfInit(){
@@ -52,10 +51,14 @@ class GallaryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return stories.count
+        return stories.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row == 1 {
+            let cell = dequeueReusableCell(withReuseIdentifier: "GalleryCell", for: indexPath) as! GalleryCell
+            cell.boolValue = true
+        }
         let cell = dequeueReusableCell(withReuseIdentifier: "GalleryCell", for: indexPath)
         return cell
     }
@@ -73,9 +76,14 @@ struct Constants {
 
 extension GallaryCollectionView {
     
-    func saveNewStory(){
-        let story = Story(title: "Test", imageData: "test", url: "test.com", text: "test test")
-        let storytRef = self.ref.child("stories").child(story.title.lowercased())
-        storytRef.setValue(story.storyToDictionary())
-    }
+//    func saveNewStory(){
+//        
+//        guard let image = UIImage(named: "ball")?.toString() else {return}
+//        let story = Story(title     : "Test",
+//                          imageData : image,
+//                          url       : "test.com",
+//                          text      : "test test")
+//        let storyRef = self.ref.child(story.title.lowercased())
+//        storyRef.setValue(story.storyToDictionary())
+//    }
 }

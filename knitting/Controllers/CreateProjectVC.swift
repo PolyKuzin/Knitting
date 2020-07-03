@@ -131,12 +131,11 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
                                         name: projectName.text!,
                                         rows: 0,
                                         rowsMax: 1000)
-            //let projectRef = self.ref.child("projects").child(project.name.lowercased()
-            let counterRef = self.ref.child("projects").child((projectName.text?.lowercased())!).child(counter.name.lowercased())
+        let counterRef = self.ref.child("projects").child((projectName.text?.lowercased())!).child(counter.name.lowercased())
         counterRef.setValue(counter.counterToDictionary())
         }
     }
-    //MARK: Seting up...
+//MARK: Seting up...
     private func setUpEditScreen(){
         if editingProject != nil {
             setUpNavigationBar()
@@ -145,7 +144,7 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
             projectImage.image = image
             projectName.text = editingProject?.name
             countersRowsMax.isHidden = true
-            //TODO: Rewrite it switch statement
+//TODO: Rewrite it switch statement
             if editingProject?.tags.count == 1 {
                 projectTag1.text = editingProject?.tags
             }
