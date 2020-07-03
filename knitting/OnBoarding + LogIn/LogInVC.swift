@@ -78,6 +78,9 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                         self.passwordTextField.textColor            = Colors.errorTextFieldBorder
                         self.emailTextField.textColor               = Colors.errorTextFieldBorder
                         self.showError(err!.localizedDescription)
+                        self.loginButton.shakeAnimation()
+                        self.emailTextField.shakeAnimation()
+                        self.passwordTextField.shakeAnimation()
                         return
                     }
                     if user != nil {

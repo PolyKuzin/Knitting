@@ -105,6 +105,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func showError(_ message: String) {
         
+        signupButton.shakeAnimation()
+        firstNameTextField.shakeAnimation()
+        emailTextField.shakeAnimation()
+        passwordTextField.shakeAnimation()
         errorLabel.text = message
         errorLabel.alpha = 1
         errorLabel.isHidden = false

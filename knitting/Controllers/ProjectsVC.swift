@@ -140,6 +140,8 @@ class ProjectsVC: UIViewController {
     }
     
     @objc func showNewProjectVC(){
+        viewToBtn.springAnimation(viewToBtn)
+        addProject.springAnimation(addProject)
         let viewController : UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateProjectVC") as! CreateProjectVC
         self.present(viewController, animated: true, completion: nil)
     }

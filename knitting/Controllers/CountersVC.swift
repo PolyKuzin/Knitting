@@ -98,7 +98,7 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
     func tableView(_ counterTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let counter = counters[indexPath.row]
-        cell.layer.cornerRadius = 10
+        
         cell.counterName.text = counter.name
         cell.counterNumbers.text = String(counter.rows)
         cell.plusBtn.tag = indexPath.row
@@ -133,6 +133,10 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
         if currentCounter.rows <= 0 {
             currentCounter.ref?.updateChildValues(["rows": 0])
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // DeleteAction
@@ -242,12 +246,12 @@ extension CountersVC {
             projectImage.layer.cornerRadius = 15
             addCounterView.layer.cornerRadius = 5
             conratulationView.layer.cornerRadius = 5
-            tag1LabelView.layer.cornerRadius = 5
-            tag1LabelView.clipsToBounds = true
-            tag2LabelView.layer.cornerRadius = 5
-            tag2LabelView.clipsToBounds = true
-            tag3LabelView.layer.cornerRadius = 5
-            tag3LabelView.clipsToBounds = true
+//            tag1LabelView.layer.cornerRadius = 5
+//            tag1LabelView.clipsToBounds = true
+//            tag2LabelView.layer.cornerRadius = 5
+//            tag2LabelView.clipsToBounds = true
+//            tag3LabelView.layer.cornerRadius = 5
+//            tag3LabelView.clipsToBounds = true
             
             effect = visualEffectView.effect
             visualEffectView.effect = nil
@@ -258,36 +262,36 @@ extension CountersVC {
             projectImage.image = image
             counterTable.tableFooterView = UIView()
 // TODO: Rewrite it in For - in cicle
-                switch currentProject!.tags.count {
-                case 1,2,3:
-                    tag1Label.text = currentProject?.tags
-                    tag1Label.isHidden = false
-                    tag1LabelView.isHidden = false
-//                case 2:
-////                    tag1Label.text = currentProject?.tags[0]
-////                    tag2Label.text = currentProject?.tags[1]
+//                switch currentProject!.tags.count {
+//                case 1,2,3:
+//                    tag1Label.text = currentProject?.tags
 //                    tag1Label.isHidden = false
 //                    tag1LabelView.isHidden = false
-//                    tag2Label.isHidden = false
-//                    tag2LabelView.isHidden = false
-//                case 3:
-////                    tag1Label.text = currentProject?.tags[0]
-////                    tag2Label.text = currentProject?.tags[1]
-////                    tag3Label.text = currentProject?.tags[2]
-//                    tag1Label.isHidden = false
-//                    tag1LabelView.isHidden = false
-//                    tag2Label.isHidden = false
-//                    tag2LabelView.isHidden = false
-//                    tag3Label.isHidden = false
-//                    tag3LabelView.isHidden = false
-                default:
-                    tag1Label.isHidden = true
-                    tag1LabelView.isHidden = true
-                    tag2Label.isHidden = true
-                    tag2LabelView.isHidden = true
-                    tag3Label.isHidden = true
-                    tag3LabelView.isHidden = true
-                }
+////                case 2:
+//////                    tag1Label.text = currentProject?.tags[0]
+//////                    tag2Label.text = currentProject?.tags[1]
+////                    tag1Label.isHidden = false
+////                    tag1LabelView.isHidden = false
+////                    tag2Label.isHidden = false
+////                    tag2LabelView.isHidden = false
+////                case 3:
+//////                    tag1Label.text = currentProject?.tags[0]
+//////                    tag2Label.text = currentProject?.tags[1]
+//////                    tag3Label.text = currentProject?.tags[2]
+////                    tag1Label.isHidden = false
+////                    tag1LabelView.isHidden = false
+////                    tag2Label.isHidden = false
+////                    tag2LabelView.isHidden = false
+////                    tag3Label.isHidden = false
+////                    tag3LabelView.isHidden = false
+//                default:
+//                    tag1Label.isHidden = true
+//                    tag1LabelView.isHidden = true
+//                    tag2Label.isHidden = true
+//                    tag2LabelView.isHidden = true
+//                    tag3Label.isHidden = true
+//                    tag3LabelView.isHidden = true
+//                }
         }
     }
     private func setUpNavigationBar() {

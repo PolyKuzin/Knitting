@@ -31,11 +31,11 @@ class CreateProjectVC: UITableViewController, UINavigationControllerDelegate {
     var imageIsChanged = false
     var projectTags: [String?] = []
     
-    @IBOutlet weak var projectImage: UIImageView!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var projectName: UITextField!
-    @IBOutlet weak var projectTag1: UITextField!
-    @IBOutlet weak var countersRowsMax: UITextField!
+    @IBOutlet weak var projectImage     : UIImageView!
+    @IBOutlet weak var saveButton       : UIButton!
+    @IBOutlet weak var projectName      : UITextField!
+    @IBOutlet weak var projectTag1      : UITextField!
+    @IBOutlet weak var countersRowsMax  : UITextField!
     @IBAction func cancelAction(_ sender: Any) {
         
         dismiss(animated: true)
