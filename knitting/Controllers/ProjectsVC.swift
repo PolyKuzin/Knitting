@@ -27,6 +27,15 @@ class ProjectsVC: UIViewController {
     var collectionViewForProjects   = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var projects                    = Array<ProjectToKnit>()
     
+    let darkBackground = UIView()
+    let closeLabel = UILabel()
+
+    @IBOutlet weak var profileView   : UIView!
+    @IBOutlet weak var nameAccount   : UILabel!
+    @IBOutlet weak var emailAccount  : UILabel!
+    @IBOutlet weak var signOutBtn    : UIButton!
+    @IBOutlet weak var deleteAccount : UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activiryIndicator()
@@ -75,18 +84,17 @@ class ProjectsVC: UIViewController {
     }
     
     func configuratingCardView(){
-        cardView.backgroundColor    = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        cardView.frame              = .zero
-//        cardView.layer.shadowPath = UIBezierPath(rect: cardView.bounds).cgPath
-        cardView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
-        cardView.layer.shadowOpacity = 0.3
-        cardView.layer.shadowOffset = CGSize(width: 0, height: -20)
-        cardView.layer.shadowRadius = 4
-        cardView.layer.shouldRasterize = true
-        cardView.layer.masksToBounds = false
-        cardView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        cardView.backgroundColor        = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cardView.frame                  = .zero
+        cardView.layer.shadowColor      = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        cardView.layer.shadowOpacity    = 0.3
+        cardView.layer.shadowOffset     = CGSize(width: 0, height: -20)
+        cardView.layer.shadowRadius     = 4
+        cardView.layer.shouldRasterize  = true
+        cardView.layer.masksToBounds    = false
+        cardView.layer.maskedCorners    = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         
-        cardView.layer.cornerRadius = 30
+        cardView.layer.cornerRadius     = 30
         view.addSubview(cardView)
         view.bringSubviewToFront(cardView)
         cardViewConstraints()
@@ -101,13 +109,60 @@ class ProjectsVC: UIViewController {
     }
     
     func configuringProfileImage(){
-        
-        profileImage.image = #imageLiteral(resourceName: "profile")
-        profileImage.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        profileImage.image = #imageLiteral(resourceName: "Profile-1")
+        profileImage.frame = .zero
         cardView.addSubview(profileImage)
         cardView.bringSubviewToFront(profileImage)
         profileImageConstraints()
+        profileImage.isUserInteractionEnabled = true
+        let profileTap = UITapGestureRecognizer(target: self, action: #selector(showProfileView))
+        profileImage.addGestureRecognizer(profileTap)
+        
+//        let outProfile = UITapGestureRecognizer(target: self, action: #selector(outProfileView))
+//        self.view.addGestureRecognizer(outProfile)
     }
+    
+    @objc func showProfileView() {
+        animateIn()
+    }
+    
+    @objc func outProfileView() {
+        animatedOut()
+    }
+    
+    func animateIn() {
+        self.view.addSubview(profileView)
+        setProfileViewConstraints()
+        darkBackground.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        darkBackground.alpha = 0.7
+        self.view.addSubview(darkBackground)
+        darkBackground.addSubview(closeLabel)
+        setDarkBackGroundConstraints()
+        
+        self.view.bringSubviewToFront(profileView)
+        profileView.transform = CGAffineTransform(translationX: 0, y: profileView.frame.height)
+        profileView.alpha                  = 0
+        profileView.layer.cornerRadius     = 20
+        profileView.layer.masksToBounds    = false
+        profileView.layer.maskedCorners    = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+            
+        UIView.animate(withDuration: 0.3) {
+            self.darkBackground.alpha = 0.7
+            self.profileView.alpha = 1
+            self.profileView.transform = CGAffineTransform.identity
+            }
+        }
+        
+        func animatedOut() {
+            UIView.animate(withDuration: 0.4, animations: {
+                self.profileView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                self.profileView.alpha = 0
+    //            self.visualEffectView.isHidden = true
+    //            self.visualEffectView.effect = nil
+            }) { (success: Bool) in
+                self.profileView.removeFromSuperview()
+            }
+        }
     
     func configureAddProjectBtn(){
     

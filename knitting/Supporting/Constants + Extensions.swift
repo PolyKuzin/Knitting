@@ -105,11 +105,33 @@ extension ProjectsVC {
     
     func profileImageConstraints(){
         profileImage.translatesAutoresizingMaskIntoConstraints                                                                  = false
-        profileImage.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20).isActive                                   = true
-        profileImage.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20).isActive                        = true
-        profileImage.heightAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                                     = true
-        profileImage.widthAnchor.constraint(equalTo: workingOnThese.heightAnchor).isActive                                      = true
+        profileImage.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 15).isActive                                   = true
+        profileImage.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -30).isActive                        = true
+        profileImage.heightAnchor.constraint(equalTo: workingOnThese.heightAnchor, constant: 10).isActive                       = true
+        profileImage.widthAnchor.constraint(equalTo: workingOnThese.heightAnchor, constant: 10).isActive                        = true
     }
+    
+    func setProfileViewConstraints(){
+        profileView.translatesAutoresizingMaskIntoConstraints                                                                   = false
+        profileView.heightAnchor.constraint(equalToConstant: 300).isActive                                                      = true
+        profileView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive                           = true
+        profileView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive                                           = true
+        profileView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive                                       = true
+        profileView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive                                         = true
+    }
+    
+    func setDarkBackGroundConstraints(){
+        darkBackground.translatesAutoresizingMaskIntoConstraints                                                                = false
+        darkBackground.topAnchor.constraint(equalTo: self.view.topAnchor).isActive                                              = true
+        darkBackground.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive                                    = true
+        darkBackground.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive                                      = true
+        darkBackground.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive                                        = true
+        
+        closeLabel.translatesAutoresizingMaskIntoConstraints                                                                    = false
+        closeLabel.bottomAnchor.constraint(equalTo: profileView.topAnchor, constant: 15).isActive                               = true
+        closeLabel.centerXAnchor.constraint(equalTo: darkBackground.centerXAnchor).isActive                                     = true
+    }
+
     
     func setViewToBtnConstraints(){
         viewToBtn.translatesAutoresizingMaskIntoConstraints                                                                     = false

@@ -98,7 +98,6 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
     func tableView(_ counterTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = counterTable.dequeueReusableCell(withIdentifier: "counterCell", for: indexPath) as! CountersViewCell
         let counter = counters[indexPath.row]
-        
         cell.counterName.text = counter.name
         cell.counterNumbers.text = String(counter.rows)
         cell.plusBtn.tag = indexPath.row
@@ -156,8 +155,8 @@ class CountersVC: UIViewController, UITableViewDataSource, UITableViewDelegate  
         countersRowsField.text = ""
     }
     
-    //MARK: PopUP Animation
-    //ADITING new counter
+//MARK: PopUP Animation
+//ADITING new counter
     func animateIn() {
         self.view.addSubview(addCounterView)
         addCounterView.center = self.view.center
