@@ -11,13 +11,13 @@ import Firebase
 
 struct Users {
     
-    let uid             : String
-    let email           : String
+    let uid				: String
+    let email			: String
 
     
     init (user: User){
-        self.uid        = user.uid
-        self.email      = user.email!
+        self.uid		= user.uid
+        self.email		= user.email!
 
     }
 }

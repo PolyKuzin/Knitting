@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class FirstScreenViewController: UIViewController {
+class FirstScreenVC: UIViewController {
     
     @IBOutlet weak var singUpBtn    : UIButton!
     @IBOutlet weak var logInBtn     : UIButton!
@@ -22,7 +22,7 @@ class FirstScreenViewController: UIViewController {
     }
 }
 
-extension FirstScreenViewController {
+extension FirstScreenVC {
     func authitication() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {

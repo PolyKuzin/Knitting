@@ -8,16 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		991A00C62481CBF0003DE7C2 /* Constants + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00C52481CBF0003DE7C2 /* Constants + Extensions.swift */; };
-		991A00CB248702D1003DE7C2 /* SFProRounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */; };
-		991A00CD248702E1003DE7C2 /* SFProRounded.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991A00CC248702E1003DE7C2 /* SFProRounded.ttf */; };
 		991A00CF2488192F003DE7C2 /* userCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A00CE2488192F003DE7C2 /* userCell.swift */; };
-		991EA403248C1F74005327C4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991EA402248C1F74005327C4 /* SignUpViewController.swift */; };
-		991EA405248C1F9D005327C4 /* FirstScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991EA404248C1F9D005327C4 /* FirstScreenViewController.swift */; };
+		991EA403248C1F74005327C4 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991EA402248C1F74005327C4 /* SignUpVC.swift */; };
+		991EA405248C1F9D005327C4 /* FirstScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991EA404248C1F9D005327C4 /* FirstScreenVC.swift */; };
 		9939C9F7246DC6DE0029EFB1 /* Gifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939C9F6246DC6DE0029EFB1 /* Gifs.swift */; };
 		9939C9F9246DC88B0029EFB1 /* congratulations.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9939C9F8246DC88A0029EFB1 /* congratulations.gif */; };
 		997E85132458B6FF0074BE4B /* CountersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E85122458B6FF0074BE4B /* CountersVC.swift */; };
 		99984914249D025000307D3C /* MStories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99984913249D025000307D3C /* MStories.swift */; };
-		9998493824AF581300307D3C /* SF-PRO-ROUNDED-MEDIUM_0.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 9998493724AF581300307D3C /* SF-PRO-ROUNDED-MEDIUM_0.OTF */; };
 		9998AA4B2477EC7000629CBF /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4A2477EC7000629CBF /* CollectionsView.swift */; };
 		9998AA4F2477F15700629CBF /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA4E2477F15700629CBF /* GalleryCell.swift */; };
 		9998AA552478210500629CBF /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9998AA542478210500629CBF /* ProjectsCell.swift */; };
@@ -48,16 +45,13 @@
 /* Begin PBXFileReference section */
 		5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
 		991A00C52481CBF0003DE7C2 /* Constants + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants + Extensions.swift"; sourceTree = "<group>"; };
-		991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Bold.ttf"; sourceTree = "<group>"; };
-		991A00CC248702E1003DE7C2 /* SFProRounded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRounded.ttf; sourceTree = "<group>"; };
 		991A00CE2488192F003DE7C2 /* userCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userCell.swift; sourceTree = "<group>"; };
-		991EA402248C1F74005327C4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		991EA404248C1F9D005327C4 /* FirstScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenViewController.swift; sourceTree = "<group>"; };
+		991EA402248C1F74005327C4 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		991EA404248C1F9D005327C4 /* FirstScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenVC.swift; sourceTree = "<group>"; };
 		9939C9F6246DC6DE0029EFB1 /* Gifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gifs.swift; sourceTree = "<group>"; };
 		9939C9F8246DC88A0029EFB1 /* congratulations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = congratulations.gif; sourceTree = "<group>"; };
 		997E85122458B6FF0074BE4B /* CountersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersVC.swift; sourceTree = "<group>"; };
 		99984913249D025000307D3C /* MStories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MStories.swift; sourceTree = "<group>"; };
-		9998493724AF581300307D3C /* SF-PRO-ROUNDED-MEDIUM_0.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-PRO-ROUNDED-MEDIUM_0.OTF"; path = "../../../../../Downloads/SF-PRO-ROUNDED-MEDIUM_0.OTF"; sourceTree = "<group>"; };
 		9998AA4A2477EC7000629CBF /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		9998AA4E2477F15700629CBF /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		9998AA542478210500629CBF /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
@@ -81,6 +75,8 @@
 		99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		99D4CC0724940ED500C5B803 /* SwipeableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCollectionViewCell.swift; sourceTree = "<group>"; };
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
+		99DFCCA024E576D4009B196A /* SFProRounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Bold.ttf"; sourceTree = "<group>"; };
+		99DFCCA124E576D4009B196A /* SFProRounded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRounded.ttf; sourceTree = "<group>"; };
 		99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCollectionView.swift; sourceTree = "<group>"; };
 		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -165,7 +161,7 @@
 				E9FED6BD5723560AF915FB70 /* Frameworks */,
 			);
 			sourceTree = "<group>";
-			usesTabs = 0;
+			usesTabs = 1;
 		};
 		999EACD62455C17300321D3E /* Products */ = {
 			isa = PBXGroup;
@@ -186,8 +182,8 @@
 				997E851A2459E2830074BE4B /* Cells */,
 				999EACE12455C17500321D3E /* Assets.xcassets */,
 				9939C9F8246DC88A0029EFB1 /* congratulations.gif */,
-				991A00CC248702E1003DE7C2 /* SFProRounded.ttf */,
-				991A00CA248702D1003DE7C2 /* SFProRounded-Bold.ttf */,
+				99DFCCA024E576D4009B196A /* SFProRounded-Bold.ttf */,
+				99DFCCA124E576D4009B196A /* SFProRounded.ttf */,
 				99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */,
 				999EACE62455C17600321D3E /* Info.plist */,
 			);
@@ -197,7 +193,6 @@
 		99D4CBF6249388E500C5B803 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				9998493724AF581300307D3C /* SF-PRO-ROUNDED-MEDIUM_0.OTF */,
 				99D4CBF72493892C00C5B803 /* SF-Pro-Display-Bold.otf */,
 				99D4CBF92493893E00C5B803 /* SF-Pro-Display-Medium.otf */,
 				99D4CC03249389CF00C5B803 /* SF-Pro-Display-Semibold.otf */,
@@ -212,8 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				99F9E77C247C21DE000ACA5A /* LogInVC.swift */,
-				991EA402248C1F74005327C4 /* SignUpViewController.swift */,
-				991EA404248C1F9D005327C4 /* FirstScreenViewController.swift */,
+				991EA402248C1F74005327C4 /* SignUpVC.swift */,
+				991EA404248C1F9D005327C4 /* FirstScreenVC.swift */,
 			);
 			path = "OnBoarding + LogIn";
 			sourceTree = "<group>";
@@ -300,10 +295,7 @@
 				99D4CC002493898C00C5B803 /* SF-Pro-Text-Bold.otf in Resources */,
 				999EACE52455C17600321D3E /* LaunchScreen.storyboard in Resources */,
 				99D4CBFC2493895F00C5B803 /* SF-Pro-Text-Semibold.otf in Resources */,
-				991A00CB248702D1003DE7C2 /* SFProRounded-Bold.ttf in Resources */,
-				991A00CD248702E1003DE7C2 /* SFProRounded.ttf in Resources */,
 				99F9E77F247C2DBA000ACA5A /* GoogleService-Info.plist in Resources */,
-				9998493824AF581300307D3C /* SF-PRO-ROUNDED-MEDIUM_0.OTF in Resources */,
 				999EACE22455C17500321D3E /* Assets.xcassets in Resources */,
 				99D4CBFA2493893E00C5B803 /* SF-Pro-Display-Medium.otf in Resources */,
 				99D4CC04249389CF00C5B803 /* SF-Pro-Display-Semibold.otf in Resources */,
@@ -365,7 +357,7 @@
 				999EACF52457175200321D3E /* CreateProjectVC.swift in Sources */,
 				99C8176B247D1EAB007836D8 /* MUser.swift in Sources */,
 				991A00C62481CBF0003DE7C2 /* Constants + Extensions.swift in Sources */,
-				991EA405248C1F9D005327C4 /* FirstScreenViewController.swift in Sources */,
+				991EA405248C1F9D005327C4 /* FirstScreenVC.swift in Sources */,
 				999EACDD2455C17300321D3E /* ProjectsVC.swift in Sources */,
 				9998AA552478210500629CBF /* ProjectsCell.swift in Sources */,
 				9939C9F7246DC6DE0029EFB1 /* Gifs.swift in Sources */,
@@ -374,7 +366,7 @@
 				991A00CF2488192F003DE7C2 /* userCell.swift in Sources */,
 				99C8178F247E831E007836D8 /* MCounterToKnit.swift in Sources */,
 				9998AA4B2477EC7000629CBF /* CollectionsView.swift in Sources */,
-				991EA403248C1F74005327C4 /* SignUpViewController.swift in Sources */,
+				991EA403248C1F74005327C4 /* SignUpVC.swift in Sources */,
 				99984914249D025000307D3C /* MStories.swift in Sources */,
 				999EACD92455C17300321D3E /* AppDelegate.swift in Sources */,
 				999EACDB2455C17300321D3E /* SceneDelegate.swift in Sources */,

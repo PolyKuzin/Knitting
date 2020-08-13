@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpVC: UIViewController, UITextFieldDelegate {
 
     var ref: DatabaseReference!
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -65,7 +65,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if isPasswordValid(cleanPassword) == false {
             return "Please make sure your password is at least 8 characters and contains # % & 0-9"
         }
-        
         return nil
     }
     
@@ -129,7 +128,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 }
-extension SignUpViewController {
+extension SignUpVC {
     
     func setingUpKeyboardHiding(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -170,7 +169,7 @@ extension SignUpViewController {
     }
 }
 //MARK: AUTH
-extension SignUpViewController {
+extension SignUpVC {
     func authitication() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {

@@ -13,11 +13,11 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     var ref: DatabaseReference!
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var singUpBtn: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var emailTextField		: UITextField!
+    @IBOutlet weak var passwordTextField	: UITextField!
+    @IBOutlet weak var loginButton			: UIButton!
+    @IBOutlet weak var singUpBtn			: UIButton!
+    @IBOutlet weak var errorLabel			: UILabel!
     
     override func viewDidLoad() {
         authitication()
@@ -30,8 +30,8 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        emailTextField.text		= ""
+        passwordTextField.text	= ""
     }
     
     func setUpUI(){
@@ -43,25 +43,23 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     }
     
     func validateFields() -> String? {
-        
-        //check that fields are filled in
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" ||
         passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)         == "" {
             return "Please fill in all fields"
         }
-             
         return nil
     }
     
     
     func showError(_ message: String) {
-        errorLabel.isHidden = false
-        errorLabel.text = message
-        errorLabel.alpha = 1
+        errorLabel.isHidden		= false
+        errorLabel.text			= message
+        errorLabel.alpha		= 1
     }
     
     @IBAction func loginTapped(_ sender: Any) {
         let error = validateFields()
+		
         if error != nil {
             showError(error!)
         }
@@ -69,7 +67,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
-//TODO: Warning label
+//TODO: Warning label + extension with all properties
                     if err != nil{
                         self.passwordTextField.backgroundColor      = Colors.errorTextField
                         self.passwordTextField.layer.borderColor    = Colors.errorTextFieldBorder.cgColor
@@ -137,7 +135,7 @@ extension LogInVC {
         
         if notification.name == UIResponder.keyboardWillShowNotification ||
            notification.name == UIResponder.keyboardWillChangeFrameNotification {
-           view.frame.origin.y = -keyboardRect.height + 20
+			view.frame.origin.y = -keyboardRect.height + 20
         } else {
             view.frame.origin.y = 0
         }

@@ -1,10 +1,11 @@
 //
-//  Gif.swift
-//  SwiftGif
+//  Gifs.swift
+//  knitting
 //
-//  Created by Arne Bahlo on 07.06.14.
-//  Copyright (c) 2014 Arne Bahlo. All rights reserved.
+//  Created by Павел Кузин on 26.04.2020.
+//  Copyright © 2020 Павел Кузин. All rights reserved.
 //
+
 import UIKit
 import ImageIO
 
@@ -83,7 +84,6 @@ extension UIImage {
             print("SwiftGif: Cannot turn image named \"\(asset)\" into NSDataAsset")
             return nil
         }
-
         return gif(data: dataAsset.data)
     }
 
@@ -112,13 +112,11 @@ extension UIImage {
             delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
                 Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
         }
-
         if let delayObject = delayObject as? Double, delayObject > 0 {
             delay = delayObject
         } else {
             delay = 0.1 // Make sure they're not too fast
         }
-
         return delay
     }
 
@@ -196,7 +194,6 @@ extension UIImage {
             for val: Int in delays {
                 sum += val
             }
-
             return sum
             }()
 
@@ -221,6 +218,5 @@ extension UIImage {
 
         return animation
     }
-
 }
 
