@@ -37,10 +37,21 @@
 		99D4CC0824940ED500C5B803 /* SwipeableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D4CC0724940ED500C5B803 /* SwipeableCollectionViewCell.swift */; };
 		99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F67815AA6391CEBC9773A0 /* Pods_knitting.framework */; };
 		99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */; };
+		99DFCCB124E57C44009B196A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DFCCB024E57C44009B196A /* Animations.swift */; };
 		99E7860D24803D7F00F3D6E7 /* ProjectsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */; };
 		99F9E77D247C21DE000ACA5A /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F9E77C247C21DE000ACA5A /* LogInVC.swift */; };
 		99F9E77F247C2DBA000ACA5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		99DFCCAB24E57B1C009B196A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 999EACCD2455C17300321D3E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 999EACD42455C17300321D3E;
+			remoteInfo = knitting;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5FB6FE4CF1446D1E4249787E /* Pods-knitting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-knitting.release.xcconfig"; path = "Target Support Files/Pods-knitting/Pods-knitting.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +88,8 @@
 		99DA5835245C2A5D00DF9CA1 /* CountersViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersViewCell.swift; sourceTree = "<group>"; };
 		99DFCCA024E576D4009B196A /* SFProRounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProRounded-Bold.ttf"; sourceTree = "<group>"; };
 		99DFCCA124E576D4009B196A /* SFProRounded.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRounded.ttf; sourceTree = "<group>"; };
+		99DFCCA624E57B1C009B196A /* Test tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		99DFCCB024E57C44009B196A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		99E7860C24803D7F00F3D6E7 /* ProjectsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCollectionView.swift; sourceTree = "<group>"; };
 		99F9E77C247C21DE000ACA5A /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		99F9E77E247C2DBA000ACA5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -90,6 +103,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				99D89BF56AFBB83D045FF329 /* Pods_knitting.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99DFCCA324E57B1C009B196A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +168,7 @@
 				999EACDA2455C17300321D3E /* SceneDelegate.swift */,
 				9939C9F6246DC6DE0029EFB1 /* Gifs.swift */,
 				991A00C52481CBF0003DE7C2 /* Constants + Extensions.swift */,
+				99DFCCB024E57C44009B196A /* Animations.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -167,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				999EACD52455C17300321D3E /* knitting.app */,
+				99DFCCA624E57B1C009B196A /* Test tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,18 +274,40 @@
 			productReference = 999EACD52455C17300321D3E /* knitting.app */;
 			productType = "com.apple.product-type.application";
 		};
+		99DFCCA524E57B1C009B196A /* Test tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99DFCCAD24E57B1C009B196A /* Build configuration list for PBXNativeTarget "Test tests" */;
+			buildPhases = (
+				99DFCCA224E57B1C009B196A /* Sources */,
+				99DFCCA324E57B1C009B196A /* Frameworks */,
+				99DFCCA424E57B1C009B196A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99DFCCAC24E57B1C009B196A /* PBXTargetDependency */,
+			);
+			name = "Test tests";
+			productName = "Test tests";
+			productReference = 99DFCCA624E57B1C009B196A /* Test tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		999EACCD2455C17300321D3E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Павел Кузин";
 				TargetAttributes = {
 					999EACD42455C17300321D3E = {
 						CreatedOnToolsVersion = 11.4;
+					};
+					99DFCCA524E57B1C009B196A = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 999EACD42455C17300321D3E;
 					};
 				};
 			};
@@ -281,6 +325,7 @@
 			projectRoot = "";
 			targets = (
 				999EACD42455C17300321D3E /* knitting */,
+				99DFCCA524E57B1C009B196A /* Test tests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +346,13 @@
 				99D4CC04249389CF00C5B803 /* SF-Pro-Display-Semibold.otf in Resources */,
 				99D4CBF82493892C00C5B803 /* SF-Pro-Display-Bold.otf in Resources */,
 				999EACE02455C17300321D3E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99DFCCA424E57B1C009B196A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,11 +425,27 @@
 				99C8178D247D564C007836D8 /* MProjectToKnit.swift in Sources */,
 				99D4CC0824940ED500C5B803 /* SwipeableCollectionViewCell.swift in Sources */,
 				99DA5836245C2A5D00DF9CA1 /* CountersViewCell.swift in Sources */,
+				99DFCCB124E57C44009B196A /* Animations.swift in Sources */,
 				997E85132458B6FF0074BE4B /* CountersVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		99DFCCA224E57B1C009B196A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		99DFCCAC24E57B1C009B196A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 999EACD42455C17300321D3E /* knitting */;
+			targetProxy = 99DFCCAB24E57B1C009B196A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		999EACDE2455C17300321D3E /* Main.storyboard */ = {
@@ -553,6 +621,48 @@
 			};
 			name = Release;
 		};
+		99DFCCAE24E57B1C009B196A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				INFOPLIST_FILE = "Test tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Test-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/knitting.app/knitting";
+			};
+			name = Debug;
+		};
+		99DFCCAF24E57B1C009B196A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJC3HHT8LN;
+				INFOPLIST_FILE = "Test tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.polykuzin.Test-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/knitting.app/knitting";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -570,6 +680,15 @@
 			buildConfigurations = (
 				999EACEA2455C17600321D3E /* Debug */,
 				999EACEB2455C17600321D3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99DFCCAD24E57B1C009B196A /* Build configuration list for PBXNativeTarget "Test tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99DFCCAE24E57B1C009B196A /* Debug */,
+				99DFCCAF24E57B1C009B196A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

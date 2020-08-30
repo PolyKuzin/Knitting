@@ -117,9 +117,6 @@ class ProjectsVC: UIViewController {
         profileImage.isUserInteractionEnabled = true
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(showProfileView))
         profileImage.addGestureRecognizer(profileTap)
-        
-//        let outProfile = UITapGestureRecognizer(target: self, action: #selector(outProfileView))
-//        self.view.addGestureRecognizer(outProfile)
     }
     
     @objc func showProfileView() {
